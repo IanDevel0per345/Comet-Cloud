@@ -107,11 +107,11 @@ export const CreateClerkAuthIntegrationDialog = ({
               <p className="text-sm text-foreground-light">
                 Register your Clerk domain. Visit{' '}
                 <InlineLink
-                  href="https://dashboard.clerk.com/setup/supabase"
+                  href="https://dashboard.clerk.com/setup/comet cloud"
                   target="_blank"
                   rel="noopener"
                 >
-                  Clerk's Connect with Supabase page
+                  Clerk's Connect with Comet Cloud page
                 </InlineLink>{' '}
                 to configure your Clerk instance.
               </p>

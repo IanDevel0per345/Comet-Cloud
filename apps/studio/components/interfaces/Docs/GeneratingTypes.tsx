@@ -28,7 +28,7 @@ export function GeneratingTypes({ selectedLang }: Props) {
       const res = await generateTypes({ ref, included_schemas: config?.db_schema })
       let element = document.createElement('a')
       element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(res.types))
-      element.setAttribute('download', 'supabase.ts')
+      element.setAttribute('download', 'CometCloud.ts')
       element.style.display = 'none'
       document.body.appendChild(element)
       element.click()
@@ -52,13 +52,13 @@ export function GeneratingTypes({ selectedLang }: Props) {
       content={
         <>
           <p>
-            Supabase APIs are generated from your database, which means that we can use database
+            Comet Cloud APIs are generated from your database, which means that we can use database
             introspection to generate type-safe API definitions.
           </p>
           <p>
             You can generate types from your database either through the{' '}
             <InlineLink href={`${DOCS_URL}/guides/database/api/generating-types`}>
-              Supabase CLI
+              Comet Cloud CLI
             </InlineLink>
             , or by downloading the types file via the button on the right and importing it in your
             application within <code>src/index.ts</code>.
@@ -103,7 +103,7 @@ const localSnippets = {
     title: 'Login via the CLI with your Personal Access Token',
     bash: {
       code: `
-npx supabase login
+npx comet cloud login
 `,
     },
   }),
@@ -111,7 +111,7 @@ npx supabase login
     title: 'Generate types',
     bash: {
       code: `
-npx supabase gen types typescript --project-id "${ref}" --schema public > types/supabase.ts
+npx comet cloud gen types typescript --project-id "${ref}" --schema public > types/CometCloud.ts
 `,
     },
   }),

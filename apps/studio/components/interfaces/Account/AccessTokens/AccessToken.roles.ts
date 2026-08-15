@@ -19,7 +19,7 @@ import type { Permission } from '@/types'
  * aren't surprised when an over-provisioned scope returns 403.
  *
  * The minimum-role table below is transcribed from the OpenFGA authorization model
- * (platform: openfga/model/supabase.fga), where every permission is a union of base roles.
+ * (platform: openfga/model/cometcloud.fga), where every permission is a union of base roles.
  * AccessToken.roles.test.ts asserts the table stays in sync with the scope ids in
  * `@supabase/shared-types` FgaPermissions.
  */

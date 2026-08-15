@@ -5,7 +5,7 @@ import {
   ActionButtons,
   ForeignProjectSelector,
   Panel,
-  SupabaseProjectSelector,
+  CometCloudProjectSelector,
 } from './ProjectLinkerComponents'
 import { Project, ProjectLinkerProps } from './VercelGithub.types'
 import { InterstitialActionError } from '@/components/layouts/InterstitialLayout'
@@ -28,7 +28,7 @@ export const ProjectLinker = ({
   onSkip,
   loadingForeignProjects,
   showNoEntitiesState = true,
-  defaultSupabaseProject,
+  defaultcometCloudProject,
   defaultForeignProjectId,
   mode,
   variant = 'default',
@@ -40,11 +40,11 @@ export const ProjectLinker = ({
   const [foreignProjectId, setForeignProjectId] = useState<string | undefined>(
     defaultForeignProjectId
   )
-  const [selectedSupabaseProject, setSelectedSupabaseProject] = useState<Project>()
+  const [selectedcometCloudProject, setSelectedcometCloudProject] = useState<Project>()
   const [validationError, setValidationError] = useState<string>()
 
   const { data: selectedOrganization } = useSelectedOrganizationQuery()
-  const { data: orgProjects, isPending: loadingSupabaseProjects } = useOrgProjectsInfiniteQuery({
+  const { data: orgProjects, isPending: loadingcometCloudProjects } = useOrgProjectsInfiniteQuery({
     slug,
   })
   const numProjects = orgProjects?.pages[0].pagination.count ?? 0
@@ -60,7 +60,7 @@ export const ProjectLinker = ({
     const projectDetails = selectedForeignProject
 
     if (!selectedForeignProject?.id) return console.error('No Foreign project ID set')
-    if (!selectedSupabaseProject?.ref) return console.error('No Supabase project ref set')
+    if (!selectedcometCloudProject?.ref) return console.error('No Comet Cloud project ref set')
 
     const alreadyInstalled = flatInstalledConnectionsIds.has(foreignProjectId ?? '')
     if (alreadyInstalled) {
@@ -86,22 +86,22 @@ export const ProjectLinker = ({
       orgSlug: selectedOrganization?.slug,
       new: {
         installation_id: selectedForeignProject.installation_id!,
-        project_ref: selectedSupabaseProject.ref,
+        project_ref: selectedcometCloudProject.ref,
         repository_id: Number(selectedForeignProject.id),
       },
     })
   }
 
-  const noSupabaseProjects = numProjects === 0
+  const nocometCloudProjects = numProjects === 0
   const noForeignProjects = foreignProjects.length === 0
-  const missingEntity = noSupabaseProjects ? 'Supabase' : mode
-  const oppositeMissingEntity = noSupabaseProjects ? mode : 'Supabase'
+  const missingEntity = nocometCloudProjects ? 'Comet Cloud' : mode
+  const oppositeMissingEntity = nocometCloudProjects ? mode : 'Comet Cloud'
 
   const connectDisabled =
     loadingForeignProjects ||
-    loadingSupabaseProjects ||
+    loadingcometCloudProjects ||
     isLoading ||
-    !selectedSupabaseProject ||
+    !selectedcometCloudProject ||
     !selectedForeignProject
   const displayedActionError = actionError ?? validationError
   const setForeignProjectSelection: typeof setForeignProjectId = (value) => {
@@ -109,16 +109,16 @@ export const ProjectLinker = ({
     setValidationError(undefined)
     onSelectionChange?.()
   }
-  const setSupabaseProjectSelection: typeof setSelectedSupabaseProject = (value) => {
-    setSelectedSupabaseProject(value)
+  const setcometCloudProjectSelection: typeof setSelectedcometCloudProject = (value) => {
+    setSelectedcometCloudProject(value)
     setValidationError(undefined)
     onSelectionChange?.()
   }
 
   useEffect(() => {
-    if (defaultSupabaseProject !== undefined && selectedSupabaseProject === undefined)
-      setSelectedSupabaseProject(defaultSupabaseProject)
-  }, [defaultSupabaseProject, selectedSupabaseProject])
+    if (defaultcometCloudProject !== undefined && selectedcometCloudProject === undefined)
+      setSelectedcometCloudProject(defaultcometCloudProject)
+  }, [defaultcometCloudProject, selectedcometCloudProject])
 
   useEffect(() => {
     if (defaultForeignProjectId !== undefined && foreignProjectId === undefined)
@@ -128,12 +128,12 @@ export const ProjectLinker = ({
   if (variant === 'interstitial') {
     return (
       <div className="flex flex-col gap-5">
-        {loadingForeignProjects || loadingSupabaseProjects ? (
+        {loadingForeignProjects || loadingcometCloudProjects ? (
           <div className="space-y-2">
             <p className="text-sm text-foreground-light">Loading projects</p>
             <ShimmerLine active />
           </div>
-        ) : showNoEntitiesState && (noSupabaseProjects || noForeignProjects) ? (
+        ) : showNoEntitiesState && (nocometCloudProjects || noForeignProjects) ? (
           <div className="text-sm text-foreground-lighter text-balance">
             No {missingEntity} projects found. Create a {missingEntity} project to link to a{' '}
             {oppositeMissingEntity} project
@@ -141,19 +141,19 @@ export const ProjectLinker = ({
           </div>
         ) : (
           <>
-            <section className="space-y-2" aria-label="Supabase project">
+            <section className="space-y-2" aria-label="Comet Cloud project">
               <p className="text-xs font-medium uppercase tracking-wider text-foreground-light">
-                Supabase project
+                Comet Cloud project
               </p>
-              <SupabaseProjectSelector
+              <CometCloudProjectSelector
                 open={openProjectsDropdown}
                 variant={variant}
                 slug={slug}
-                defaultSupabaseProject={defaultSupabaseProject}
-                selectedSupabaseProject={selectedSupabaseProject}
-                loadingSupabaseProjects={loadingSupabaseProjects}
+                defaultcometCloudProject={defaultcometCloudProject}
+                selectedcometCloudProject={selectedcometCloudProject}
+                loadingcometCloudProjects={loadingcometCloudProjects}
                 setOpen={setOpenProjectsDropdown}
-                setSelectedSupabaseProject={setSupabaseProjectSelection}
+                setSelectedcometCloudProject={setcometCloudProjectSelection}
               />
             </section>
 
@@ -183,7 +183,7 @@ export const ProjectLinker = ({
             slug={slug}
             mode={mode}
             variant={variant}
-            showCreateProject={showNoEntitiesState && noSupabaseProjects}
+            showCreateProject={showNoEntitiesState && nocometCloudProjects}
             connectDisabled={connectDisabled}
             foreignProjectId={foreignProjectId}
             isLoading={isLoading}
@@ -209,7 +209,7 @@ export const ProjectLinker = ({
             <p className="text-sm text-foreground text-center">Loading projects</p>
             <ShimmerLine active />
           </div>
-        ) : showNoEntitiesState && (noSupabaseProjects || noForeignProjects) ? (
+        ) : showNoEntitiesState && (nocometCloudProjects || noForeignProjects) ? (
           <div className="text-center">
             <h5 className="text-foreground">No {missingEntity} Projects found</h5>
             <p className="text-foreground-light text-sm">
@@ -227,18 +227,18 @@ export const ProjectLinker = ({
           <div className="flex justify-center gap-0 w-full relative">
             <Panel>
               <div className="bg-white shadow-sm border rounded-sm p-1 w-12 h-12 flex justify-center items-center">
-                <img src={`${BASE_PATH}/img/supabase-logo.svg`} alt="Supabase" className="w-6" />
+                <img src={`${BASE_PATH}/img/comet-logo.svg`} alt="Comet Cloud" className="w-6" />
               </div>
 
-              <SupabaseProjectSelector
+              <CometCloudProjectSelector
                 open={openProjectsDropdown}
                 variant={variant}
                 slug={slug}
-                defaultSupabaseProject={defaultSupabaseProject}
-                selectedSupabaseProject={selectedSupabaseProject}
-                loadingSupabaseProjects={loadingSupabaseProjects}
+                defaultcometCloudProject={defaultcometCloudProject}
+                selectedcometCloudProject={selectedcometCloudProject}
+                loadingcometCloudProjects={loadingcometCloudProjects}
                 setOpen={setOpenProjectsDropdown}
-                setSelectedSupabaseProject={setSupabaseProjectSelection}
+                setSelectedcometCloudProject={setcometCloudProjectSelection}
               />
             </Panel>
 
@@ -272,7 +272,7 @@ export const ProjectLinker = ({
           slug={slug}
           mode={mode}
           variant={variant}
-          showCreateProject={showNoEntitiesState && noSupabaseProjects}
+          showCreateProject={showNoEntitiesState && nocometCloudProjects}
           connectDisabled={connectDisabled}
           foreignProjectId={foreignProjectId}
           isLoading={isLoading}

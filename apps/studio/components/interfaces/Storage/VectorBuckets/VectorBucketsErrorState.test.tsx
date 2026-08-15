@@ -36,7 +36,7 @@ describe('VectorBucketsErrorState', () => {
     customRender(<VectorBucketsErrorState error={new ResponseError('boom')} />)
 
     expect(screen.getByText('Vector buckets are not enabled')).toBeInTheDocument()
-    expect(screen.getByText('supabase/config.toml')).toBeInTheDocument()
+    expect(screen.getByText('comet cloud/config.toml')).toBeInTheDocument()
     expect(screen.queryByText('Contact support')).not.toBeInTheDocument()
   })
 

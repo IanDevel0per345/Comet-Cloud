@@ -19,14 +19,14 @@ const ContentFile = ({ projectKeys }: StepContentProps) => {
       name: 'page.tsx',
       language: 'tsx',
       code: `
-import { createClient } from '@/utils/supabase/server'
+import { createClient } from '@/utils/cometcloud/server'
 import { cookies } from 'next/headers'
 
 export default async function Page() {
   const cookieStore = await cookies()
-  const supabase = createClient(cookieStore)
+  const comet cloud = createClient(cookieStore)
 
-  const { data: todos } = await supabase.from('todos').select()
+  const { data: todos } = await CometCloud.from('todos').select()
 
   return (
     <ul>
@@ -39,7 +39,7 @@ export default async function Page() {
 `,
     },
     {
-      name: 'utils/supabase/server.ts',
+      name: 'utils/cometcloud/server.ts',
       language: 'ts',
       code: `
 import { createServerClient } from "@supabase/ssr";
@@ -73,7 +73,7 @@ export const createClient = (cookieStore: Awaited<ReturnType<typeof cookies>>) =
 `,
     },
     {
-      name: 'utils/supabase/client.ts',
+      name: 'utils/cometcloud/client.ts',
       language: 'ts',
       code: `
 import { createBrowserClient } from "@supabase/ssr";
@@ -89,7 +89,7 @@ export const createClient = () =>
 `,
     },
     {
-      name: 'utils/supabase/middleware.ts',
+      name: 'utils/cometcloud/middleware.ts',
       language: 'ts',
       code: `
 import { createServerClient } from "@supabase/ssr";
@@ -106,7 +106,7 @@ export const createClient = (request: NextRequest) => {
     },
   });
 
-  const supabase = createServerClient(
+  const comet cloud = createServerClient(
     supabaseUrl!,
     supabaseKey!,
     {

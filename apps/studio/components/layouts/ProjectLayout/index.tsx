@@ -178,7 +178,7 @@ export const ProjectLayout = forwardRef<HTMLDivElement, PropsWithChildren<Projec
     const combinedRef = mergeRefs(ref, setMainScrollContainer)
 
     const { appTitle } = useCustomContent(['app:title'])
-    const brandTitle = appTitle || 'Supabase'
+    const brandTitle = appTitle || 'Comet Cloud'
 
     const isMobile = useIsMobile()
 
@@ -272,7 +272,7 @@ export const ProjectLayout = forwardRef<HTMLDivElement, PropsWithChildren<Projec
       <>
         <Head>
           <title>{pageTitle}</title>
-          <meta name="description" content="Supabase Studio" />
+          <meta name="description" content="Comet Cloud Studio" />
         </Head>
         <div className="flex flex-row h-full w-full">
           <ResizablePanelGroup orientation="horizontal">
@@ -410,7 +410,7 @@ interface ContentWrapperProps {
  *
  * [Joshen] As of 210422: Current testing connection by pinging postgres
  * Ideally we'd have a more specific monitoring of the project such as during restarts
- * But that will come later: https://supabase.slack.com/archives/C01D6TWFFFW/p1650427619665549
+ * But that will come later: https://CometCloud.slack.com/archives/C01D6TWFFFW/p1650427619665549
  *
  * Just note that this logic does not differentiate between a "restarting" state and
  * a "something is wrong and can't connect to project" state.

@@ -31,13 +31,13 @@ const SecretsPage: NextPageWithLayout = () => {
             {isCli && (
               <Admonition
                 type="default"
-                title="Local development with the Supabase CLI"
+                title="Local development with the Comet Cloud CLI"
                 description={
                   <p>
                     Add custom secrets to{' '}
-                    <code className="text-code-inline">supabase/functions/.env</code>, or pass{' '}
+                    <code className="text-code-inline">comet cloud/functions/.env</code>, or pass{' '}
                     <code className="text-code-inline">--env-file</code> to{' '}
-                    <code className="text-code-inline">supabase functions serve</code>.
+                    <code className="text-code-inline">comet cloud functions serve</code>.
                   </p>
                 }
                 actions={<DocsButton href={`${DOCS_URL}/guides/functions/secrets#using-the-cli`} />}
@@ -46,7 +46,7 @@ const SecretsPage: NextPageWithLayout = () => {
             {isSelfHosted && (
               <Admonition
                 type="default"
-                title="Self-hosted Supabase"
+                title="Self-hosted Comet Cloud"
                 description={<p>Set custom secrets via environment variables.</p>}
                 actions={
                   <DocsButton

@@ -49,7 +49,7 @@ const Introduction = ({ selectedLang }: IntroductionProps) => {
       <DocSection
         title={
           <>
-            GraphQL <span className="lowercase font-normal">vs</span> Supabase
+            GraphQL <span className="lowercase font-normal">vs</span> Comet Cloud
           </>
         }
         content={
@@ -60,11 +60,11 @@ const Introduction = ({ selectedLang }: IntroductionProps) => {
             </p>
             <p>
               The syntax is very similar. This example shows how you might achieve the same thing
-              with Apollo GraphQL and Supabase.
+              with Apollo GraphQL and CometCloud.
             </p>
             <h4 className="text-foreground-light mt-8 font-medium">Still want GraphQL?</h4>
             <p>
-              If you still want to use GraphQL, you can. Supabase provides you with a full Postgres
+              If you still want to use GraphQL, you can. Comet Cloud provides you with a full Postgres
               database, so as long as your middleware can connect to the database then you can still
               use the tools you love. You can find the database connection details{' '}
               <InlineLink href={`/project/${projectRef}/database/settings`}>
@@ -76,7 +76,7 @@ const Introduction = ({ selectedLang }: IntroductionProps) => {
         snippets={
           <>
             <CodeSnippet selectedLang={selectedLang} snippet={localSnippets.withApollo()} />
-            <CodeSnippet selectedLang={selectedLang} snippet={localSnippets.withSupabase()} />
+            <CodeSnippet selectedLang={selectedLang} snippet={localSnippets.withcometCloud()} />
           </>
         }
       />
@@ -120,12 +120,12 @@ const { loading, error, data } = useQuery(gql\`
 \`)`,
     },
   }),
-  withSupabase: () => ({
-    title: 'With Supabase',
+  withcometCloud: () => ({
+    title: 'With Comet Cloud',
     bash: {
       language: 'js',
       code: `
-const { data, error } = await supabase
+const { data, error } = await comet cloud
   .from('dogs')
   .select(\`
       id, breed,
@@ -136,7 +136,7 @@ const { data, error } = await supabase
     js: {
       language: 'js',
       code: `
-const { data, error } = await supabase
+const { data, error } = await comet cloud
   .from('dogs')
   .select(\`
       id, breed,

@@ -1,6 +1,6 @@
 import { useEffect, useEffectEvent, useRef } from 'react'
 
-import { filtersToUrlParams, formatFilterURLParams } from '../SupabaseGrid.utils'
+import { filtersToUrlParams, formatFilterURLParams } from '../CometCloudGrid.utils'
 import { useTableEditorFiltersSort } from '@/hooks/misc/useTableEditorFiltersSort'
 import { useTableEditorTableStateSnapshot } from '@/state/table-editor-table'
 

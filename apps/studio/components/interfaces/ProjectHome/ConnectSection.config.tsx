@@ -1,58 +1,56 @@
-import { Box, Cable, Database, KeyRound, Server, Sparkles } from 'lucide-react'
+import { Globe, KeyRound, Rocket, Server, Terminal, Users } from 'lucide-react'
 import type { ReactNode } from 'react'
 
-import type { ConnectMode } from '../ConnectSheet/Connect.types'
-
 export type ConnectAction = {
-  id: ConnectMode | 'api_keys'
+  id: string
   heading: string
   subheading: string
   icon: ReactNode
-  mode?: ConnectMode
   href?: string
   requiresActiveProject?: boolean
 }
 
 export const CONNECT_ACTIONS: ConnectAction[] = [
   {
-    id: 'framework',
-    mode: 'framework',
-    heading: 'Framework',
-    subheading: 'Use a client library',
-    icon: <Box size={16} strokeWidth={1.5} />,
-  },
-  {
-    id: 'server',
-    mode: 'server',
-    heading: 'Server',
-    subheading: 'Build APIs',
+    id: 'new_service',
+    heading: 'Criar serviço',
+    subheading: 'Hospede seu bot, API ou site',
     icon: <Server size={16} strokeWidth={1.5} />,
+    href: '/project/[ref]/services/new',
   },
   {
-    id: 'direct',
-    mode: 'direct',
-    heading: 'Direct',
-    subheading: 'Connection string',
-    icon: <Database size={16} strokeWidth={1.5} />,
+    id: 'deploy_console',
+    heading: 'Console de Deploy',
+    subheading: 'Execute deploys e comandos',
+    icon: <Terminal size={16} strokeWidth={1.5} />,
+    href: '/project/[ref]/sql',
   },
   {
-    id: 'orm',
-    mode: 'orm',
-    heading: 'ORM',
-    subheading: 'Third-party library',
-    icon: <Cable size={16} strokeWidth={1.5} />,
+    id: 'custom_domain',
+    heading: 'Domínio personalizado',
+    subheading: 'Conecte e proteja seu domínio',
+    icon: <Globe size={16} strokeWidth={1.5} />,
+    href: '/project/[ref]/settings/domains',
   },
   {
-    id: 'mcp',
-    mode: 'mcp',
-    heading: 'MCP',
-    subheading: 'Connect your agent',
-    icon: <Sparkles size={16} strokeWidth={1.5} />,
+    id: 'deploy_bot',
+    heading: 'Deployar agora',
+    subheading: 'Deploy de lançamento em um clique',
+    icon: <Rocket size={16} strokeWidth={1.5} />,
+    href: '/project/[ref]/sql',
+  },
+  {
+    id: 'team',
+    heading: 'Convidar membro',
+    subheading: 'Adicione sua equipe ao projeto',
+    icon: <Users size={16} strokeWidth={1.5} />,
+    href: '/project/[ref]/auth',
+    requiresActiveProject: false,
   },
   {
     id: 'api_keys',
-    heading: 'API Keys',
-    subheading: 'Manage project keys',
+    heading: 'Chaves de API',
+    subheading: 'Gerencie as chaves do projeto',
     icon: <KeyRound size={16} strokeWidth={1.5} />,
     href: '/project/[ref]/settings/api-keys',
     requiresActiveProject: false,

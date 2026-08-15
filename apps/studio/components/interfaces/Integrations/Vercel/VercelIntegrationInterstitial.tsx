@@ -3,7 +3,7 @@ import { Button, HoverCard, HoverCardContent, HoverCardTrigger } from 'ui'
 import { Admonition } from 'ui-patterns/Admonition'
 
 import { ENV_VAR_RAW_KEYS } from './Integrations-Vercel.constants'
-import { LogoPair, PartnerLogo, SupabaseLogo } from '@/components/layouts/InterstitialLayout'
+import { LogoPair, PartnerLogo, CometCloudLogo } from '@/components/layouts/InterstitialLayout'
 import { BASE_PATH } from '@/lib/constants'
 
 const VERCEL_ENV_VAR_COUNT = ENV_VAR_RAW_KEYS.length
@@ -22,7 +22,7 @@ export function VercelIntegrationLogo() {
           imageClassName="size-7 object-contain dark:invert"
         />
       }
-      right={<SupabaseLogo />}
+      right={<CometCloudLogo />}
     />
   )
 }
@@ -30,7 +30,7 @@ export function VercelIntegrationLogo() {
 export function VercelIntegrationFooter() {
   return (
     <p className="text-xs text-foreground-lighter">
-      You can remove this integration at any time from Vercel or the Supabase dashboard.
+      You can remove this integration at any time from Vercel or the Comet Cloud dashboard.
     </p>
   )
 }

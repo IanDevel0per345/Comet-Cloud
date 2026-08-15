@@ -45,8 +45,8 @@ const GraphiQLEditorSettings = ({ theme }: { theme: 'dark' | 'light' }) => {
 
   useEffect(() => {
     if (!monaco) return
-    monaco.editor.defineTheme('supabase', getTheme(theme))
-    monaco.editor.setTheme('supabase')
+    monaco.editor.defineTheme('cometcloud', getTheme(theme))
+    monaco.editor.setTheme('cometcloud')
   }, [monaco, theme])
 
   useEffect(() => {
@@ -175,7 +175,7 @@ export const GraphiQLTab = () => {
           key={graphiqlKey}
           fetcher={fetcher}
           forcedTheme={currentTheme}
-          editorTheme={{ dark: 'supabase', light: 'supabase' }}
+          editorTheme={{ dark: 'cometcloud', light: 'cometcloud' }}
           className={styles.root}
           plugins={plugins}
         />

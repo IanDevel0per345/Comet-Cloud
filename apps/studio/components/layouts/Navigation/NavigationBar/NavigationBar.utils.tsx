@@ -1,6 +1,6 @@
 import { useParams } from 'common'
 import { Auth, Database, EdgeFunctions, Realtime, SqlEditor, Storage, TableEditor } from 'icons'
-import { Blocks, Lightbulb, List, Settings, Telescope } from 'lucide-react'
+import { Blocks, Settings, Telescope } from 'lucide-react'
 
 import { useUnifiedLogsPreview } from '@/components/interfaces/App/FeaturePreview/FeaturePreviewContext'
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/components/interfaces/Sidebar'
@@ -49,7 +49,7 @@ export const generateToolRoutes = (ref?: string, project?: Project): Route[] => 
   return [
     {
       key: 'editor',
-      label: 'Table Editor',
+      label: 'Serviços',
       disabled: !isProjectActive,
       icon: <TableEditor size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
       link: ref && (isProjectBuilding ? buildingUrl : `/project/${ref}/editor`),
@@ -58,7 +58,7 @@ export const generateToolRoutes = (ref?: string, project?: Project): Route[] => 
     },
     {
       key: 'sql',
-      label: 'SQL Editor',
+      label: 'Console de Deploy',
       disabled: !isProjectActive,
       icon: <SqlEditor size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
       link: ref && (isProjectBuilding ? buildingUrl : `/project/${ref}/sql`),
@@ -75,15 +75,16 @@ export const generateProductRoutes = (
   const { isProjectActive, isProjectBuilding, buildingUrl } = getRouteContext(ref, project)
 
   const authEnabled = features?.auth ?? true
-  const edgeFunctionsEnabled = features?.edgeFunctions ?? true
   const storageEnabled = features?.storage ?? true
+  const edgeFunctionsEnabled = features?.edgeFunctions ?? true
   const realtimeEnabled = features?.realtime ?? true
   const authOverviewPageEnabled = features?.authOverviewPage ?? false
 
   return [
     {
       key: 'database',
-      label: 'Database',
+      label: 'Serviços',
+      description: 'Serviços hospedados',
       disabled: !isProjectActive,
       icon: <Database size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
       link:
@@ -99,7 +100,8 @@ export const generateProductRoutes = (
       ? [
           {
             key: 'auth',
-            label: 'Authentication',
+            label: 'Equipe e Acesso',
+            description: 'Membros e permissões',
             disabled: !isProjectActive,
             icon: <Auth size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
             link:
@@ -117,7 +119,8 @@ export const generateProductRoutes = (
       ? [
           {
             key: 'storage',
-            label: 'Storage',
+            label: 'Armazenamento',
+            description: 'Volumes e arquivos',
             disabled: !isProjectActive,
             icon: <Storage size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
             link: ref && (isProjectBuilding ? buildingUrl : `/project/${ref}/storage/files`),
@@ -129,7 +132,8 @@ export const generateProductRoutes = (
       ? [
           {
             key: 'functions',
-            label: 'Edge Functions',
+            label: 'Integrações',
+            description: 'GitHub, Webhooks e CLI',
             disabled: false,
             icon: <EdgeFunctions size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
             link: ref && `/project/${ref}/functions`,
@@ -141,7 +145,8 @@ export const generateProductRoutes = (
       ? [
           {
             key: 'realtime',
-            label: 'Realtime',
+            label: 'Logs',
+            description: 'Logs e monitoramento',
             disabled: !isProjectActive,
             icon: <Realtime size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
             link: ref && (isProjectBuilding ? buildingUrl : `/project/${ref}/realtime/inspector`),
@@ -159,24 +164,14 @@ export const generateOtherRoutes = (
 ): Route[] => {
   const { isProjectActive, isProjectBuilding, buildingUrl } = getRouteContext(ref, project)
 
-  const unifiedLogsEnabled = features?.unifiedLogs ?? false
   const reportsEnabled = features?.showReports ?? true
-  const logsEnabled = features?.showLogs ?? true
 
   return [
-    {
-      key: 'advisors',
-      label: 'Advisors',
-      disabled: !isProjectActive,
-      icon: <Lightbulb size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
-      link: ref && (isProjectBuilding ? buildingUrl : `/project/${ref}/advisors/security`),
-      shortcutId: SHORTCUT_IDS.NAV_ADVISORS,
-    },
     ...(reportsEnabled
       ? [
           {
             key: 'observability',
-            label: 'Observability',
+            label: 'Monitoramento',
             disabled: !isProjectActive,
             icon: <Telescope size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
             link:
@@ -190,23 +185,9 @@ export const generateOtherRoutes = (
           },
         ]
       : []),
-    ...(logsEnabled
-      ? [
-          {
-            key: 'logs',
-            label: 'Logs',
-            disabled: false,
-            icon: <List size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
-            link:
-              ref &&
-              (unifiedLogsEnabled ? `/project/${ref}/logs` : `/project/${ref}/logs/explorer`),
-            shortcutId: SHORTCUT_IDS.NAV_LOGS,
-          },
-        ]
-      : []),
     {
       key: 'integrations',
-      label: 'Integrations',
+      label: 'Billing',
       disabled: !isProjectActive,
       icon: <Blocks size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
       link: ref && (isProjectBuilding ? buildingUrl : `/project/${ref}/integrations`),
@@ -234,7 +215,7 @@ export const generateSettingsRoutes = (ref?: string): Route[] => {
   return [
     {
       key: 'settings',
-      label: 'Project Settings',
+      label: 'Configurações',
       icon: <Settings size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
       link: ref && `/project/${ref}/settings/general`,
       disabled: false,

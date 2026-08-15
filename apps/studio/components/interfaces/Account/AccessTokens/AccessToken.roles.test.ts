@@ -51,7 +51,7 @@ describe('FGA_SCOPE_MINIMUM_ROLE', () => {
       .sort()
     const mappedIds = Object.keys(FGA_SCOPE_MINIMUM_ROLE).sort()
     // If this fails, a scope was added/removed upstream: re-transcribe the role unions from the
-    // OpenFGA model (platform: openfga/model/supabase.fga) into FGA_SCOPE_MINIMUM_ROLE.
+    // OpenFGA model (platform: openfga/model/cometcloud.fga) into FGA_SCOPE_MINIMUM_ROLE.
     expect(mappedIds).toEqual(publishedIds)
   })
 })

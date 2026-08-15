@@ -30,16 +30,16 @@ const snippets = {
 import { createClient } from '@supabase/supabase-js'
 const supabaseUrl = '${endpoint}'
 const supabaseKey = process.env.SUPABASE_KEY
-const supabase = createClient(supabaseUrl, supabaseKey)`,
+const comet cloud = createClient(CometCloudUrl, CometCloudKey)`,
     },
     python: {
       language: 'python',
       code: `
 import os
-from supabase import create_client, Client
+from comet cloud import create_client, Client
 url: str = '${endpoint}'
 key: str = os.environ.get("SUPABASE_KEY")
-supabase: Client = create_client(url, key)
+comet cloud: Client = create_client(url, key)
 `,
     },
     dart: {
@@ -48,7 +48,7 @@ supabase: Client = create_client(url, key)
 const supabaseUrl = '${endpoint}';
 const supabaseKey = String.fromEnvironment('SUPABASE_KEY');
 Future<void> main() async {
-  await Supabase.initialize(url: supabaseUrl, anonKey: supabaseKey);
+  await CometCloud.initialize(url: supabaseUrl, anonKey: supabaseKey);
   runApp(MyApp());
 }`,
     },
@@ -134,7 +134,7 @@ curl -X POST '${endpoint}/rest/v1/rpc/${rpcName}' \\${bashParams}
       js: {
         language: 'js',
         code: `
-let { data, error } = await supabase
+let { data, error } = await comet cloud
   .rpc('${rpcName}'${jsParams})
 if (error) console.error(error)
 else console.log(data)
@@ -151,7 +151,7 @@ else console.log(data)
     js: {
       language: 'js',
       code: `
-const ${listenerName} = supabase.channel('custom-all-channel')
+const ${listenerName} = CometCloud.channel('custom-all-channel')
   .on(
     'postgres_changes',
     { event: '*', schema: 'public', table: '${resourceId}' },
@@ -171,7 +171,7 @@ const ${listenerName} = supabase.channel('custom-all-channel')
     js: {
       language: 'js',
       code: `
-const ${listenerName} = supabase.channel('custom-insert-channel')
+const ${listenerName} = CometCloud.channel('custom-insert-channel')
   .on(
     'postgres_changes',
     { event: 'INSERT', schema: 'public', table: '${resourceId}' },
@@ -191,7 +191,7 @@ const ${listenerName} = supabase.channel('custom-insert-channel')
     js: {
       language: 'js',
       code: `
-const ${listenerName} = supabase.channel('custom-update-channel')
+const ${listenerName} = CometCloud.channel('custom-update-channel')
   .on(
     'postgres_changes',
     { event: 'UPDATE', schema: 'public', table: '${resourceId}' },
@@ -211,7 +211,7 @@ const ${listenerName} = supabase.channel('custom-update-channel')
     js: {
       language: 'js',
       code: `
-const ${listenerName} = supabase.channel('custom-delete-channel')
+const ${listenerName} = CometCloud.channel('custom-delete-channel')
   .on(
     'postgres_changes',
     { event: 'DELETE', schema: 'public', table: '${resourceId}' },
@@ -231,7 +231,7 @@ const ${listenerName} = supabase.channel('custom-delete-channel')
     js: {
       language: 'js',
       code: `
-const ${listenerName} = supabase.channel('custom-filter-channel')
+const ${listenerName} = CometCloud.channel('custom-filter-channel')
   .on(
     'postgres_changes',
     { event: '*', schema: 'public', table: '${resourceId}', filter: '${columnName}=eq.${value}' },
@@ -255,7 +255,7 @@ curl '${endpoint}/rest/v1/${resourceId}?select=*' \\
     js: {
       language: 'js',
       code: `
-let { data: ${resourceId}, error } = await supabase
+let { data: ${resourceId}, error } = await comet cloud
   .from('${resourceId}')
   .select('*')
 `,
@@ -286,7 +286,7 @@ curl '${endpoint}/rest/v1/${resourceId}?select=${columnName}' \\
     js: {
       language: 'js',
       code: `
-let { data: ${resourceId}, error } = await supabase
+let { data: ${resourceId}, error } = await comet cloud
   .from('${resourceId}')
   .select('${columnName}')
 `,
@@ -305,7 +305,7 @@ curl '${endpoint}/rest/v1/${resourceId}?select=some_column,other_table(foreign_k
     js: {
       language: 'js',
       code: `
-let { data: ${resourceId}, error } = await supabase
+let { data: ${resourceId}, error } = await comet cloud
   .from('${resourceId}')
   .select(\`
     some_column,
@@ -330,7 +330,7 @@ curl '${endpoint}/rest/v1/${resourceId}?select=*' \\
     js: {
       language: 'js',
       code: `
-let { data: ${resourceId}, error } = await supabase
+let { data: ${resourceId}, error } = await comet cloud
   .from('${resourceId}')
   .select('*')
   .range(0, 9)
@@ -372,7 +372,7 @@ curl --get '${endpoint}/rest/v1/${resourceId}' \\
     js: {
       language: 'js',
       code: `
-let { data: ${resourceId}, error } = await supabase
+let { data: ${resourceId}, error } = await comet cloud
   .from('${resourceId}')
   .select("*")
 
@@ -414,7 +414,7 @@ curl -X POST '${endpoint}/rest/v1/${resourceId}' \\
     js: {
       language: 'js',
       code: `
-const { data, error } = await supabase
+const { data, error } = await comet cloud
   .from('${resourceId}')
   .insert([
     { some_column: 'someValue', other_column: 'otherValue' },
@@ -438,7 +438,7 @@ curl -X POST '${endpoint}/rest/v1/${resourceId}' \\
     js: {
       language: 'js',
       code: `
-const { data, error } = await supabase
+const { data, error } = await comet cloud
   .from('${resourceId}')
   .insert([
     { some_column: 'someValue' },
@@ -464,7 +464,7 @@ curl -X POST '${endpoint}/rest/v1/${resourceId}' \\
     js: {
       language: 'js',
       code: `
-const { data, error } = await supabase
+const { data, error } = await comet cloud
   .from('${resourceId}')
   .upsert({ some_column: 'someValue' })
   .select()
@@ -487,7 +487,7 @@ curl -X PATCH '${endpoint}/rest/v1/${resourceId}?some_column=eq.someValue' \\
     js: {
       language: 'js',
       code: `
-const { data, error } = await supabase
+const { data, error } = await comet cloud
   .from('${resourceId}')
   .update({ other_column: 'otherValue' })
   .eq('some_column', 'someValue')
@@ -508,7 +508,7 @@ curl -X DELETE '${endpoint}/rest/v1/${resourceId}?some_column=eq.someValue' \\
     js: {
       language: 'js',
       code: `
-const { error } = await supabase
+const { error } = await comet cloud
   .from('${resourceId}')
   .delete()
   .eq('some_column', 'someValue')
@@ -532,7 +532,7 @@ curl -X POST '${endpoint}/auth/v1/signup' \\
     js: {
       language: 'js',
       code: `
-let { data, error } = await supabase.auth.signUp({
+let { data, error } = await CometCloud.auth.signUp({
   email: 'someone@email.com',
   password: '${randomPassword}'
 })
@@ -556,7 +556,7 @@ curl -X POST '${endpoint}/auth/v1/token?grant_type=password' \\
     js: {
       language: 'js',
       code: `
-let { data, error } = await supabase.auth.signInWithPassword({
+let { data, error } = await CometCloud.auth.signInWithPassword({
   email: 'someone@email.com',
   password: '${randomPassword}'
 })
@@ -579,7 +579,7 @@ curl -X POST '${endpoint}/auth/v1/magiclink' \\
     js: {
       language: 'js',
       code: `
-let { data, error } = await supabase.auth.signInWithOtp({
+let { data, error } = await CometCloud.auth.signInWithOtp({
   email: 'someone@email.com'
 })
 `,
@@ -602,7 +602,7 @@ curl -X POST '${endpoint}/auth/v1/signup' \\
     js: {
       language: 'js',
       code: `
-let { data, error } = await supabase.auth.signUp({
+let { data, error } = await CometCloud.auth.signUp({
   phone: '+13334445555',
   password: 'some-password'
 })
@@ -625,7 +625,7 @@ curl -X POST '${endpoint}/auth/v1/otp' \\
     js: {
       language: 'js',
       code: `
-let { data, error } = await supabase.auth.signInWithOtp({
+let { data, error } = await CometCloud.auth.signInWithOtp({
   phone: '+13334445555'
 })
 `,
@@ -649,7 +649,7 @@ curl -X POST '${endpoint}/auth/v1/verify' \\
     js: {
       language: 'js',
       code: `
-let { data, error } = await supabase.auth.verifyOtp({
+let { data, error } = await CometCloud.auth.verifyOtp({
   phone: '+13334445555',
   token: '123456',
   type: 'sms'
@@ -674,7 +674,7 @@ curl -X POST '${endpoint}/auth/v1/invite' \\
     js: {
       language: 'js',
       code: `
-let { data, error } = await supabase.auth.admin.inviteUserByEmail('someone@email.com')
+let { data, error } = await CometCloud.auth.admin.inviteUserByEmail('someone@email.com')
 `,
     },
   }),
@@ -692,7 +692,7 @@ curl -X GET '${endpoint}/auth/v1/authorize?provider=github' \\
     js: {
       language: 'js',
       code: `
-let { data, error } = await supabase.auth.signInWithOAuth({
+let { data, error } = await CometCloud.auth.signInWithOAuth({
   provider: 'github'
 })
 `,
@@ -711,7 +711,7 @@ curl -X GET '${endpoint}/auth/v1/user' \\
     js: {
       language: 'js',
       code: `
-const { data: { user } } = await supabase.auth.getUser()
+const { data: { user } } = await CometCloud.auth.getUser()
 `,
     },
   }),
@@ -731,7 +731,7 @@ const { data: { user } } = await supabase.auth.getUser()
     js: {
       language: 'js',
       code: `
-let { data, error } = await supabase.auth.resetPasswordForEmail(email)
+let { data, error } = await CometCloud.auth.resetPasswordForEmail(email)
 `,
     },
   }),
@@ -756,7 +756,7 @@ let { data, error } = await supabase.auth.resetPasswordForEmail(email)
     js: {
       language: 'js',
       code: `
-const { data, error } = await supabase.auth.updateUser({
+const { data, error } = await CometCloud.auth.updateUser({
   email: "new@email.com",
   password: "new-password",
   data: { hello: 'world' }
@@ -778,7 +778,7 @@ curl -X POST '${endpoint}/auth/v1/logout' \\
     js: {
       language: 'js',
       code: `
-let { error } = await supabase.auth.signOut()
+let { error } = await CometCloud.auth.signOut()
 `,
     },
   }),

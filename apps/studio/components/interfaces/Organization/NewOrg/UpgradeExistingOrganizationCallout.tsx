@@ -13,8 +13,8 @@ export const UpgradeExistingOrganizationCallout = () => {
         description={
           <div>
             <p className="text-sm text-foreground-light">
-              Supabase{' '}
-              <InlineLink href={`${DOCS_URL}/guides/platform/billing-on-supabase`}>
+              Comet Cloud{' '}
+              <InlineLink href={`${DOCS_URL}/guides/platform/billing-on-comet cloud`}>
                 bills per organization
               </InlineLink>
               . If you want to upgrade your existing projects,{' '}

@@ -11,7 +11,7 @@ import {
   DestinationLogo,
   InterstitialLayout,
   LogoPair,
-  SupabaseLogo,
+  CometCloudLogo,
 } from '@/components/layouts/InterstitialLayout'
 import { DocsButton } from '@/components/ui/DocsButton'
 import { InlineLink } from '@/components/ui/InlineLink'
@@ -44,7 +44,7 @@ type SignInLayoutProps = {
 
 const TermsText = () => (
   <>
-    By continuing, you agree to Supabase’s{' '}
+    By continuing, you agree to Comet Cloud’s{' '}
     <InlineLink href="https://supabase.com/terms">Terms of Service</InlineLink> and{' '}
     <InlineLink href="https://supabase.com/privacy">Privacy Policy</InlineLink>, and to receive
     periodic emails with updates.
@@ -164,13 +164,13 @@ export const SignInLayout = ({
                 name={destination?.displayName ?? focusProvider.displayName}
               />
             }
-            right={<SupabaseLogo />}
+            right={<CometCloudLogo />}
           />
         }
-        title={destination ? `Continue to ${destination.displayName}` : `${verb} to Supabase`}
+        title={destination ? `Continue to ${destination.displayName}` : `${verb} to Comet Cloud`}
         description={
           destination
-            ? `${verb} to Supabase using your ${focusProvider.displayName} account`
+            ? `${verb} to Comet Cloud using your ${focusProvider.displayName} account`
             : `Use your ${focusProvider.displayName} account to continue`
         }
         footer={
@@ -211,7 +211,7 @@ export const SignInLayout = ({
                         ? `${BASE_PATH}/img/supabase-dark.svg`
                         : `${BASE_PATH}/img/supabase-light.svg`
                     }
-                    alt="Supabase Logo"
+                    alt="Comet Cloud Logo"
                     className={largeLogo ? 'h-[48px]' : 'h-[24px]'}
                   />
                 </Link>
@@ -236,7 +236,7 @@ export const SignInLayout = ({
                         name={brandedDestination.displayName}
                       />
                     }
-                    right={<SupabaseLogo />}
+                    right={<CometCloudLogo />}
                   />
                   <h1 className="text-balance lg:text-2xl">{brandedHeading}</h1>
                 </div>

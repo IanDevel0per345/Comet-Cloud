@@ -98,8 +98,8 @@ export const GitHubSection = ({ isProjectScoped }: { isProjectScoped: boolean })
   })
 
   const description = isProjectScoped
-    ? 'Connect this Supabase project to a GitHub repository. Supabase applies database changes when you merge into your production branch. If branching is enabled, each pull request gets its own preview database.'
-    : 'Connect GitHub repositories to Supabase projects in this organization. The Supabase GitHub app watches file, branch, and pull request activity in each connected repository.'
+    ? 'Connect this Comet Cloud project to a GitHub repository. Comet Cloud applies database changes when you merge into your production branch. If branching is enabled, each pull request gets its own preview database.'
+    : 'Connect GitHub repositories to Comet Cloud projects in this organization. The Comet Cloud GitHub app watches file, branch, and pull request activity in each connected repository.'
 
   const onDeleteGitHubConnection = useCallback(
     async (connection: IntegrationProjectConnection) => {
@@ -160,7 +160,7 @@ export const GitHubSection = ({ isProjectScoped }: { isProjectScoped: boolean })
 
             {gitHubAuthorization && (
               <p className="text-sm text-foreground-light">
-                You are authorized with the Supabase GitHub app. You can configure your{' '}
+                You are authorized with the Comet Cloud GitHub app. You can configure your{' '}
                 <InlineLink href={GITHUB_INTEGRATION_INSTALLATION_URL}>
                   GitHub App installations and repository access
                 </InlineLink>

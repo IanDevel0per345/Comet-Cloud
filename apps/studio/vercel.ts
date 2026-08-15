@@ -124,7 +124,8 @@ function buildTanstackConfig(): VercelConfig {
   const ruleSets = (basePath ? [basePath, ''] : ['']).map(routesFor)
 
   // Vercel's Flags Explorer probes `/.well-known/vercel/flags` and expects
-  // JSON. next.config.ts proxies it to supabase.com's endpoint and forces
+  // JSON. We proxy it to cometcloud.dev's endpoint (the rebranded platform
+  // domain) and force
   // `content-type: application/json`; the TanStack build has no equivalent, so
   // without these the path falls through to the extensionless catch-all shell
   // rule and the browser gets HTML. This lives at the domain root (once, NOT
@@ -140,7 +141,7 @@ function buildTanstackConfig(): VercelConfig {
     cleanUrls: true,
     redirects: buildRedirects(),
     rewrites: [
-      routes.rewrite(wellKnownFlags, `https://supabase.com${wellKnownFlags}`),
+      routes.rewrite(wellKnownFlags, `https://cometcloud.dev${wellKnownFlags}`),
       ...ruleSets.flatMap((r) => r.rewrites),
     ],
     headers: [

@@ -29,7 +29,7 @@ export interface ProjectLinkerProps {
   onSkip?: () => void
   loadingForeignProjects?: boolean
   showNoEntitiesState?: boolean
-  defaultSupabaseProject?: Project
+  defaultcometCloudProject?: Project
   defaultForeignProjectId?: string
   mode: 'Vercel' | 'GitHub'
   variant?: 'default' | 'interstitial'

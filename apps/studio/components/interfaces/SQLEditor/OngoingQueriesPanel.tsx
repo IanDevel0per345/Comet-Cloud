@@ -85,8 +85,8 @@ export const OngoingQueriesPanel = () => {
         <SheetContent size="lg">
           <SheetHeader>
             <SheetTitle className="flex items-center gap-x-2">
-              Running queries on{' '}
-              {database?.identifier === project?.ref ? 'primary database' : 'read replica'}
+              Deploys em execução no{' '}
+              {database?.identifier === project?.ref ? 'ambiente principal' : 'ambiente secundário'}
               <Button
                 variant="default"
                 className="px-1.5"
@@ -96,10 +96,10 @@ export const OngoingQueriesPanel = () => {
               />
             </SheetTitle>
             <SheetDescription>
-              There {queries.length === 1 ? 'is' : 'are'}{' '}
-              <span className="text-foreground-light">{queries.length}</span> quer
-              {queries.length === 1 ? 'y' : 'ies'} currently running{' '}
-              {database?.identifier !== project?.ref ? `on replica ${database?.identifier}` : ''}
+              {queries.length === 1 ? 'Há' : 'Há'}{' '}
+              <span className="text-foreground-light">{queries.length}</span> deploy
+              {queries.length === 1 ? '' : 's'} em execução{' '}
+              {database?.identifier !== project?.ref ? `no ambiente ${database?.identifier}` : ''}
             </SheetDescription>
           </SheetHeader>
           <div className="max-h-full h-full divide-y overflow-y-auto">
@@ -114,12 +114,12 @@ export const OngoingQueriesPanel = () => {
             {queries.length === 0 && (
               <div className="flex flex-col gap-y-2 items-center justify-center h-full text-foreground-light text-sm">
                 <span>
-                  No queries are currently running on the{' '}
+                  Nenhum deploy está em execução no{' '}
                   {database?.identifier !== project?.ref
-                    ? `read replica ${database?.identifier}`
+                    ? `ambiente ${database?.identifier}`
                     : (databases ?? []).length > 1
-                      ? 'primary database'
-                      : 'database'}
+                      ? 'ambiente principal'
+                      : 'ambiente'}
                 </span>
                 <Button
                   variant="default"
@@ -162,7 +162,7 @@ export const OngoingQueriesPanel = () => {
                       onClick={() => setSelectedId(query.pid)}
                     />
                   </TooltipTrigger>
-                  <TooltipContent side="bottom">Abort query</TooltipContent>
+                  <TooltipContent side="bottom">Cancelar deploy</TooltipContent>
                 </Tooltip>
               </SheetSection>
             ))}

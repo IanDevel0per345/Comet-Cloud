@@ -284,9 +284,9 @@ export const Usage = () => {
                 <span className="font-medium text-foreground">
                   {selectedProject?.name || selectedProjectRef}
                 </span>{' '}
-                project. Supabase uses{' '}
+                project. Comet Cloud uses{' '}
                 <Link
-                  href="/docs/guides/platform/billing-on-supabase#organization-based-billing"
+                  href="/docs/guides/platform/billing-on-comet cloud#organization-based-billing"
                   target="_blank"
                 >
                   organization-level billing

@@ -38,22 +38,22 @@ export const useGenerateSettingsMenu = () => {
   if (!IS_PLATFORM) {
     return [
       {
-        title: 'Configuration',
+        title: 'Configuração',
         items: [
           {
-            name: 'General',
+            name: 'Geral',
             key: 'general',
             url: `/project/${ref}/settings/general`,
             items: [],
           },
           {
-            name: 'API Keys',
+            name: 'Chaves de API',
             key: 'api-keys',
             url: `/project/${ref}/settings/api-keys`,
             items: [],
           },
           {
-            name: 'JWT Keys',
+            name: 'Chaves JWT',
             key: 'jwt',
             url: legacyJwtKeysEnabled
               ? `/project/${ref}/settings/jwt`
@@ -74,7 +74,7 @@ export const useGenerateSettingsMenu = () => {
         ],
       },
       {
-        title: 'Integrations',
+        title: 'Integrações',
         items: [
           {
             name: 'Data API',
@@ -98,17 +98,17 @@ export const useGenerateSettingsMenu = () => {
 
   return [
     {
-      title: 'Configuration',
+      title: 'Configuração',
       items: [
         {
-          name: 'General',
+          name: 'Geral',
           key: 'general',
           url: `/project/${ref}/settings/general`,
           items: [],
           shortcutId: SHORTCUT_IDS.NAV_PROJECT_SETTINGS_GENERAL,
         },
         {
-          name: 'Infrastructure',
+          name: 'Infraestrutura',
           key: 'infrastructure',
           url: getInfrastructurePath(ref),
           items: [],
@@ -118,7 +118,7 @@ export const useGenerateSettingsMenu = () => {
         },
 
         {
-          name: 'Integrations',
+          name: 'Integrações de Plataforma',
           key: 'integrations',
           url: `/project/${ref}/settings/integrations`,
           items: [],
@@ -195,7 +195,7 @@ export const useGenerateSettingsMenu = () => {
       ],
     },
     {
-      title: 'Integrations',
+      title: 'Integrações',
       items: [
         {
           name: 'Data API',
@@ -207,7 +207,7 @@ export const useGenerateSettingsMenu = () => {
           isLoading: isPending,
         },
         {
-          name: 'Vault',
+          name: 'Cofre de Segredos',
           key: 'vault',
           url: `/project/${ref}/integrations/vault/overview`,
           items: [],
@@ -219,12 +219,13 @@ export const useGenerateSettingsMenu = () => {
       ],
     },
     {
-      title: 'Billing',
+      title: 'Faturamento',
       items: [
-        ...(billingEnabled
-          ? [
-              {
-                name: 'Subscription',
+        ...(
+            billingEnabled
+              ? [
+                  {
+                    name: 'Assinatura',
                 key: 'subscription',
                 url: `/org/${organization?.slug}/billing`,
                 items: [],
@@ -233,7 +234,7 @@ export const useGenerateSettingsMenu = () => {
             ]
           : []),
         {
-          name: 'Usage',
+          name: 'Uso',
           key: 'usage',
           url: `/org/${organization?.slug}/usage?projectRef=${ref}`,
           items: [],

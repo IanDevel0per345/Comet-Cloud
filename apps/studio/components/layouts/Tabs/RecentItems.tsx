@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import Link from 'next/link'
 
 import { useEditorType } from '../editors/EditorsLayout.hooks'
-import { buildTableEditorUrl } from '@/components/grid/SupabaseGrid.utils'
+import { buildTableEditorUrl } from '@/components/grid/CometCloudGrid.utils'
 import { EntityTypeIcon } from '@/components/ui/EntityTypeIcon'
 import { ENTITY_TYPE } from '@/data/entity-types/entity-type-constants'
 import { editorEntityTypes, useTabsStateSnapshot, type RecentItem } from '@/state/tabs'

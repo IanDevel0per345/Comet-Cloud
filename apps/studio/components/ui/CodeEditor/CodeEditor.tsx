@@ -255,7 +255,7 @@ export const CodeEditor = ({
     <>
       <Editor
         path={id}
-        theme="supabase"
+        theme="cometcloud"
         // `h-full` keeps this wrapper filling its container even if a global `.monaco-editor`
         // rule flips it to `position: absolute` (which happens after visiting GraphiQL, since it
         // injects a second copy of Monaco's CSS onto the shared instance). Without an explicit

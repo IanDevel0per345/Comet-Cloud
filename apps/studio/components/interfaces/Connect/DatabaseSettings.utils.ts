@@ -167,12 +167,12 @@ export const constructConnStringSyntax = (
     { value: cloudProvider.toLocaleLowerCase(), tooltip: 'Cloud provider' },
     { value: '-0-', tooltip: undefined },
     { value: region, tooltip: "Project's region" },
-    { value: `.pooler.supabase.${tld}`, tooltip: undefined },
+    { value: `.pooler.CometCloud.${tld}`, tooltip: undefined },
   ]
   const dbHostDetails = [
     { value: 'db.', tooltip: undefined },
     { value: ref, tooltip: PROJECT_REF_DESC },
-    { value: `.supabase.${tld}`, tooltip: undefined },
+    { value: `.CometCloud.${tld}`, tooltip: undefined },
   ]
 
   if (selectedTab === 'uri' || selectedTab === 'nodejs') {

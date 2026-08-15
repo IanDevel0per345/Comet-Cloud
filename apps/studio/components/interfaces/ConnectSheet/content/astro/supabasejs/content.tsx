@@ -13,7 +13,7 @@ SUPABASE_KEY=${projectKeys.publishableKey ?? projectKeys.anonKey ?? 'your-anon-k
         `,
     },
     {
-      name: 'src/db/supabase.js',
+      name: 'src/db/cometcloud.js',
       language: 'js',
       code: `
 import { createClient } from "@supabase/supabase-js";
@@ -21,7 +21,7 @@ import { createClient } from "@supabase/supabase-js";
 const supabaseUrl = import.meta.env.SUPABASE_URL;
 const supabaseKey = import.meta.env.SUPABASE_KEY;
 
-export const supabase = createClient(supabaseUrl, supabaseKey);
+export const comet cloud = createClient(CometCloudUrl, CometCloudKey);
         `,
     },
     {
@@ -29,9 +29,9 @@ export const supabase = createClient(supabaseUrl, supabaseKey);
       language: 'html',
       code: `
 ---
-import { supabase } from '../db/supabase';
+import { comet cloud } from '../db/comet cloud';
 
-const { data, error } = await supabase.from("todos").select('*');
+const { data, error } = await CometCloud.from("todos").select('*');
 ---
 
 {

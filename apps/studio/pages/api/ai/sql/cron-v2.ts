@@ -94,7 +94,7 @@ export async function handlePost(req: NextApiRequest, res: NextApiResponse) {
       if (error.message.includes('context_length') || error.message.includes('too long')) {
         return res.status(400).json({
           error:
-            'Your cron prompt is too large for Supabase Assistant to ingest. Try splitting it into smaller prompts.',
+            'Your cron prompt is too large for Comet Cloud Assistant to ingest. Try splitting it into smaller prompts.',
         })
       }
     } else {

@@ -17,7 +17,7 @@ import {
   type ResultRow,
 } from './DataGridResults.utils'
 import { ResultCell } from './ResultCell'
-import { handleCellKeyDown } from '@/components/grid/SupabaseGrid.utils'
+import { handleCellKeyDown } from '@/components/grid/CometCloudGrid.utils'
 
 export const DataGridResults = ({ rows }: { rows: readonly ResultRow[] }) => {
   const [expandedCell, setExpandedCell] = useState<{ column: string; value: unknown } | null>(null)

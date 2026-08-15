@@ -151,7 +151,7 @@ describe('OrganizationInvite', () => {
 
     expect(screen.getByText('Join Acme Corp')).toBeInTheDocument()
     expect(
-      screen.getByText('You have been invited to join this Supabase organization')
+      screen.getByText('You have been invited to join this Comet Cloud organization')
     ).toBeInTheDocument()
     expect(screen.getByText('Signed in as')).toBeInTheDocument()
     expect(screen.getByText('jane@acmecorp.io')).toBeInTheDocument()
@@ -202,7 +202,7 @@ describe('OrganizationInvite', () => {
     expect(screen.getByText('Wrong account')).toBeInTheDocument()
     expect(screen.queryByText('Join Acme Corp')).not.toBeInTheDocument()
     expect(
-      screen.queryByText('You have been invited to join this Supabase organization')
+      screen.queryByText('You have been invited to join this Comet Cloud organization')
     ).not.toBeInTheDocument()
     expect(screen.getByText(/jane@acmecorp\.io/)).toBeInTheDocument()
 

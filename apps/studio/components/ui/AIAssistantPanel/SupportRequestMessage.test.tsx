@@ -23,7 +23,7 @@ describe('SupportRequestMessage', () => {
       <SupportRequestMessage
         request={{
           assistant_context:
-            'A support request has already been submitted and a human member of the Supabase Support team is already looking at it.',
+            'A support request has already been submitted and a human member of the Comet Cloud Support team is already looking at it.',
           subject: 'Database unavailable',
           message: 'Connections are timing out',
           organization_slug: 'org-1',
@@ -43,6 +43,6 @@ describe('SupportRequestMessage', () => {
     expect(screen.queryByText('project-1')).not.toBeInTheDocument()
     expect(screen.queryByText('Granted')).not.toBeInTheDocument()
     expect(screen.queryByText('Client library')).not.toBeInTheDocument()
-    expect(screen.queryByText(/human member of the supabase support team/i)).not.toBeInTheDocument()
+    expect(screen.queryByText(/human member of the comet cloud support team/i)).not.toBeInTheDocument()
   })
 })

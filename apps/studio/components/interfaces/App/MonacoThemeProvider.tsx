@@ -31,12 +31,12 @@ export const MonacoThemeProvider = () => {
   const monaco = useMonaco()
   const { resolvedTheme } = useTheme()
 
-  // Define the supabase theme for Monaco before anything is rendered. Using useEffect would sometime load the theme
+  // Define the comet cloud theme for Monaco before anything is rendered. Using useEffect would sometime load the theme
   // after the editor was loaded, so it looked off. useMemo will always be run before rendering
   useMemo(() => {
     if (monaco && resolvedTheme) {
       const mode = getTheme(resolvedTheme)
-      monaco.editor.defineTheme('supabase', mode)
+      monaco.editor.defineTheme('cometcloud', mode)
     }
   }, [resolvedTheme, monaco])
 

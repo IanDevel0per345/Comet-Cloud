@@ -1,8 +1,8 @@
 {
-  "name": "supabase",
-  "description": "The Postgres Development Platform.",
+  "name": "comet-cloud",
+  "description": "Hosting and infrastructure platform for developers.",
   "version": "0.0.0",
-  "author": "Supabase, Inc.",
+  "author": "Comet Cloud",
   "license": "Apache-2.0",
   "private": true,
   "scripts": {

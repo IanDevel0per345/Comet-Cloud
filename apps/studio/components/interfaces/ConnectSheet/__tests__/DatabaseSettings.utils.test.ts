@@ -146,20 +146,20 @@ describe('buildConnectionStringPooler', () => {
   test('self-hosted: uses Supavisor placeholders on 6543/dbPort, direct on dbPort', () => {
     const result = buildConnectionStringPooler({
       deploymentMode: selfHosted,
-      connectionInfo: { db_host: 'supabase.example.com', db_port: 5432 },
+      connectionInfo: { db_host: 'cometcloud.example.com', db_port: 5432 },
       connectionStringsShared: sharedPlatform,
       ipv4Addon: true,
       isHighAvailability: false,
     })
 
     expect(result.transactionShared).toBe(
-      'postgresql://postgres.[POOLER_TENANT_ID]:[YOUR-PASSWORD]@supabase.example.com:6543/postgres'
+      'postgresql://postgres.[POOLER_TENANT_ID]:[YOUR-PASSWORD]@cometcloud.example.com:6543/postgres'
     )
     expect(result.sessionShared).toBe(
-      'postgresql://postgres.[POOLER_TENANT_ID]:[YOUR-PASSWORD]@supabase.example.com:5432/postgres'
+      'postgresql://postgres.[POOLER_TENANT_ID]:[YOUR-PASSWORD]@cometcloud.example.com:5432/postgres'
     )
     expect(result.direct).toBe(
-      'postgresql://postgres:[YOUR-PASSWORD]@supabase.example.com:5432/postgres'
+      'postgresql://postgres:[YOUR-PASSWORD]@cometcloud.example.com:5432/postgres'
     )
     expect(result.transactionDedicated).toBeUndefined()
     expect(result.sessionDedicated).toBeUndefined()
@@ -170,7 +170,7 @@ describe('buildConnectionStringPooler', () => {
   test('self-hosted: falls back to port 5432 when db_port is unset', () => {
     const result = buildConnectionStringPooler({
       deploymentMode: selfHosted,
-      connectionInfo: { db_host: 'supabase.example.com', db_port: 0 },
+      connectionInfo: { db_host: 'cometcloud.example.com', db_port: 0 },
       connectionStringsShared: sharedPlatform,
       ipv4Addon: false,
       isHighAvailability: false,

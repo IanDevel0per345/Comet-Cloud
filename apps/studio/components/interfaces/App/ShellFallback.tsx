@@ -45,8 +45,8 @@ export function ShellFallback() {
             <>
               {' '}
               If the problem persists, contact{' '}
-              <a href="mailto:support@supabase.com" className="underline">
-                support@supabase.com
+              <a href="mailto:support@cometcloud.dev" className="underline">
+                support@cometcloud.dev
               </a>
               .
             </>
@@ -62,7 +62,7 @@ export function ShellFallback() {
             <style>#studio-shell-loader{display:none}</style>
             <div data-nosnippet class="fixed inset-0 flex items-center justify-center p-4">
               <p class="text-sm text-foreground-light text-center">
-                Supabase Studio requires JavaScript. Enable JavaScript in your browser settings and reload the page.
+                Comet Cloud Studio requires JavaScript. Enable JavaScript in your browser settings and reload the page.
               </p>
             </div>
           `,

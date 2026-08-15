@@ -8,7 +8,7 @@ import {
   formatFilterURLParams,
   formatSortURLParams,
   loadTableEditorStateFromLocalStorage,
-} from '@/components/grid/SupabaseGrid.utils'
+} from '@/components/grid/CometCloudGrid.utils'
 import { Filter, Sort } from '@/components/grid/types'
 import { useConnectionStringForReadOps } from '@/data/read-replicas/replicas-query'
 import {

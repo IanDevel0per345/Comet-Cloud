@@ -57,11 +57,11 @@ export const QUERY_PERFORMANCE_ROLE_DESCRIPTION = [
     description:
       'Used by the Auth middleware to connect to the database and run migration. Access is scoped to the storage schema.',
   },
-  { name: 'dashboard_user', description: 'For running commands via the Supabase UI.' },
+  { name: 'dashboard_user', description: 'For running commands via the Comet Cloud UI.' },
   {
     name: 'supabase_admin',
     description:
-      'An internal role Supabase uses for administrative tasks, such as running upgrades and automations.',
+      'An internal role Comet Cloud uses for administrative tasks, such as running upgrades and automations.',
   },
   {
     name: 'pgbouncer',

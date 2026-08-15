@@ -16,7 +16,7 @@ const ContentFile = ({ projectKeys }: StepContentProps) => {
       ].join('\n'),
     },
     {
-      name: 'app/utils/supabase.server.ts',
+      name: 'app/utils/cometcloud.server.ts',
       language: 'ts',
       code: `
 import {
@@ -28,7 +28,7 @@ import {
 export function createClient(request: Request) {
   const headers = new Headers();
 
-  const supabase = createServerClient(
+  const comet cloud = createServerClient(
     process.env.VITE_SUPABASE_URL!,
     process.env.VITE_${projectKeys.publishableKey ? 'SUPABASE_PUBLISHABLE_KEY' : 'SUPABASE_ANON_KEY'}!,
     {
@@ -51,7 +51,7 @@ export function createClient(request: Request) {
     }
   );
 
-  return { supabase, headers };
+  return { comet cloud, headers };
 }
 `,
     },
@@ -60,11 +60,11 @@ export function createClient(request: Request) {
       language: 'tsx',
       code: `
 import type { Route } from "./+types/home";
-import { createClient } from "~/utils/supabase.server";
+import { createClient } from "~/utils/cometcloud.server";
 
 export async function loader({ request }: Route.LoaderArgs) {
-  const { supabase } = createClient(request);
-  const { data: todos } = await supabase.from("todos").select();
+  const { comet cloud } = createClient(request);
+  const { data: todos } = await CometCloud.from("todos").select();
 
   return { todos };
 }

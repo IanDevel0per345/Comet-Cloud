@@ -28,7 +28,7 @@ const JWTSigningKeysPage: NextPageWithLayout = () => {
             variant="cli"
             body={
               <p>
-                The asymmetric key pair used to sign user session JWTs is configured by the Supabase
+                The asymmetric key pair used to sign user session JWTs is configured by the Comet Cloud
                 CLI.
               </p>
             }

@@ -57,14 +57,14 @@ const POST = async ({ request }: { request: Request }) => {
   const { features, read_only } = data
   const headers = request.headers
 
-  const platform: SupabasePlatform = {
+  const platform: CometCloudPlatform = {
     database: getDatabaseOperations({ headers }),
     development: getDevelopmentOperations({ headers }),
     debugging: getDebuggingOperations({ headers }),
   }
 
   try {
-    const server = createSupabaseMcpServer({
+    const server = createcometCloudMcpServer({
       platform,
       projectId: DEFAULT_PROJECT.ref,
       features,

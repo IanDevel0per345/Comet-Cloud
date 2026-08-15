@@ -418,20 +418,20 @@ describe('DestinationForm.utils DuckLake', () => {
   })
 })
 
-const baseDucklakeSupabaseFormData = {
+const baseDucklakecometCloudFormData = {
   ...baseDucklakeFormData,
-  ducklakeMode: 'supabase' as const,
+  ducklakeMode: 'cometcloud' as const,
   ducklakeCatalogProjectRef: 'catalog-ref',
   ducklakeStorageProjectRef: 'storage-ref',
   ducklakeStorageBucket: 'ducklake-data',
 }
 
-describe('DestinationForm.utils DuckLake (Use Supabase)', () => {
-  it('builds DuckLake validation config from project refs in supabase mode', () => {
+describe('DestinationForm.utils DuckLake (Use Comet Cloud)', () => {
+  it('builds DuckLake validation config from project refs in comet cloud mode', () => {
     const config = buildDestinationConfigForValidation({
       projectRef: 'project-ref',
       selectedType: 'DuckLake',
-      data: baseDucklakeSupabaseFormData,
+      data: baseDucklakecometCloudFormData,
     })
 
     expect(config).toEqual({
@@ -445,14 +445,14 @@ describe('DestinationForm.utils DuckLake (Use Supabase)', () => {
     })
   })
 
-  it('builds DuckLake submit config from project refs in supabase mode', async () => {
+  it('builds DuckLake submit config from project refs in comet cloud mode', async () => {
     const createS3AccessKey = vi.fn()
     const resolveNamespace = vi.fn()
 
     const config = await buildDestinationConfig({
       projectRef: 'project-ref',
       selectedType: 'DuckLake',
-      data: baseDucklakeSupabaseFormData,
+      data: baseDucklakecometCloudFormData,
       createS3AccessKey,
       resolveNamespace,
     })
@@ -470,13 +470,13 @@ describe('DestinationForm.utils DuckLake (Use Supabase)', () => {
     expect(resolveNamespace).not.toHaveBeenCalled()
   })
 
-  it('returns required-field errors for missing supabase selections, ignoring custom fields', () => {
+  it('returns required-field errors for missing comet cloud selections, ignoring custom fields', () => {
     const issues = getDucklakeValidationIssues({
-      ducklakeMode: 'supabase',
+      ducklakeMode: 'cometcloud',
       ducklakeCatalogProjectRef: '',
       ducklakeStorageProjectRef: '',
       ducklakeStorageBucket: '',
-      // Custom-mode fields are intentionally blank and must not be validated in supabase mode
+      // Custom-mode fields are intentionally blank and must not be validated in comet cloud mode
       ducklakeCatalogUrl: '',
       ducklakeDataPath: '',
       ducklakeS3AccessKeyId: '',
@@ -493,10 +493,10 @@ describe('DestinationForm.utils DuckLake (Use Supabase)', () => {
     ])
   })
 
-  it('accepts a complete supabase configuration', () => {
+  it('accepts a complete comet cloud configuration', () => {
     expect(
       getDucklakeValidationIssues({
-        ducklakeMode: 'supabase',
+        ducklakeMode: 'cometcloud',
         ducklakeCatalogProjectRef: 'catalog-ref',
         ducklakeStorageProjectRef: 'storage-ref',
         ducklakeStorageBucket: 'ducklake-data',

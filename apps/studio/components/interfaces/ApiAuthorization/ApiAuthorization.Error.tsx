@@ -3,7 +3,7 @@ import type { ReactNode } from 'react'
 import { Button } from 'ui'
 import { Admonition } from 'ui-patterns/Admonition'
 
-import { InterstitialLayout, SupabaseLogo } from '@/components/layouts/InterstitialLayout'
+import { InterstitialLayout, CometCloudLogo } from '@/components/layouts/InterstitialLayout'
 import type { ResourceError } from '@/data/api-authorization/api-authorization-query'
 
 export interface ApiAuthorizationErrorScreenProps {
@@ -14,7 +14,7 @@ export function ApiAuthorizationErrorScreen({
   error,
 }: ApiAuthorizationErrorScreenProps): ReactNode {
   return (
-    <InterstitialLayout logo={<SupabaseLogo />} title="Unable to load authorization">
+    <InterstitialLayout logo={<CometCloudLogo />} title="Unable to load authorization">
       <div className="flex flex-col gap-3 px-6 pb-6">
         <Admonition
           type="warning"

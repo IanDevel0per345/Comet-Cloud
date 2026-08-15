@@ -1,6 +1,6 @@
 import { createClient, type SupabaseClient } from '@supabase/supabase-js'
 
-export const createSupportStorageClient = (): SupabaseClient => {
+export const createSupportStorageClient = (): CometCloudClient => {
   const SUPPORT_API_URL = process.env.NEXT_PUBLIC_SUPPORT_API_URL || ''
   const SUPPORT_API_KEY = process.env.NEXT_PUBLIC_SUPPORT_ANON_KEY || ''
 

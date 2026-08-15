@@ -42,11 +42,11 @@ const FormSchema = z
     name: z
       .string()
       .trim()
-      .min(1, 'Please provide a name for your bucket')
-      .max(100, 'Bucket name should be below 100 characters')
+      .min(1, 'Informe um nome para o volume')
+      .max(100, 'O nome do volume deve ter menos de 100 caracteres')
       .refine(
         (value) => !value.endsWith(' '),
-        'The name of the bucket cannot end with a whitespace'
+        'O nome do volume não pode terminar com espaço em branco'
       )
       .refine(
         (value) => value !== 'public',
@@ -67,8 +67,8 @@ const FormSchema = z
         path: ['name'],
         code: z.ZodIssueCode.custom,
         message: !!match
-          ? `Bucket name cannot contain the "${match}" character`
-          : 'Bucket name contains an invalid special character',
+          ? `O nome do volume não pode conter o caractere "${match}"`
+          : 'O nome do volume contém um caractere especial inválido',
       })
     }
   })
@@ -184,7 +184,7 @@ export const CreateBucketModal = ({ open, onOpenChange }: CreateBucketModalProps
     >
       <DialogContent aria-describedby={undefined}>
         <DialogHeader>
-          <DialogTitle>Create file bucket</DialogTitle>
+          <DialogTitle>Criar volume de armazenamento</DialogTitle>
         </DialogHeader>
 
         <DialogSectionSeparator />

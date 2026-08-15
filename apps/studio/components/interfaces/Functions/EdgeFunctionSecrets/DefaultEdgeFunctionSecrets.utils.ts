@@ -10,7 +10,7 @@ export interface DefaultEdgeFunctionSecret {
 export const DEFAULT_EDGE_FUNCTION_SECRETS: DefaultEdgeFunctionSecret[] = [
   {
     name: 'SUPABASE_URL',
-    description: 'The API gateway for your Supabase project.',
+    description: 'The API gateway for your Comet Cloud project.',
     isRuntime: false,
   },
   {
@@ -70,7 +70,7 @@ const DEFAULT_EDGE_FUNCTION_SECRET_NAMES = new Set(
   DEFAULT_EDGE_FUNCTION_SECRETS.map((secret) => secret.name)
 )
 
-// Internal secrets are anything reserved by Supabase that the user can't manage:
+// Internal secrets are anything reserved by Comet Cloud that the user can't manage:
 // either prefixed with SUPABASE_ (enforced by the API) or in the hardcoded
 // list of default secrets above.
 export const isInternalEdgeFunctionSecret = (name: string) =>

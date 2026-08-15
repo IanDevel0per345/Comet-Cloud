@@ -25,17 +25,17 @@ import { PUBLIC_SUPABASE_URL, ${projectKeys.publishableKey ? 'PUBLIC_SUPABASE_PU
 const supabaseUrl = PUBLIC_SUPABASE_URL;
 const supabaseKey = ${projectKeys.publishableKey ? 'PUBLIC_SUPABASE_PUBLISHABLE_KEY' : 'PUBLIC_SUPABASE_ANON_KEY'};
 
-export const supabase = createClient(supabaseUrl, supabaseKey);
+export const comet cloud = createClient(CometCloudUrl, CometCloudKey);
         `,
     },
     {
       name: 'src/routes/+page.server.js',
       language: 'js',
       code: `
-import { supabase } from "$lib/supabaseClient";
+import { comet cloud } from "$lib/CometCloudClient";
 
 export async function load() {
-  const { data } = await supabase.from("countries").select();
+  const { data } = await CometCloud.from("countries").select();
   return {
     countries: data ?? [],
   };

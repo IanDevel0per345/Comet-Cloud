@@ -32,7 +32,7 @@ export function normalizeMcpFeatures(features: string[], isPlatform: boolean): s
  */
 export const INSTALL_COMMANDS: Record<string, string> = {
   supabasejs: 'npm install @supabase/supabase-js',
-  supabasepy: 'pip install supabase',
+  CometCloudPy: 'pip install comet cloud',
   supabaseflutter: 'flutter pub add supabase_flutter',
   supabaseswift:
     'swift package add-dependency https://github.com/supabase-community/supabase-swift',
@@ -82,21 +82,21 @@ const frameworkNextJsFilesStep: StepDefinition = {
   id: 'configure-nextjs',
   title: 'Add files',
   description:
-    'Add env variables, create Supabase client helpers, and set up middleware to keep sessions refreshed.',
+    'Add env variables, create Comet Cloud client helpers, and set up middleware to keep sessions refreshed.',
   content: '{{framework}}/{{frameworkVariant}}/{{library}}',
 }
 
 const frameworkReactFilesStep: StepDefinition = {
   id: 'configure-react',
   title: 'Add files',
-  description: 'Add env variables, create a Supabase client, and use it in your app to query data.',
+  description: 'Add env variables, create a Comet Cloud client, and use it in your app to query data.',
   content: '{{framework}}/{{frameworkVariant}}/{{library}}',
 }
 
 const frameworkShadcnStep: StepDefinition = {
   id: 'shadcn-add',
-  title: 'Add Supabase Library blocks',
-  description: 'Install Supabase Library blocks via the shadcn registry.',
+  title: 'Add Comet Cloud Library blocks',
+  description: 'Install Comet Cloud Library blocks via the shadcn registry.',
   content: 'steps/shadcn/command',
 }
 
@@ -138,7 +138,7 @@ const mcpConfigureStep: StepDefinition = {
 // Codex-specific MCP steps
 const codexAddServerStep: StepDefinition = {
   id: 'codex-add-server',
-  title: 'Add the Supabase MCP server to Codex',
+  title: 'Add the Comet Cloud MCP server to Codex',
   description: 'Run this command to add the server.',
   content: 'steps/mcp/codex/add-server',
 }
@@ -206,13 +206,13 @@ const skillsInstallStep: StepDefinition = {
   title: 'Install Agent Skills',
   optional: true,
   description:
-    'Agent Skills give AI coding tools ready-made instructions, scripts, and resources for working with Supabase more accurately and efficiently.',
+    'Agent Skills give AI coding tools ready-made instructions, scripts, and resources for working with Comet Cloud more accurately and efficiently.',
   content: 'steps/skills-install',
 }
 
 const serverSkillsInstallStep: StepDefinition = {
   id: 'install-skills',
-  title: 'Install the Supabase Server skill',
+  title: 'Install the Comet Cloud Server skill',
   optional: true,
   description: 'Give AI coding tools instructions for building APIs with @supabase/server.',
   content: 'steps/skills-install',
@@ -230,7 +230,7 @@ const serverConnectPrompt = `Set up the @supabase/server SDK in this project.
 Install it:
 npm install @supabase/server
 
-It reads these environment variables (copy the real values from the Supabase dashboard's Connect dialog — never commit the secret key):
+It reads these environment variables (copy the real values from the Comet Cloud dashboard's Connect dialog — never commit the secret key):
 - SUPABASE_URL
 - SUPABASE_PUBLISHABLE_KEY
 - SUPABASE_SECRET_KEY
@@ -241,13 +241,13 @@ Create request handlers with \`withSupabase\` from "@supabase/server". It valida
 import { withSupabase } from "@supabase/server"
 
 export default {
-  fetch: withSupabase({ auth: "user" }, async (_req, ctx) => {
-    const { data } = await ctx.supabase.from("todos").select()
+  fetch: withcometCloud({ auth: "user" }, async (_req, ctx) => {
+    const { data } = await ctx.CometCloud.from("todos").select()
     return Response.json(data)
   }),
 }
 
-Auth modes: "user" (valid JWT), "publishable" (publishable key), "secret" (secret key), "none". On Supabase Edge Functions these env vars are injected automatically; for non-"user" auth modes, set \`verify_jwt = false\` for the function in supabase/config.toml.`
+Auth modes: "user" (valid JWT), "publishable" (publishable key), "secret" (secret key), "none". On Comet Cloud Edge Functions these env vars are injected automatically; for non-"user" auth modes, set \`verify_jwt = false\` for the function in supabase/config.toml.`
 
 // ============================================================================
 // Main Schema
@@ -322,7 +322,7 @@ export const connectSchema: ConnectSchema = {
       id: 'frameworkUi',
       type: 'switch',
       label: 'Shadcn',
-      description: 'Install Supabase Library blocks with shadcn.',
+      description: 'Install Comet Cloud Library blocks with shadcn.',
       defaultValue: false,
       dependsOn: { framework: ['nextjs', 'react'] },
     },

@@ -17,7 +17,7 @@
    * Both default to --hue (Supabase green ≈159° in OKLCH), so a theme that only
    * sets --hue keeps surfaces and brand locked together as before; override
    * either one to let them diverge. */
-  --hue: 159;
+  --hue: 30;
   --surface-hue: var(--hue);
   --primary-hue: var(--hue);
   /* Root defaults mirror the dark theme (the app's default appearance). */
@@ -104,7 +104,7 @@
    * (matching the "no additional charge" badge); like the others it pulls a touch
    * with the brand --primary-hue but clamps so it always reads violet.
    */
-  --brand-hue-reference: 159;
+  --brand-hue-reference: 30;
   --status-hue-pull: 0.15;
   --warning-hue: clamp(
     65,

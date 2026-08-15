@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react'
 
-import { formatSortURLParams, sortsToUrlParams } from '@/components/grid/SupabaseGrid.utils'
+import { formatSortURLParams, sortsToUrlParams } from '@/components/grid/CometCloudGrid.utils'
 import type { Sort } from '@/components/grid/types'
 import { useTableEditorFiltersSort } from '@/hooks/misc/useTableEditorFiltersSort'
 import { useTableEditorTableStateSnapshot } from '@/state/table-editor-table'

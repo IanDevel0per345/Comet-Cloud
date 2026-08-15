@@ -6,7 +6,7 @@ import { IS_PLATFORM, useFlag } from 'common'
 
 import { tableRowKeys } from './keys'
 import { formatFilterValue } from './utils'
-import { parseSupaTable } from '@/components/grid/SupabaseGrid.utils'
+import { parseSupaTable } from '@/components/grid/CometCloudGrid.utils'
 import { Filter, Sort, SupaRow, SupaTable } from '@/components/grid/types'
 import { ENTITY_TYPE } from '@/data/entity-types/entity-type-constants'
 import { handleError } from '@/data/fetchers'

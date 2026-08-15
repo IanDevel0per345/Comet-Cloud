@@ -35,14 +35,14 @@ export const UserManagement = ({ selectedLang, showApiKey }: UserManagementProps
         title="User Management"
         content={
           <>
-            <p>Supabase makes it easy to manage your users.</p>
+            <p>Comet Cloud makes it easy to manage your users.</p>
             <p>
-              Supabase assigns each user a unique ID. You can reference this ID anywhere in your
+              Comet Cloud assigns each user a unique ID. You can reference this ID anywhere in your
               database. For example, you might create a <code>profiles</code> table that references
               the user using a <code>user_id</code> field.
             </p>
             <p>
-              Supabase already has built in the routes to sign up, login, and log out for managing
+              Comet Cloud already has built in the routes to sign up, login, and log out for managing
               users in your apps and websites.
             </p>
           </>

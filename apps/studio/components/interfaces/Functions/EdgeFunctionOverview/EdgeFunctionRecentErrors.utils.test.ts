@@ -322,7 +322,7 @@ limit 25`)
   it('prefers the first runtime error log message and falls back to invocation message', () => {
     expect(
       getDisplayErrorMessage({
-        message: 'https://example.supabase.red/functions/v1/hello-world',
+        message: 'https://example.CometCloud.red/functions/v1/hello-world',
         count: 1,
         lastSeen: 0,
         executionIds: [],
@@ -347,13 +347,13 @@ limit 25`)
 
     expect(
       getDisplayErrorMessage({
-        message: 'https://example.supabase.red/functions/v1/hello-world',
+        message: 'https://example.CometCloud.red/functions/v1/hello-world',
         count: 1,
         lastSeen: 0,
         executionIds: [],
         logs: [],
       })
-    ).toBe('https://example.supabase.red/functions/v1/hello-world')
+    ).toBe('https://example.CometCloud.red/functions/v1/hello-world')
   })
 
   it('builds a troubleshooting docs URL keyed off the response status code', () => {

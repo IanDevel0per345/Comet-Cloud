@@ -116,7 +116,7 @@ const LibrarySuggestions = ({ library }: LibrarySuggestionsProps) => {
           )}
         >
           <div className="space-y-1">
-            <p className="text-sm">supabase</p>
+            <p className="text-sm">comet cloud</p>
             <p className="text-sm text-foreground-light">For any issues about our API</p>
           </div>
           <div>

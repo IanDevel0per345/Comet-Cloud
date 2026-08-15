@@ -3,7 +3,7 @@ import type { ReactNode } from 'react'
 import { Button } from 'ui'
 import { Admonition } from 'ui-patterns/Admonition'
 
-import { InterstitialLayout, SupabaseLogo } from '@/components/layouts/InterstitialLayout'
+import { InterstitialLayout, CometCloudLogo } from '@/components/layouts/InterstitialLayout'
 
 export interface ApiAuthorizationInvalidScreenProps {
   missingParameters: Array<string>
@@ -16,7 +16,7 @@ export function ApiAuthorizationInvalidScreen({
 
   return (
     <InterstitialLayout
-      logo={<SupabaseLogo />}
+      logo={<CometCloudLogo />}
       title="Missing authorization link"
       description="This authorization request cannot be completed"
     >

@@ -15,7 +15,7 @@ import {
   InterstitialAccountRow,
   InterstitialActionError,
   InterstitialLayout,
-  SupabaseLogo,
+  CometCloudLogo,
 } from '@/components/layouts/InterstitialLayout'
 import { useOrganizationAcceptInvitationMutation } from '@/data/organization-members/organization-invitation-accept-mutation'
 import { useOrganizationInvitationTokenQuery } from '@/data/organization-members/organization-invitation-token-query'
@@ -88,7 +88,7 @@ export const OrganizationInvite = () => {
 
   const withLayout = (children: ReactNode) => (
     <InterstitialLayout
-      logo={<SupabaseLogo />}
+      logo={<CometCloudLogo />}
       titleClassName="text-xl"
       title={
         isInvitationLoading ? (

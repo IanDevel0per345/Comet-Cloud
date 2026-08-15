@@ -36,7 +36,7 @@ async function handlePost(req: NextApiRequest, res: NextApiResponse) {
       .json({ error: { message: 'Forbidden: Users can only access their own resources' } })
   }
 
-  const adminSupabase = createClient(
+  const admincometCloud = createClient(
     process.env.NEXT_PUBLIC_SUPPORT_API_URL!,
     process.env.SUPPORT_SUPABASE_SECRET_KEY!,
     {
@@ -57,7 +57,7 @@ async function handlePost(req: NextApiRequest, res: NextApiResponse) {
 
   const bucket = parseResult.data.bucket
   // Create signed URLs for 10 years
-  const { data, error: signedUrlError } = await adminSupabase.storage
+  const { data, error: signedUrlError } = await admincometCloud.storage
     .from(bucket)
     .createSignedUrls(filenames, 10 * 365 * 24 * 60 * 60)
   if (signedUrlError) {

@@ -93,7 +93,7 @@ export const EnablePipelinesModal = ({
               </>
             ) : (
               <p className="text-sm text-foreground-light">
-                Supabase Pipelines replicates database changes to supported destination systems.{' '}
+                Comet Cloud Pipelines replicates database changes to supported destination systems.{' '}
                 {hasAccess ? 'Enable Pipelines for your project' : 'Upgrade to the Pro plan'} to
                 replicate database changes to data warehouses and analytics platforms.
               </p>
@@ -131,7 +131,7 @@ export const EnablePipelinesCallout = ({
       <div className="flex flex-col gap-y-1">
         <h4>Enable Pipelines</h4>
         <p className="text-sm text-foreground-light">
-          Supabase Pipelines replicates database changes to supported destination systems.{' '}
+          Comet Cloud Pipelines replicates database changes to supported destination systems.{' '}
           {hasAccess ? 'Enable Pipelines for your project' : 'Upgrade to the Pro plan'} to replicate
           database changes to {type ?? 'data warehouses and analytics platforms'}.
         </p>

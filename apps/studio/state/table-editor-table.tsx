@@ -9,7 +9,7 @@ import {
   loadTableEditorStateFromLocalStorage,
   parseSupaTable,
   saveTableEditorStateToLocalStorageDebounced,
-} from '@/components/grid/SupabaseGrid.utils'
+} from '@/components/grid/CometCloudGrid.utils'
 import { Filter, SupaRow } from '@/components/grid/types'
 import { getInitialGridColumns } from '@/components/grid/utils/column'
 import { getGridColumns } from '@/components/grid/utils/gridColumns'

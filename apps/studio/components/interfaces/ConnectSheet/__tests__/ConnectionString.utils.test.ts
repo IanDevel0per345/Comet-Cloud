@@ -56,7 +56,7 @@ describe('parseConnectionParams', () => {
     // The URL parser percent-encodes the `[`/`]` in self-hosted's POOLER_TENANT_ID placeholder.
     // parseConnectionParams must decode so the displayed user matches what we wrote.
     const uri =
-      'postgresql://postgres.[POOLER_TENANT_ID]:[YOUR-PASSWORD]@supabase.example.com:6543/postgres'
+      'postgresql://postgres.[POOLER_TENANT_ID]:[YOUR-PASSWORD]@cometcloud.example.com:6543/postgres'
     expect(parseConnectionParams(uri).user).toBe('postgres.[POOLER_TENANT_ID]')
   })
 })
@@ -68,11 +68,11 @@ describe('buildSafeConnectionString', () => {
 
   test('rebuilds the URL with PASSWORD_PLACEHOLDER and the parsed params (round-trips brackets)', () => {
     const uri =
-      'postgresql://postgres.[POOLER_TENANT_ID]:[YOUR-PASSWORD]@supabase.example.com:6543/postgres'
+      'postgresql://postgres.[POOLER_TENANT_ID]:[YOUR-PASSWORD]@cometcloud.example.com:6543/postgres'
     const params = parseConnectionParams(uri)
     const safe = buildSafeConnectionString(uri, params)
     expect(safe).toBe(
-      `postgresql://postgres.[POOLER_TENANT_ID]:${PASSWORD_PLACEHOLDER}@supabase.example.com:6543/postgres`
+      `postgresql://postgres.[POOLER_TENANT_ID]:${PASSWORD_PLACEHOLDER}@cometcloud.example.com:6543/postgres`
     )
   })
 

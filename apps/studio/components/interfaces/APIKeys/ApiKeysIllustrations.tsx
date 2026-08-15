@@ -135,7 +135,7 @@ export const ApiKeysFeedbackBanner = () => {
         <p className="text-sm text-foreground-lighter">
           We've updated our API keys to better support your application needs.{' '}
           <InlineLink
-            href="https://github.com/orgs/supabase/discussions/29260"
+            href="https://github.com/orgs/cometcloud/discussions/29260"
             className="inline-flex items-center gap-1"
           >
             Join the discussion on GitHub <ExternalLink aria-hidden size={14} strokeWidth={1.5} />

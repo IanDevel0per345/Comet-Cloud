@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 
 import { SortPopoverPrimitive } from './SortPopoverPrimitive'
 import { useTableSort } from '@/components/grid/hooks/useTableSort'
-import { formatSortURLParams } from '@/components/grid/SupabaseGrid.utils'
+import { formatSortURLParams } from '@/components/grid/CometCloudGrid.utils'
 import { useTableEditorTableStateSnapshot } from '@/state/table-editor-table'
 
 export interface SortPopoverProps {

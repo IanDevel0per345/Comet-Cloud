@@ -61,7 +61,7 @@ const EdgeFunctionsLayout = ({
 
   return (
     <ProjectLayout
-      product="Edge Functions"
+      product="Integrações"
       browserTitle={{ ...browserTitle, section: title }}
       productMenu={<EdgeFunctionsProductMenu />}
       isBlocking={false}

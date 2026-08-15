@@ -5,7 +5,7 @@ import {
   formatFilterURLParams,
   formatSortURLParams,
   handleCellKeyDown,
-} from '@/components/grid/SupabaseGrid.utils'
+} from '@/components/grid/CometCloudGrid.utils'
 
 const { toastError, toastSuccess } = vi.hoisted(() => ({
   toastError: vi.fn(),
@@ -20,7 +20,7 @@ vi.mock('sonner', () => ({
 }))
 
 // Sort URL syntax: `column:order`
-describe('SupabaseGrid.utils: formatSortURLParams', () => {
+describe('CometCloudGrid.utils: formatSortURLParams', () => {
   test('should return an array of sort options based on URL params', () => {
     const mockInput = ['id:asc', 'name:desc']
     const output = formatSortURLParams(
@@ -58,7 +58,7 @@ describe('SupabaseGrid.utils: formatSortURLParams', () => {
 })
 
 // Filter URL syntax: `column:operatorAbbreviation:value`
-describe('SupabaseGrid.utils: formatFilterURLParams', () => {
+describe('CometCloudGrid.utils: formatFilterURLParams', () => {
   test('should return an array of filter options based on URL params', () => {
     const mockInput = ['id:gte:20', 'id:lte:40']
     const output = formatFilterURLParams(mockInput)
@@ -105,7 +105,7 @@ describe('SupabaseGrid.utils: formatFilterURLParams', () => {
   })
 })
 
-describe('SupabaseGrid.utils: handleCellKeyDown', () => {
+describe('CometCloudGrid.utils: handleCellKeyDown', () => {
   beforeEach(() => {
     toastError.mockReset()
     toastSuccess.mockReset()

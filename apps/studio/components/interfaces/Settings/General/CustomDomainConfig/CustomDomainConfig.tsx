@@ -77,7 +77,7 @@ export const CustomDomainConfig = () => {
       <PageSection id="custom-domains">
         <PageSectionMeta>
           <PageSectionSummary>
-            <PageSectionTitle>Custom domains</PageSectionTitle>
+            <PageSectionTitle>Domínios personalizados</PageSectionTitle>
             <PageSectionDescription>
               Present a branded experience to your users
             </PageSectionDescription>
@@ -85,7 +85,7 @@ export const CustomDomainConfig = () => {
         </PageSectionMeta>
         <PageSectionContent>
           <HighAvailabilityDisabledEmptyState
-            title="Custom domains unavailable on High Availability projects"
+            title="Domínios personalizados não estão disponíveis em projetos de Alta Disponibilidade"
             description="We're working to bring custom domains to High Availability projects. Contact support if this is blocking your work."
             className="max-w-none mx-0 py-6"
           />
@@ -98,7 +98,7 @@ export const CustomDomainConfig = () => {
     <PageSection id="custom-domains">
       <PageSectionMeta>
         <PageSectionSummary>
-          <PageSectionTitle>Custom domains</PageSectionTitle>
+          <PageSectionTitle>Domínios personalizados</PageSectionTitle>
           <PageSectionDescription>
             Present a branded experience to your users
           </PageSectionDescription>
@@ -116,7 +116,7 @@ export const CustomDomainConfig = () => {
             primaryText={
               customDomainsDisabledDueToQuota
                 ? 'New custom domains are temporarily disabled'
-                : 'Custom domains are a Pro Plan add-on'
+                : 'Domínios personalizados são um add-on do Plano Pro'
             }
             secondaryText={
               customDomainsDisabledDueToQuota

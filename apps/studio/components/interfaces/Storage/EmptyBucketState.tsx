@@ -20,7 +20,7 @@ export const EmptyBucketState = ({
   return (
     <EmptyStatePresentational
       icon={BucketPlus}
-      title={`Create ${config.article} ${config.singularName} bucket`}
+      title={`Criar ${config.singularName} ${config.displayName.toLowerCase()}`}
       description={config.valueProp}
       className={className}
     >

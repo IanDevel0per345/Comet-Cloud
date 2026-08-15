@@ -516,7 +516,7 @@ export const ProjectCreationForm = ({
     }
 
     if (customPostgresVersion || instanceType) {
-      data['customSupabaseRequest'] = {
+      data['customcometCloudRequest'] = {
         ami: {
           ...(customPostgresVersion && {
             search_tags: { 'tag:postgresVersion': customPostgresVersion },
@@ -677,7 +677,7 @@ export const ProjectCreationForm = ({
                           description={
                             <>
                               Ideal for agent-first workflows: update your schema in code, push it
-                              to GitHub, and Supabase deploys the changes automatically.{' '}
+                              to GitHub, and Comet Cloud deploys the changes automatically.{' '}
                               <a
                                 href="https://supabase.com/docs/guides/deployment/branching/github-integration"
                                 target="_blank"

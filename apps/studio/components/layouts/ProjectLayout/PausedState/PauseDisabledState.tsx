@@ -53,9 +53,9 @@ export const PauseDisabledState = () => {
             <li className="flex items-center gap-x-2">
               <ExternalLink size={14} />
               <InlineLink
-                href={`${DOCS_URL}/guides/platform/migrating-within-supabase/dashboard-restore`}
+                href={`${DOCS_URL}/guides/platform/migrating-within-comet cloud/dashboard-restore`}
               >
-                Restore the backup to a new Supabase project
+                Restore the backup to a new Comet Cloud project
               </InlineLink>
             </li>
             <li className="flex items-center gap-x-2">

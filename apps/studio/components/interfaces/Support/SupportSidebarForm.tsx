@@ -156,7 +156,7 @@ export function SupportFormStatusButton() {
         </Button>
       </TooltipTrigger>
       <TooltipContent side="bottom" align="center">
-        Check the Supabase status page
+        Check the Comet Cloud status page
       </TooltipContent>
     </Tooltip>
   )

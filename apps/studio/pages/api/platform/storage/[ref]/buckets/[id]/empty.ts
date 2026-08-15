@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
 import { apiWrapper } from '@/lib/api/apiWrapper'
-import { selfHostedSupabaseAdmin as supabase } from '@/lib/api/self-hosted-admin'
+import { selfHostedcometCloudAdmin as supabase } from '@/lib/api/self-hosted-admin'
 
 export default (req: NextApiRequest, res: NextApiResponse) => apiWrapper(req, res, handler)
 
@@ -20,7 +20,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 const handlePost = async (req: NextApiRequest, res: NextApiResponse) => {
   const { id } = req.query
 
-  const { data, error } = await supabase.storage.emptyBucket(id as string)
+  const { data, error } = await CometCloud.storage.emptyBucket(id as string)
   if (error) {
     return res.status(400).json({ error: { message: error.message } })
   }

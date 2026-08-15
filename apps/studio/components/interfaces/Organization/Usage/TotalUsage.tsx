@@ -138,10 +138,10 @@ export const TotalUsage = ({
             ? [
                 {
                   name: 'How billing works',
-                  url: `${DOCS_URL}/guides/platform/billing-on-supabase`,
+                  url: `${DOCS_URL}/guides/platform/billing-on-comet cloud`,
                 },
                 {
-                  name: 'Supabase Plans',
+                  name: 'Comet Cloud Plans',
                   url: 'https://supabase.com/pricing',
                 },
               ]
@@ -172,7 +172,7 @@ export const TotalUsage = ({
                   <span>
                     You have exceeded your{' '}
                     <span className="font-medium">{subscription?.plan.name}</span> Plan quota in
-                    this billing cycle. Upgrade your plan to continue using Supabase without
+                    this billing cycle. Upgrade your plan to continue using Comet Cloud without
                     restrictions.
                   </span>
                 ) : hasExceededAnyLimits &&
@@ -181,7 +181,7 @@ export const TotalUsage = ({
                   <span>
                     You have exceeded your{' '}
                     <span className="font-medium">{subscription?.plan.name}</span> Plan quota in
-                    this billing cycle. Disable your spend cap to continue using Supabase without
+                    this billing cycle. Disable your spend cap to continue using Comet Cloud without
                     restrictions.
                   </span>
                 ) : hasExceededAnyLimits && subscription?.usage_billing_enabled === true ? (

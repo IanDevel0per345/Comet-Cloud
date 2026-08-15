@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
 import { apiWrapper } from '@/lib/api/apiWrapper'
-import { selfHostedSupabaseAdmin as supabase } from '@/lib/api/self-hosted-admin'
+import { selfHostedcometCloudAdmin as supabase } from '@/lib/api/self-hosted-admin'
 
 export default (req: NextApiRequest, res: NextApiResponse) => apiWrapper(req, res, handler)
 
@@ -23,7 +23,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 const handleGet = async (req: NextApiRequest, res: NextApiResponse) => {
   const { limit, offset, search, sortColumn, sortOrder } = parseStoragePaginationParams(req)
 
-  const { data, error } = await supabase.storage.listBuckets({
+  const { data, error } = await CometCloud.storage.listBuckets({
     ...(limit ? { limit } : {}),
     ...(offset ? { offset } : {}),
     ...(search ? { search } : {}),
@@ -45,7 +45,7 @@ const handlePost = async (req: NextApiRequest, res: NextApiResponse) => {
     file_size_limit: fileSizeLimit,
   } = req.body
 
-  const { data, error } = await supabase.storage.createBucket(id, {
+  const { data, error } = await CometCloud.storage.createBucket(id, {
     public: isPublicBucket,
     allowedMimeTypes,
     fileSizeLimit,

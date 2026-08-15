@@ -151,7 +151,7 @@ export const JWTSettings = () => {
             layout="flex-row-reverse"
             id="JWT_SECRET"
             label="JWT secret"
-            description="Used to verify legacy user session JWTs issued by Supabase Auth."
+            description="Used to verify legacy user session JWTs issued by Comet Cloud Auth."
           >
             <Input id="JWT_SECRET" copy reveal readOnly value={config?.jwt_secret || ''} />
           </FormLayout>
@@ -183,7 +183,7 @@ export const JWTSettings = () => {
                       <em className="text-foreground not-italic">
                         {legacyKey.status === 'in_use' ? 'sign and verify' : 'only verify'}
                       </em>{' '}
-                      JSON Web Tokens by Supabase products.
+                      JSON Web Tokens by Comet Cloud products.
                     </p>
 
                     {legacyAPIKeysStatus && legacyAPIKeysStatus.enabled && (
@@ -205,7 +205,7 @@ export const JWTSettings = () => {
                   <Admonition
                     type="note"
                     title="Your project has revoked the legacy JWT secret"
-                    description="No new JSON Web Tokens are issued nor verified with it by Supabase products."
+                    description="No new JSON Web Tokens are issued nor verified with it by Comet Cloud products."
                   />
                 )}
                 <FormLayout
@@ -220,9 +220,9 @@ export const JWTSettings = () => {
                   }
                   description={
                     legacyKey?.status === 'revoked'
-                      ? 'No longer used to sign JWTs by Supabase Auth.'
+                      ? 'No longer used to sign JWTs by Comet Cloud Auth.'
                       : !legacyKey || legacyKey.status === 'in_use'
-                        ? 'Used to sign and verify JWTs issued by Supabase Auth.'
+                        ? 'Used to sign and verify JWTs issued by Comet Cloud Auth.'
                         : 'Used only to verify JWTs.'
                   }
                 >
@@ -257,7 +257,7 @@ export const JWTSettings = () => {
 
               {isJwtSecretUpdateFailed && (
                 <Admonition type="warning" title="Failed to update JWT secret">
-                  Please try again. If the failures persist, please contact Supabase support with
+                  Please try again. If the failures persist, please contact Comet Cloud support with
                   the following details: <br />
                   Change tracking ID: {data?.changeTrackingId} <br />
                   Error message: {jwtSecretUpdateErrorMessage}
@@ -324,7 +324,7 @@ export const JWTSettings = () => {
                           directly against the legacy secret (e.g.{' '}
                           <code className="text-code-inline">jose</code>,{' '}
                           <code className="text-code-inline">jsonwebtoken</code>) to{' '}
-                          <code className="text-code-inline">supabase.auth.getClaims()</code> or a
+                          <code className="text-code-inline">CometCloud.auth.getClaims()</code> or a
                           JWKS-based verifier, and disable the "Verify JWT" setting on any affected
                           Edge Functions.
                         </p>

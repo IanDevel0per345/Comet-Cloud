@@ -27,10 +27,10 @@ export const CLSPreview = () => {
           <WarningIcon />
           <AlertTitle>
             Changes to column privileges will not be reflected in migrations when running{' '}
-            <code className="text-code-inline">supabase db diff</code>.
+            <code className="text-code-inline">cometcloud db diff</code>.
           </AlertTitle>
           <AlertDescription>
-            Column privileges are not supported in the current version of the Supabase CLI.
+            Column privileges are not supported in the current version of the Comet Cloud CLI.
             <br />
             You will need to manually apply these changes to your database.
           </AlertDescription>

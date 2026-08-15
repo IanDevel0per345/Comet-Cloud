@@ -129,7 +129,7 @@ Check the details below before proceeding
         <SidePanel.Content className="flex flex-col gap-2">
           <ProjectLinker
             slug={selectedOrganization?.slug}
-            defaultSupabaseProject={selectedProject}
+            defaultcometCloudProject={selectedProject}
             organizationIntegrationId={selectedIntegration?.id}
             foreignProjects={vercelProjects}
             onCreateConnections={onCreateConnections}

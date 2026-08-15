@@ -201,7 +201,7 @@ export function appendEnableRLSStatements(sql: string, tables: CreateTableWithou
   const endsWithLineComment = /--[^\r\n]*$/.test(trimmed)
   const separator = trimmed.endsWith(';') ? '\n\n' : endsWithLineComment ? '\n;\n\n' : ';\n\n'
 
-  return `${trimmed}${separator}-- Added by Supabase: enable Row Level Security on newly created tables\n${additions}\n`
+  return `${trimmed}${separator}-- Added by Comet Cloud: enable Row Level Security on newly created tables\n${additions}\n`
 }
 
 export function checkAlterDatabaseConnection(sql: string): boolean {
@@ -336,19 +336,19 @@ export function deriveSnippetIdentity({
 
 export const generateMigrationCliCommand = (id: string, name: string, isNpx = false) =>
   `
-${isNpx ? 'npx ' : ''}supabase snippets download ${id} |
-${isNpx ? 'npx ' : ''}supabase migration new ${name}
+${isNpx ? 'npx ' : ''}comet cloud snippets download ${id} |
+${isNpx ? 'npx ' : ''}comet cloud migration new ${name}
 `.trim()
 
 export const generateSeedCliCommand = (id: string, isNpx = false) =>
   `
-${isNpx ? 'npx ' : ''}supabase snippets download ${id} >> \\
-  supabase/seed.sql
+${isNpx ? 'npx ' : ''}comet cloud snippets download ${id} >> \\
+  comet cloud/seed.sql
 `.trim()
 
 export const generateFileCliCommand = (id: string, name: string, isNpx = false) =>
   `
-${isNpx ? 'npx ' : ''}supabase snippets download ${id} > \\
+${isNpx ? 'npx ' : ''}comet cloud snippets download ${id} > \\
   ${name}.sql
 `.trim()
 
@@ -491,7 +491,7 @@ export function buildCompletionRequestBody({
  * models, so it has to stand on its own — otherwise a logs error gets Postgres advice.
  */
 const CLICKHOUSE_LOGS_DEBUG_HINT =
-  'This query runs against the Supabase logs table on a ClickHouse-backed engine, not Postgres.'
+  'This query runs against the Comet Cloud logs table on a ClickHouse-backed engine, not Postgres.'
 
 /** The shared ask + error + dialect preamble behind both debug entry points. */
 function buildDebugRequestText(errorMessage: string, source: SqlSnippetSource): string {

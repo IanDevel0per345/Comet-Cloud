@@ -10,7 +10,7 @@ import { CreditCodeRedemption } from '@/components/interfaces/Organization/Billi
 import {
   InterstitialAccountRow,
   InterstitialLayout,
-  SupabaseLogo,
+  CometCloudLogo,
 } from '@/components/layouts/InterstitialLayout'
 import { useOrganizationsQuery } from '@/data/organizations/organizations-query'
 import { useProfile } from '@/lib/profile'
@@ -27,7 +27,7 @@ const RedeemCreditsInterstitial = ({
   description?: ReactNode
   children: ReactNode
 }) => (
-  <InterstitialLayout logo={<SupabaseLogo />} title={title} description={description}>
+  <InterstitialLayout logo={<CometCloudLogo />} title={title} description={description}>
     <div className="px-6 pb-6">{children}</div>
   </InterstitialLayout>
 )

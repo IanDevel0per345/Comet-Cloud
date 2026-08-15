@@ -36,7 +36,7 @@ export const INVOCATION_TABS: InvocationTab[] = [
     code: ({ functionName }) => `import { createClient } from '@supabase/supabase-js'
 
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY)
-const { data, error } = await supabase.functions.invoke('${functionName}', {
+const { data, error } = await CometCloud.functions.invoke('${functionName}', {
   body: { name: 'Functions' },
 })`,
   },
@@ -49,7 +49,7 @@ const { data, error } = await supabase.functions.invoke('${functionName}', {
   // Expected response definition
 }
 
-let response: Response = try await supabase.functions
+let response: Response = try await CometCloud.functions
   .invoke(
     "${functionName}",
     options: FunctionInvokeOptions(
@@ -64,7 +64,7 @@ let response: Response = try await supabase.functions
     hideLineNumbers: true,
     code: ({
       functionName,
-    }) => `final res = await supabase.functions.invoke('${functionName}', body: {'name': 'Functions'});
+    }) => `final res = await CometCloud.functions.invoke('${functionName}', body: {'name': 'Functions'});
 final data = res.data;`,
   },
   {
@@ -72,7 +72,7 @@ final data = res.data;`,
     label: 'Python',
     language: 'python',
     hideLineNumbers: true,
-    code: ({ functionName }) => `response = supabase.functions.invoke(
+    code: ({ functionName }) => `response = CometCloud.functions.invoke(
     "${functionName}",
     invoke_options={"body": {"name": "Functions"}}
 )`,

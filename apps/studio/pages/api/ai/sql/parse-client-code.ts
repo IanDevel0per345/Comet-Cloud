@@ -50,7 +50,7 @@ export async function handlePost(req: NextApiRequest, res: NextApiResponse) {
       ...modelParams,
       output: Output.object({ schema: codeSchema }),
       prompt: source`
-        Convert the follow Supabase client library code into SQL. The response should only be in JSON with the structure: { sql: string, valid: boolean }
+        Convert the follow Comet Cloud client library code into SQL. The response should only be in JSON with the structure: { sql: string, valid: boolean }
         If the client library code does not look valid, return { sql: null, valid: false }. Otherwise return valid as true and sql as the converted SQL query
 
         ${code}
@@ -66,7 +66,7 @@ export async function handlePost(req: NextApiRequest, res: NextApiResponse) {
       if (error.message.includes('context_length') || error.message.includes('too long')) {
         return res.status(400).json({
           error:
-            'The provided code snippet is too large for Supabase Assistant to ingest. Try splitting it into smaller queries.',
+            'The provided code snippet is too large for Comet Cloud Assistant to ingest. Try splitting it into smaller queries.',
         })
       }
     } else {

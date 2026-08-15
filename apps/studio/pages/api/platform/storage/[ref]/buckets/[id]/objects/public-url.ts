@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
 import { apiWrapper } from '@/lib/api/apiWrapper'
-import { selfHostedSupabaseAdmin as supabase } from '@/lib/api/self-hosted-admin'
+import { selfHostedcometCloudAdmin as supabase } from '@/lib/api/self-hosted-admin'
 
 export default (req: NextApiRequest, res: NextApiResponse) => apiWrapper(req, res, handler)
 
@@ -21,7 +21,7 @@ const handlePost = async (req: NextApiRequest, res: NextApiResponse) => {
   const { id } = req.query
   const { path } = req.body
 
-  const { data } = supabase.storage.from(id as string).getPublicUrl(path)
+  const { data } = CometCloud.storage.from(id as string).getPublicUrl(path)
 
   // change the domain name to the SUPABASE_PUBLIC_URL since SUPABASE_URL is not accessible from the client
   const publicUrl = new URL(data.publicUrl)

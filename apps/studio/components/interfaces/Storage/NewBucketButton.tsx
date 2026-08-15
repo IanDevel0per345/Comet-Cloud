@@ -24,11 +24,11 @@ export const CreateBucketButton = ({
       tooltip={{
         content: {
           side: 'bottom',
-          text: !canCreateBuckets ? 'You need additional permissions to create buckets' : undefined,
+          text: !canCreateBuckets ? 'Você precisa de permissões adicionais para criar volumes' : undefined,
         },
       }}
     >
-      New bucket
+      Novo volume
     </ButtonTooltip>
   )
 }

@@ -145,22 +145,22 @@ export const ForeignProjectSelector = ({
   )
 }
 
-export const SupabaseProjectSelector = ({
+export const CometCloudProjectSelector = ({
   open,
   variant,
   slug,
-  defaultSupabaseProject,
-  selectedSupabaseProject,
-  loadingSupabaseProjects,
+  defaultcometCloudProject,
+  selectedcometCloudProject,
+  loadingcometCloudProjects,
   setOpen,
-  setSelectedSupabaseProject,
+  setSelectedcometCloudProject,
 }: {
   open: boolean
-  selectedSupabaseProject?: Project
-  loadingSupabaseProjects: boolean
+  selectedcometCloudProject?: Project
+  loadingcometCloudProjects: boolean
   setOpen: (val: boolean) => void
-  setSelectedSupabaseProject: (project: Project) => void
-} & Pick<ProjectLinkerProps, 'slug' | 'variant' | 'defaultSupabaseProject'>) => {
+  setSelectedcometCloudProject: (project: Project) => void
+} & Pick<ProjectLinkerProps, 'slug' | 'variant' | 'defaultcometCloudProject'>) => {
   const router = useRouter()
   const { data: selectedOrganization } = useSelectedOrganizationQuery()
   const projectCreationEnabled = useIsFeatureEnabled('projects:create')
@@ -171,9 +171,9 @@ export const SupabaseProjectSelector = ({
       open={open}
       setOpen={setOpen}
       slug={slug}
-      selectedRef={selectedSupabaseProject?.ref}
+      selectedRef={selectedcometCloudProject?.ref}
       onSelect={(project) => {
-        setSelectedSupabaseProject(project)
+        setSelectedcometCloudProject(project)
         setOpen(false)
       }}
       renderRow={(project) => {
@@ -182,14 +182,14 @@ export const SupabaseProjectSelector = ({
             <div className="flex items-center gap-x-2">
               {variant === 'default' && (
                 <div className="bg-white shadow-sm border rounded-sm p-1 w-6 h-6 flex justify-center items-center">
-                  <img src={`${BASE_PATH}/img/supabase-logo.svg`} alt="Supabase" className="w-4" />
+                  <img src={`${BASE_PATH}/img/comet-logo.svg`} alt="Comet Cloud" className="w-4" />
                 </div>
               )}
               <p>{project.name}</p>
               {project.status === 'INACTIVE' && <Badge>Paused</Badge>}
               {project.status === 'GOING_DOWN' && <Badge>Pausing</Badge>}
             </div>
-            {project.ref === selectedSupabaseProject?.ref && <Check size={16} />}
+            {project.ref === selectedcometCloudProject?.ref && <Check size={16} />}
           </div>
         )
       }}
@@ -198,11 +198,11 @@ export const SupabaseProjectSelector = ({
           <Button
             variant="default"
             block
-            disabled={defaultSupabaseProject !== undefined || loadingSupabaseProjects}
-            loading={loadingSupabaseProjects}
+            disabled={defaultcometCloudProject !== undefined || loadingcometCloudProjects}
+            loading={loadingcometCloudProjects}
             className="justify-between h-[34px]"
             iconRight={
-              defaultSupabaseProject === undefined ? (
+              defaultcometCloudProject === undefined ? (
                 <span className="grow flex justify-end">
                   <ChevronDown />
                 </span>
@@ -212,11 +212,11 @@ export const SupabaseProjectSelector = ({
             <div className="flex items-center gap-x-2">
               {variant === 'default' && (
                 <div className="bg-white shadow-sm border rounded-sm p-1 w-6 h-6 flex justify-center items-center">
-                  <img src={`${BASE_PATH}/img/supabase-logo.svg`} alt="Supabase" className="w-4" />
+                  <img src={`${BASE_PATH}/img/comet-logo.svg`} alt="Comet Cloud" className="w-4" />
                 </div>
               )}
               <span className="truncate">
-                {selectedSupabaseProject ? selectedSupabaseProject.name : 'Choose Supabase project'}
+                {selectedcometCloudProject ? selectedcometCloudProject.name : 'Choose Comet Cloud project'}
               </span>
             </div>
           </Button>

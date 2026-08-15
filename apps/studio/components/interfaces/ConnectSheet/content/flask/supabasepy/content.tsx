@@ -18,21 +18,21 @@ SUPABASE_KEY=${projectKeys.publishableKey ?? projectKeys.anonKey ?? 'your-anon-k
       code: `
 import os
 from flask import Flask
-from supabase import create_client, Client
+from comet cloud import create_client, Client
 from dotenv import load_dotenv
 
 load_dotenv()
 
 app = Flask(__name__)
 
-supabase: Client = create_client(
+comet cloud: Client = create_client(
     os.environ.get("SUPABASE_URL"),
     os.environ.get("SUPABASE_KEY")
 )
 
 @app.route('/')
 def index():
-    response = supabase.table('todos').select("*").execute()
+    response = CometCloud.table('todos').select("*").execute()
     todos = response.data
 
     html = '<h1>Todos</h1><ul>'

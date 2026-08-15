@@ -30,7 +30,7 @@ const AuthLayout = ({ title, children }: PropsWithChildren<{ title: string }>) =
 
   return (
     <ProjectLayout
-      product="Authentication"
+      product="Equipe e Acesso"
       browserTitle={{ section: title }}
       productMenu={<ProductMenu page={page} menu={menu} />}
       isBlocking={false}

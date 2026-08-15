@@ -1,5 +1,5 @@
 import { type DestinationPanelSchemaType } from '../DestinationForm.schema'
-import { DUCKLAKE_MODE_SUPABASE } from './DuckLake.constants'
+import { DUCKLAKE_MODE_COMETCLOUD } from './DuckLake.constants'
 
 export type DucklakeApiConfig = {
   catalog_url?: string
@@ -25,7 +25,7 @@ const DUCKLAKE_INPUT_FIELD_PATHS = [
   'ducklakeMetadataSchema',
 ] as const
 
-// Fields entered only in "Use Supabase" mode (optional in the validation data).
+// Fields entered only in "Use Comet Cloud" mode (optional in the validation data).
 const DUCKLAKE_SUPABASE_FIELD_PATHS = [
   'ducklakeCatalogProjectRef',
   'ducklakeStorageProjectRef',
@@ -52,7 +52,7 @@ type DucklakeValidationData = Pick<
     >
   >
 
-// Required fields per mode. "Use Supabase" only needs project refs + a bucket; the catalog URL and
+// Required fields per mode. "Use Comet Cloud" only needs project refs + a bucket; the catalog URL and
 // S3 credentials are resolved by the platform API.
 const DUCKLAKE_SUPABASE_REQUIRED_FIELDS: DucklakeValidationIssue[] = [
   { path: 'ducklakeCatalogProjectRef', message: 'Catalog project is required' },
@@ -91,7 +91,7 @@ export const getDucklakeValidationIssues = (
   data: DucklakeValidationData,
   options: { secretsOptional?: boolean } = {}
 ): DucklakeValidationIssue[] => {
-  if (data.ducklakeMode === DUCKLAKE_MODE_SUPABASE) {
+  if (data.ducklakeMode === DUCKLAKE_MODE_COMETCLOUD) {
     const issues = getMissingRequiredFieldIssues(data, DUCKLAKE_SUPABASE_REQUIRED_FIELDS)
 
     if (data.ducklakeMetadataSchema && !METADATA_SCHEMA_PATTERN.test(data.ducklakeMetadataSchema)) {

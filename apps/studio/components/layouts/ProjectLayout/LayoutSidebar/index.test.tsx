@@ -63,7 +63,7 @@ vi.mock('@/hooks/misc/useSelectedOrganization', () => ({
       name: 'Organization 1',
       slug: 'test-org',
       plan: { id: 'free', name: 'Free' },
-      managed_by: 'supabase',
+      managed_by: 'cometcloud',
       is_owner: true,
       billing_email: 'billing@example.com',
       billing_partner: null,

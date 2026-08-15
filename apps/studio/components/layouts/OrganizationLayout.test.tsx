@@ -72,7 +72,7 @@ describe('OrganizationLayout', () => {
       mockSetIsBannerDismissed,
       { isSuccess: true, isLoading: false, isError: false, error: null },
     ])
-    mockUseCustomContent.mockReturnValue({ appTitle: 'Supabase' })
+    mockUseCustomContent.mockReturnValue({ appTitle: 'Comet Cloud' })
     mockUseVercelRedirectQuery.mockReturnValue({ data: undefined, isSuccess: false })
     mockUseAwsRedirectQuery.mockReturnValue({ data: undefined, isSuccess: false })
   })

@@ -27,7 +27,7 @@ const OrganizationsPage: NextPageWithLayout = () => {
   const [search, setSearch] = useState('')
   const pageTitle = buildStudioPageTitle({
     section: 'Organizations',
-    brand: appTitle || 'Supabase',
+    brand: appTitle || 'Comet Cloud',
   })
 
   const {
@@ -57,7 +57,7 @@ const OrganizationsPage: NextPageWithLayout = () => {
     <>
       <Head>
         <title>{pageTitle}</title>
-        <meta name="description" content="Supabase Studio" />
+        <meta name="description" content="Comet Cloud Studio" />
       </Head>
       <ScaffoldContainer>
         <ScaffoldSection isFullWidth className="flex flex-col gap-y-4">

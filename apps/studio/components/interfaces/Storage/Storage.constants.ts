@@ -56,31 +56,31 @@ export const STORAGE_CLIENT_LIBRARY_MAPPINGS = {
 
 export const BUCKET_TYPES = {
   files: {
-    displayName: 'Files',
-    singularName: 'file',
-    article: 'a',
-    description: 'General file storage for most types of digital content',
-    valueProp: 'Store images, videos, documents, and any other file type.',
+    displayName: 'Arquivos',
+    singularName: 'arquivo',
+    article: 'um',
+    description: 'Armazenamento geral para a maioria dos conteúdos digitais',
+    valueProp: 'Guarde imagens, vídeos, documentos e qualquer outro tipo de arquivo.',
     docsUrl: `${DOCS_URL}/guides/storage/buckets/fundamentals`,
   },
   analytics: {
     displayName: 'Analytics',
     singularName: 'analytics',
-    article: 'an',
-    description: 'Purpose-built storage for analytical workloads',
-    valueProp: 'Store large datasets for analytics and reporting.',
+    article: 'um',
+    description: 'Armazenamento projetado para cargas de trabalho analíticas',
+    valueProp: 'Armazene grandes conjuntos de dados para análise e relatórios.',
     docsUrl: `${DOCS_URL}/guides/storage/analytics/introduction`,
   },
   vectors: {
-    displayName: 'Vectors',
-    singularName: 'vector',
-    article: 'a',
-    description: 'Purpose-built storage for vector data',
-    valueProp: 'Store, index, and query your vector embeddings at scale.',
+    displayName: 'Vetores',
+    singularName: 'vetor',
+    article: 'um',
+    description: 'Armazenamento projetado para dados vetoriais',
+    valueProp: 'Armazene, indexe e consulte seus vetores em escala.',
     docsUrl: `${DOCS_URL}/guides/storage/vector/introduction`,
   },
 }
 export const BUCKET_TYPE_KEYS = Object.keys(BUCKET_TYPES) as Array<keyof typeof BUCKET_TYPES>
 export const DEFAULT_BUCKET_TYPE: keyof typeof BUCKET_TYPES = 'files'
 
-export const PUBLIC_BUCKET_TOOLTIP = 'Objects in this bucket are readable by anyone with the URL.'
+export const PUBLIC_BUCKET_TOOLTIP = 'Os objetos deste volume são legíveis por qualquer pessoa com a URL.'

@@ -11,33 +11,33 @@ export const MigrationsEmptyState = () => {
   const commands = [
     {
       comment: 'Link your project',
-      command: `supabase link --project-ref ${ref}`,
+      command: `comet cloud link --project-ref ${ref}`,
       jsx: () => {
         return (
           <>
-            <span className="text-brand-600">supabase</span> link --project-ref {ref}
+            <span className="text-brand-600">comet cloud</span> link --project-ref {ref}
           </>
         )
       },
     },
     {
       comment: 'Create a new migration called "new-migration"',
-      command: `supabase migration new new-migration`,
+      command: `comet cloud migration new new-migration`,
       jsx: () => {
         return (
           <>
-            <span className="text-brand-600">supabase</span> migration new new-migration
+            <span className="text-brand-600">comet cloud</span> migration new new-migration
           </>
         )
       },
     },
     {
       comment: 'Run all migrations for this project',
-      command: `supabase db push`,
+      command: `comet cloud db push`,
       jsx: () => {
         return (
           <>
-            <span className="text-brand-600">supabase</span> db push
+            <span className="text-brand-600">comet cloud</span> db push
           </>
         )
       },
@@ -48,7 +48,7 @@ export const MigrationsEmptyState = () => {
     <EmptyStatePresentational
       icon={Terminal}
       title="Run your first migration"
-      description="Create and run your first migration using the Supabase CLI."
+      description="Create and run your first migration using the Comet Cloud CLI."
       className="gap-y-6"
     >
       <Card>

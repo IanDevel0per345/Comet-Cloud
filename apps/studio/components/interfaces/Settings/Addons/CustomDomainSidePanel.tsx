@@ -165,7 +165,7 @@ const CustomDomainSidePanel = () => {
                     </div>
                     <div className="px-4 py-2">
                       <p className="text-foreground-light">
-                        Use the default supabase domain for your API
+                        Use the default comet cloud domain for your API
                       </p>
                       <div className="flex items-center space-x-1 mt-2">
                         <p className="text-foreground text-sm" translate="no">
@@ -220,7 +220,7 @@ const CustomDomainSidePanel = () => {
               addon="customDomain"
               source="customDomainSidePanel"
               featureProposition="enable custom domains"
-              primaryText="Custom domains are a Pro Plan add-on"
+              primaryText="Domínios personalizados são um add-on do Plano Pro"
               secondaryText="Enable the add-on to serve your project on your own domain name."
             />
           )}

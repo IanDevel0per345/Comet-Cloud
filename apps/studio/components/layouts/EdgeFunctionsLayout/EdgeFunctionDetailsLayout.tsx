@@ -264,7 +264,7 @@ const EdgeFunctionDetailsLayout = ({
 
   if (!isLoading && !canReadFunctions) {
     return (
-      <ProjectLayout product="Edge Functions" browserTitle={browserTitle}>
+      <ProjectLayout product="Integrações" browserTitle={browserTitle}>
         <NoPermission isFullPage resourceText="access your project's edge functions" />
       </ProjectLayout>
     )
@@ -382,7 +382,7 @@ const EdgeFunctionDetailsLayout = ({
                             readOnly
                             containerClassName=""
                             className="text-xs font-mono tracking-tighter"
-                            value={`supabase functions download ${functionSlug}`}
+                            value={`comet cloud functions download ${functionSlug}`}
                           />
                         </div>
                         <Separator className="bg-border-overlay!" />

@@ -66,7 +66,7 @@ const useMarketplaceListings = () => {
     !IS_PLATFORM || (hasLoaded && (!isMarketplaceEnabled || (!!marketplaceData && !error)))
   const isError = IS_PLATFORM && isMarketplaceEnabled && !!error
 
-  // This flag can globally enable preview listings for all partners for a given user (i.e. for Supabase users)
+  // This flag can globally enable preview listings for all partners for a given user (i.e. for Comet Cloud users)
   const previewAllListingsEnabled = useFlag<boolean>('previewMarketplaceListingsEnabled')
 
   const featureFlags = useFeatureFlags()

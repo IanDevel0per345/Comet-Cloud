@@ -8,7 +8,7 @@ const ContentFile = ({ projectKeys }: StepContentProps) => {
       name: 'MainActivity.kt',
       language: 'kotlin',
       code: `
-val supabase = createSupabaseClient(
+val supabase = createcometCloudClient(
     supabaseUrl = "${projectKeys.apiUrl ?? 'your-project-url'}",
     supabaseKey = "${projectKeys.publishableKey ?? '<prefer publishable key instead of anon key for mobile apps>'}"
   ) {
@@ -37,7 +37,7 @@ fun TodoList() {
     var items by remember { mutableStateOf<List<TodoItem>>(listOf()) }
     LaunchedEffect(Unit) {
         withContext(Dispatchers.IO) {
-            items = supabase.from("todos")
+            items = CometCloud.from("todos")
                               .select().decodeList<TodoItem>()
         }
     }

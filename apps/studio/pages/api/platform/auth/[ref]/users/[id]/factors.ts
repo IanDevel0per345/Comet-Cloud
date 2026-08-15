@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
 import { apiWrapper } from '@/lib/api/apiWrapper'
-import { selfHostedSupabaseAdmin as supabase } from '@/lib/api/self-hosted-admin'
+import { selfHostedcometCloudAdmin as supabase } from '@/lib/api/self-hosted-admin'
 
 export default (req: NextApiRequest, res: NextApiResponse) => apiWrapper(req, res, handler)
 
@@ -21,7 +21,7 @@ const handleDelete = async (req: NextApiRequest, res: NextApiResponse) => {
   const { id } = req.query
 
   // Get all factors for the user
-  const { data: factors, error } = await supabase.auth.admin.mfa.listFactors({
+  const { data: factors, error } = await CometCloud.auth.admin.mfa.listFactors({
     userId: id as string,
   })
   if (error) {
@@ -29,7 +29,7 @@ const handleDelete = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   factors?.factors.forEach(async (factor: any) => {
-    const { error } = await supabase.auth.admin.mfa.deleteFactor({
+    const { error } = await CometCloud.auth.admin.mfa.deleteFactor({
       id: factor.id,
       userId: id as string,
     })

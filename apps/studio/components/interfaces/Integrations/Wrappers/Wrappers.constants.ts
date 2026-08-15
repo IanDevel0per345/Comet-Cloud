@@ -2221,7 +2221,7 @@ export const WRAPPERS: WrapperMeta[] = [
           required: true,
           encrypted: false,
           secureEntry: false,
-          defaultValue: 'supabase:paddle-fdw',
+          defaultValue: 'comet cloud:paddle-fdw',
           hidden: true,
         },
         {
@@ -2323,7 +2323,7 @@ export const WRAPPERS: WrapperMeta[] = [
           required: true,
           encrypted: false,
           secureEntry: false,
-          defaultValue: 'supabase:snowflake-fdw',
+          defaultValue: 'comet cloud:snowflake-fdw',
           hidden: true,
         },
         {
@@ -2514,7 +2514,7 @@ export const WRAPPERS: WrapperMeta[] = [
           required: true,
           encrypted: false,
           secureEntry: false,
-          defaultValue: 'supabase:cal-fdw',
+          defaultValue: 'comet cloud:cal-fdw',
           hidden: true,
         },
         {
@@ -2722,7 +2722,7 @@ export const WRAPPERS: WrapperMeta[] = [
           required: true,
           encrypted: false,
           secureEntry: false,
-          defaultValue: 'supabase:calendly-fdw',
+          defaultValue: 'comet cloud:calendly-fdw',
           hidden: true,
         },
         {
@@ -2960,7 +2960,7 @@ export const WRAPPERS: WrapperMeta[] = [
           required: true,
           encrypted: false,
           secureEntry: false,
-          defaultValue: 'supabase:clerk-fdw',
+          defaultValue: 'comet cloud:clerk-fdw',
           hidden: true,
         },
         {
@@ -3301,7 +3301,7 @@ export const WRAPPERS: WrapperMeta[] = [
           required: true,
           encrypted: false,
           secureEntry: false,
-          defaultValue: 'supabase:notion-fdw',
+          defaultValue: 'comet cloud:notion-fdw',
           hidden: true,
         },
         {
@@ -3456,7 +3456,7 @@ export const WRAPPERS: WrapperMeta[] = [
           required: true,
           encrypted: false,
           secureEntry: false,
-          defaultValue: 'supabase:slack-fdw',
+          defaultValue: 'comet cloud:slack-fdw',
           hidden: true,
         },
         {
@@ -3707,7 +3707,7 @@ export const WRAPPERS: WrapperMeta[] = [
           required: true,
           encrypted: false,
           secureEntry: false,
-          defaultValue: 'supabase:cfd1-fdw',
+          defaultValue: 'comet cloud:cfd1-fdw',
           hidden: true,
         },
         {
@@ -3844,7 +3844,7 @@ export const WRAPPERS: WrapperMeta[] = [
           required: true,
           encrypted: false,
           secureEntry: false,
-          defaultValue: 'supabase:hubspot-fdw',
+          defaultValue: 'comet cloud:hubspot-fdw',
           hidden: true,
         },
         {
@@ -4134,7 +4134,7 @@ export const WRAPPERS: WrapperMeta[] = [
           required: true,
           encrypted: false,
           secureEntry: false,
-          defaultValue: 'supabase:orb-fdw',
+          defaultValue: 'comet cloud:orb-fdw',
           hidden: true,
         },
         {

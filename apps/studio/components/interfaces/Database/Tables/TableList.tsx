@@ -47,7 +47,7 @@ import { GenericSkeletonLoader } from 'ui-patterns/ShimmeringLoader'
 
 import { ProtectedSchemaWarning } from '../ProtectedSchemaWarning'
 import { formatAllEntities } from './Tables.utils'
-import { buildTableEditorUrl } from '@/components/grid/SupabaseGrid.utils'
+import { buildTableEditorUrl } from '@/components/grid/CometCloudGrid.utils'
 import { AlertError } from '@/components/ui/AlertError'
 import { ButtonTooltip } from '@/components/ui/ButtonTooltip'
 import { DropdownMenuItemTooltip } from '@/components/ui/DropdownMenuItemTooltip'
@@ -228,7 +228,7 @@ export const TableList = ({
       searchInputRef.current?.focus()
       searchInputRef.current?.select()
     },
-    { label: 'Search tables' }
+                    { label: 'Buscar serviços' }
   )
 
   useShortcut(SHORTCUT_IDS.LIST_PAGE_RESET_FILTERS, () => {
@@ -279,7 +279,7 @@ export const TableList = ({
           ref={searchInputRef}
           size="tiny"
           containerClassName="grow lg:grow-0 w-52"
-          placeholder="Search for a table"
+          placeholder="Buscar um serviço"
           value={filterString}
           onChange={(e) => setFilterString(e.target.value)}
           onKeyDown={onSearchInputEscape(filterString, setFilterString)}
@@ -293,12 +293,12 @@ export const TableList = ({
               variant={hasFiltersApplied ? 'default' : 'dashed'}
               iconRight={<ChevronDown />}
             >
-              Entity Type
+              Tipo de entidade
             </Button>
           </PopoverTrigger>
           <PopoverContent className="p-0 w-60" side="bottom" align="center">
             <div className="px-3 pt-3 pb-2 flex flex-col gap-y-2">
-              <p className="text-xs">Show entity types</p>
+              <p className="text-xs">Mostrar tipos de entidade</p>
               <div className="flex flex-col">
                 {Object.entries(ENTITY_TYPE).map(([key, value]) => (
                   <div key={key} className="group flex items-center justify-between py-0.5">
@@ -325,7 +325,7 @@ export const TableList = ({
                       onClick={() => setVisibleTypes([value])}
                       className="transition opacity-0 group-hover:opacity-100 h-auto px-1 py-0.5"
                     >
-                      Select only
+                      Selecionar só
                     </Button>
                   </div>
                 ))}
@@ -338,12 +338,12 @@ export const TableList = ({
           (canAddTables ? (
             <Shortcut
               id={SHORTCUT_IDS.LIST_PAGE_NEW_ITEM}
-              label="Create new table"
+              label="Criar novo serviço"
               onTrigger={() => onAddTable()}
               side="bottom"
             >
               <Button className="w-auto ml-auto" icon={<Plus />} onClick={() => onAddTable()}>
-                New table
+                Novo serviço
               </Button>
             </Shortcut>
           ) : (
@@ -354,11 +354,11 @@ export const TableList = ({
               tooltip={{
                 content: {
                   side: 'bottom',
-                  text: 'You need additional permissions to create tables',
+                  text: 'Você precisa de permissões adicionais para criar serviços',
                 },
               }}
             >
-              New table
+              Novo serviço
             </ButtonTooltip>
           ))}
       </div>
@@ -367,7 +367,7 @@ export const TableList = ({
 
       {isLoading && <GenericSkeletonLoader />}
 
-      {isError && <AlertError error={error} subject="Failed to retrieve tables" />}
+      {isError && <AlertError error={error} subject="Falha ao carregar serviços" />}
 
       {isSuccess && (
         <div className="w-full">
@@ -376,12 +376,12 @@ export const TableList = ({
               <TableHeader>
                 <TableRow>
                   <TableHead key="icon" className="w-0 px-0!" />
-                  <TableHead key="name" className="max-w-[160px] sm:max-w-[280px]">
-                    Name
+                   <TableHead key="name" className="max-w-[160px] sm:max-w-[280px]">
+                    Nome
                   </TableHead>
-                  <TableHead key="columns">Columns</TableHead>
-                  <TableHead key="rows">Rows (Estimated)</TableHead>
-                  <TableHead key="size">Size (Estimated)</TableHead>
+                  <TableHead key="columns">Colunas</TableHead>
+                  <TableHead key="rows">Registros (Est.)</TableHead>
+                  <TableHead key="size">Tamanho (Est.)</TableHead>
                   <TableHead key="realtime">Realtime</TableHead>
                   <TableHead key="buttons"></TableHead>
                 </TableRow>
@@ -394,18 +394,17 @@ export const TableList = ({
                         {visibleTypes.length === 0 ? (
                           <>
                             <p className="text-sm text-foreground">
-                              Please select at least one entity type to filter with
+                              Selecione ao menos um tipo de entidade para filtrar
                             </p>
                             <p className="text-sm text-foreground-light">
-                              There are currently no results based on the filter that you have
-                              applied
+                              Nenhum resultado corresponde ao filtro aplicado
                             </p>
                           </>
                         ) : (
                           <>
-                            <p className="text-sm text-foreground">No tables created yet</p>
+                            <p className="text-sm text-foreground">Nenhum serviço criado ainda</p>
                             <p className="text-sm text-foreground-light">
-                              There are no{' '}
+                              Não foram encontrados{' '}
                               {visibleTypes.length === 5
                                 ? 'tables'
                                 : visibleTypes.length === 1
@@ -426,9 +425,9 @@ export const TableList = ({
                   {entities.length === 0 && filterString.length > 0 && (
                     <TableRow key={selectedSchema}>
                       <TableCell colSpan={7}>
-                        <p className="text-sm text-foreground">No results found</p>
+                        <p className="text-sm text-foreground">Nenhum resultado encontrado</p>
                         <p className="text-sm text-foreground-light">
-                          Your search for "{filterString}" did not return any results
+                          A busca por "{filterString}" não retornou resultados
                         </p>
                       </TableCell>
                     </TableRow>

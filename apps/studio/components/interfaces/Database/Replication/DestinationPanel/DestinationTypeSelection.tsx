@@ -94,7 +94,7 @@ export const DestinationTypeSelection = () => {
         {
           value: 'Analytics Bucket',
           label: 'Analytics Bucket',
-          description: 'Write Apache Iceberg tables to Supabase Storage for analytics workflows',
+          description: 'Write Apache Iceberg tables to Comet Cloud Storage for analytics workflows',
           stage: 'Deprecated',
           enabled: isOptionVisible('Analytics Bucket', etlEnableIceberg),
         },
@@ -143,14 +143,14 @@ export const DestinationTypeSelection = () => {
     selectedOption?.stage === 'Public Alpha' ? (
       <>
         In public alpha and may change.{' '}
-        <InlineLink href="https://github.com/orgs/supabase/discussions/39416">
+        <InlineLink href="https://github.com/orgs/comet cloud/discussions/39416">
           Leave feedback
         </InlineLink>
       </>
     ) : selectedOption?.stage === 'Early Access' ? (
       <>
         In early access and may change.{' '}
-        <InlineLink href="https://github.com/orgs/supabase/discussions/39416">
+        <InlineLink href="https://github.com/orgs/comet cloud/discussions/39416">
           Leave feedback
         </InlineLink>
       </>

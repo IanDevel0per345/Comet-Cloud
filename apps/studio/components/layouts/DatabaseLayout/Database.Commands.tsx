@@ -41,22 +41,22 @@ export function useDatabaseGotoCommands(options?: CommandOptions) {
     [
       {
         id: 'nav-database-tables',
-        name: 'Tables',
-        value: 'Database: Tables',
+        name: 'Serviços',
+        value: 'Database: Serviços',
         route: `/project/${ref}/database/tables`,
         defaultHidden: true,
       },
       {
         id: 'nav-database-triggers',
-        name: 'Triggers',
+        name: 'Webhooks',
         value: 'Database: Triggers',
         route: `/project/${ref}/database/triggers`,
         defaultHidden: true,
       },
       {
         id: 'nav-database-functions',
-        name: 'Functions',
-        value: 'Database: Functions',
+        name: 'Integrações',
+        value: 'Database: Integrações',
         route: `/project/${ref}/database/functions`,
         defaultHidden: true,
       },

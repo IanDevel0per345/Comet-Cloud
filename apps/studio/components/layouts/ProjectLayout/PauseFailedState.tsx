@@ -155,7 +155,7 @@ export const PauseFailedState = () => {
       <Dialog open={showCliBackup} onOpenChange={setShowCliBackup}>
         <DialogContent size="medium" onOpenAutoFocus={(e) => e.preventDefault()}>
           <DialogHeader>
-            <DialogTitle>Back up your database with the Supabase CLI</DialogTitle>
+            <DialogTitle>Back up your database with the Comet Cloud CLI</DialogTitle>
           </DialogHeader>
 
           <DialogSectionSeparator />

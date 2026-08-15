@@ -19,7 +19,7 @@ import {
 } from './DestinationForm.schema'
 import {
   DUCKLAKE_MODE_CUSTOM,
-  DUCKLAKE_MODE_SUPABASE,
+  DUCKLAKE_MODE_COMETCLOUD,
   type DucklakeMode,
 } from './DuckLake/DuckLake.constants'
 import { type DucklakeApiConfig } from './DuckLake/DuckLake.utils'
@@ -31,7 +31,7 @@ import {
   DestinationConfig,
   DucklakeDestinationConfig,
   DucklakeManualDestinationConfig,
-  DucklakeSupabaseDestinationConfig,
+  DucklakecometCloudDestinationConfig,
   IcebergDestinationConfig,
   SnowflakeDestinationConfig,
   TableSyncCopyConfig,
@@ -78,8 +78,8 @@ export const generateDefaultValues = ({
 
   const bigQueryConfig = config && 'big_query' in config ? config.big_query : undefined
   const icebergConfig =
-    config && 'iceberg' in config && 'supabase' in config.iceberg
-      ? config.iceberg.supabase
+    config && 'iceberg' in config && 'cometcloud' in config.iceberg
+      ? config.iceberg.comet cloud
       : undefined
   const ducklakeConfig =
     config && 'ducklake' in config ? (config.ducklake as DucklakeApiConfig) : undefined
@@ -128,10 +128,10 @@ export const generateDefaultValues = ({
     s3SecretAccessKey: '',
     s3Region: region ?? icebergConfig?.s3_region ?? '',
     // DuckLake fields
-    // New destinations default to the managed "Use Supabase" mode with the current project
+    // New destinations default to the managed "Use Comet Cloud" mode with the current project
     // pre-selected as both catalog and storage. Existing destinations always read back as the
     // resolved/custom shape, so edit mode is locked to "Custom parameters".
-    ducklakeMode: (editMode ? DUCKLAKE_MODE_CUSTOM : DUCKLAKE_MODE_SUPABASE) as DucklakeMode,
+    ducklakeMode: (editMode ? DUCKLAKE_MODE_CUSTOM : DUCKLAKE_MODE_COMETCLOUD) as DucklakeMode,
     ducklakeCatalogProjectRef: editMode ? '' : (projectRef ?? ''),
     ducklakeStorageProjectRef: editMode ? '' : (projectRef ?? ''),
     ducklakeStorageBucket: '',
@@ -271,8 +271,8 @@ const buildClickHouseConfig = (
 const buildDucklakeConfig = (
   data: z.infer<typeof DestinationPanelFormSchema>
 ): DucklakeDestinationConfig => {
-  if (data.ducklakeMode === DUCKLAKE_MODE_SUPABASE) {
-    const supabaseConfig: DucklakeSupabaseDestinationConfig = {
+  if (data.ducklakeMode === DUCKLAKE_MODE_COMETCLOUD) {
+    const supabaseConfig: DucklakecometCloudDestinationConfig = {
       catalogProjectRef: normalizeRequiredString(data.ducklakeCatalogProjectRef),
       storageProjectRef: normalizeRequiredString(data.ducklakeStorageProjectRef),
       bucket: normalizeRequiredString(data.ducklakeStorageBucket),

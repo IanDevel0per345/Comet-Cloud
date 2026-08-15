@@ -97,7 +97,7 @@ export function useProjectSettingsGotoCommands(options?: CommandOptions) {
         ? [
             {
               id: 'nav-project-settings-custom-domains',
-              name: 'Custom Domains',
+              name: 'Domínios Personalizados',
               route: `/project/${ref}/settings/general#custom-domains`,
               defaultHidden: true,
             } as IRouteCommand,

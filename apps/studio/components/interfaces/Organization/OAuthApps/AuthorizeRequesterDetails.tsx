@@ -20,7 +20,7 @@ import {
   CONNECT_LOGO_LIGHT_TILE_CLASSNAME,
   LogoBox,
   LogoPair,
-  SupabaseLogo,
+  CometCloudLogo,
 } from '@/components/layouts/InterstitialLayout'
 import { InlineLink } from '@/components/ui/InlineLink'
 import { DOCS_URL } from '@/lib/constants'
@@ -175,7 +175,7 @@ const PERMISSION_GROUPS: PermissionGroup[] = [
 /**
  * Connect interstitial header mark for `/authorize`.
  * Curated logos resolve from allowlisted redirect_uri hosts; otherwise pair only
- * when a usable remote icon is present, else show Supabase alone.
+ * when a usable remote icon is present, else show Comet Cloud alone.
  *
  * Uploaded / unknown bitmaps have no light/dark metadata, so both tiles use
  * fixed light chrome (`forceLight`) across Studio themes. Curated partners keep
@@ -207,7 +207,7 @@ export const AuthorizeConnectLogo = ({
   const hasUsableLogo = Boolean(logo.src) && failedIcon !== logo.src
 
   if (!hasUsableLogo) {
-    return <SupabaseLogo />
+    return <CometCloudLogo />
   }
 
   const forceLightPair = !logo.isKnownClient
@@ -224,7 +224,7 @@ export const AuthorizeConnectLogo = ({
           />
         </LogoBox>
       }
-      right={<SupabaseLogo forceLight={forceLightPair} />}
+      right={<CometCloudLogo forceLight={forceLightPair} />}
     />
   )
 }

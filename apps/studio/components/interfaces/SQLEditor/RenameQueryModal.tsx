@@ -62,7 +62,7 @@ export const RenameQueryModal = ({
   const tabsSnap = useTabsStateSnapshot()
   const isSQLSnippet = snippet.type === 'sql'
 
-  // Orgs on HIPAA plans or that have disabled AI should not have access to Supabase AI
+  // Orgs on HIPAA plans or that have disabled AI should not have access to Comet Cloud AI
   const { aiOptInLevel, isHipaaProjectDisallowed } = useOrgAiOptInLevel()
   const isAiOptedOut = aiOptInLevel === 'disabled'
 
@@ -216,7 +216,7 @@ export const RenameQueryModal = ({
                     <div className="scale-75">
                       <AiIconAnimation loading={isTitleGenerationLoading} />
                     </div>
-                    <span>Rename with Supabase AI</span>
+                    <span>Rename with Comet Cloud AI</span>
                   </div>
                 </ButtonTooltip>
               </div>

@@ -290,7 +290,7 @@ function DirectConnectionContent({ state, deploymentMode }: StepContentProps) {
           >
             configurable
           </InlineLink>{' '}
-          for self-hosted Supabase.
+          for self-hosted CometCloud.
         </p>
       )}
       <ConnectionParameters

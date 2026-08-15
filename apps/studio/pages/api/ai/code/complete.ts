@@ -247,7 +247,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
     const system = isClickhouse
       ? source`
-          You write and edit ClickHouse SQL for the Supabase logs table.
+          You write and edit ClickHouse SQL for the Comet Cloud logs table.
           Reply with ONLY the SQL that replaces the <selection> block below, keeping the
           surrounding query valid: no explanation, no comments, and no markdown code fences.
           ${CLICKHOUSE_LOGS_COMPLETION_INSTRUCTIONS}

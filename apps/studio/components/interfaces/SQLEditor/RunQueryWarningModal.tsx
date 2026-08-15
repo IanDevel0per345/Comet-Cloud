@@ -176,10 +176,10 @@ export const RunQueryWarningModal = ({
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <AlertDialogAction variant="warning" onClick={handleConfirm}>
-            {canEnableRLS ? 'Run without RLS' : 'Run query'}
+            {canEnableRLS ? 'Executar mesmo assim' : 'Executar deploy'}
           </AlertDialogAction>
           {canEnableRLS && (
-            <AlertDialogAction onClick={handleConfirmWithRLS}>Run and enable RLS</AlertDialogAction>
+            <AlertDialogAction onClick={handleConfirmWithRLS}>Executar e ativar proteção</AlertDialogAction>
           )}
         </AlertDialogFooter>
       </AlertDialogContent>

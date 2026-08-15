@@ -11,8 +11,8 @@ import { GenericSkeletonLoader } from 'ui-patterns/ShimmeringLoader'
 import DeleteConfirmationDialogs from './DeleteConfirmationDialogs'
 import { SidePanelEditor } from './SidePanelEditor/SidePanelEditor'
 import { TableDefinition } from './TableDefinition'
-import { SupabaseGrid } from '@/components/grid/SupabaseGrid'
-import { useSyncTableEditorStateFromLocalStorageWithUrl } from '@/components/grid/SupabaseGrid.utils'
+import { CometCloudGrid } from '@/components/grid/CometCloudGrid'
+import { useSyncTableEditorStateFromLocalStorageWithUrl } from '@/components/grid/CometCloudGrid.utils'
 import {
   Entity,
   isForeignTable,
@@ -112,8 +112,8 @@ export const TableGridEditor = ({
     ? `${selectedTable.schema}_${selectedTable.name}`
     : 'unknown-table'
 
-  /** [Joshen] We're going to need to refactor SupabaseGrid eventually to make the code here more readable
-   * For context we previously built the SupabaseGrid as a reusable npm component, but eventually decided
+  /** [Joshen] We're going to need to refactor CometCloudGrid eventually to make the code here more readable
+   * For context we previously built the CometCloudGrid as a reusable npm component, but eventually decided
    * to just integrate it directly into the dashboard. The header, and body (+footer) should be decoupled.
    */
 
@@ -174,7 +174,7 @@ export const TableGridEditor = ({
           table={selectedTable}
           editable={editable}
         >
-          <SupabaseGrid
+          <CometCloudGrid
             key={gridKey}
             gridProps={{ height: '100%' }}
             customHeader={
@@ -191,7 +191,7 @@ export const TableGridEditor = ({
             {(isViewSelected || isTableSelected) && selectedView === 'definition' && (
               <TableDefinition entity={selectedTable} />
             )}
-          </SupabaseGrid>
+          </CometCloudGrid>
 
           <DeleteConfirmationDialogs
             selectedTable={selectedTable}

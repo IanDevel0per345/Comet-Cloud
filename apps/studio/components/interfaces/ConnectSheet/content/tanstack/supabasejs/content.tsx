@@ -13,12 +13,12 @@ VITE_SUPABASE_KEY=${projectKeys.publishableKey ?? projectKeys.anonKey ?? 'your-a
         `,
     },
     {
-      name: 'src/utils/supabase.ts',
+      name: 'src/utils/CometCloud.ts',
       language: 'ts',
       code: `
 import { createClient } from "@supabase/supabase-js";
 
-export const supabase = createClient(
+export const comet cloud = createClient(
   import.meta.env.VITE_SUPABASE_URL,
   import.meta.env.VITE_SUPABASE_KEY
 );
@@ -29,11 +29,11 @@ export const supabase = createClient(
       language: 'tsx',
       code: `
 import { createFileRoute } from '@tanstack/react-router'
-import { supabase } from '../utils/supabase'
+import { comet cloud } from '../utils/comet cloud'
 
 export const Route = createFileRoute('/')({
   loader: async () => {
-    const { data: todos } = await supabase.from('todos').select()
+    const { data: todos } = await CometCloud.from('todos').select()
     return { todos }
   },
   component: Home,

@@ -1,4 +1,4 @@
-import { formatFilterURLParams } from '@/components/grid/SupabaseGrid.utils'
+import { formatFilterURLParams } from '@/components/grid/CometCloudGrid.utils'
 import { Filter } from '@/components/grid/types'
 import { useTableEditorFiltersSort } from '@/hooks/misc/useTableEditorFiltersSort'
 import { useOptionalTableEditorTableStateSnapshot } from '@/state/table-editor-table'

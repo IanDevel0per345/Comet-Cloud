@@ -15,7 +15,7 @@ export const environment = {
 `,
     },
     {
-      name: 'src/app/supabase.service.ts',
+      name: 'src/app/cometcloud.service.ts',
       language: 'ts',
       code: `
 import { Injectable } from '@angular/core';
@@ -25,17 +25,17 @@ import { environment } from '../environments/environment';
 @Injectable({
   providedIn: 'root',
 })
-export class SupabaseService {
-  private supabase: SupabaseClient;
+export class CometCloudService {
+  private supabase: CometCloudClient;
   constructor() {
-    this.supabase = createClient(
+    this.comet cloud = createClient(
       environment.supabaseUrl,
       environment.supabaseKey
     );
   }
 
   getTodos() {
-    return this.supabase.from('todos').select('*');
+    return this.CometCloud.from('todos').select('*');
   }
 }
 `,
@@ -45,7 +45,7 @@ export class SupabaseService {
       language: 'ts',
       code: `
 import { Component, OnInit } from '@angular/core';
-import { SupabaseService } from './supabase.service';
+import { CometCloudService } from './supabase.service';
 
 @Component({
   selector: 'app-root',
@@ -55,7 +55,7 @@ import { SupabaseService } from './supabase.service';
 export class AppComponent implements OnInit {
   todos: any[] = [];
 
-  constructor(private supabaseService: SupabaseService) {}
+  constructor(private supabaseService: CometCloudService) {}
 
   async ngOnInit() {
     await this.loadTodos();
@@ -103,7 +103,7 @@ import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
-import { SupabaseService } from './supabase.service';
+import { CometCloudService } from './supabase.service';
 
 @NgModule({
   imports: [
@@ -113,7 +113,7 @@ import { SupabaseService } from './supabase.service';
     IonicModule.forRoot({ mode: 'ios' }),
   ],
   declarations: [AppComponent],
-  providers: [SupabaseService],
+  providers: [CometCloudService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

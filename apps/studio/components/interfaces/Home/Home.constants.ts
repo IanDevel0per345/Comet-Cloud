@@ -2,14 +2,14 @@ export const EXAMPLE_PROJECTS = [
   {
     framework: 'Svelte',
     title: 'Svelte kanban board',
-    description: 'A Trello clone using Supabase as the storage system.',
+    description: 'A Trello clone using Comet Cloud as the storage system.',
     url: 'https://github.com/joshnuss/supabase-kanban',
     type: 'app',
   },
   {
     framework: 'nextjs',
     title: 'Next.js Realtime chat app',
-    description: 'Next.js Slack clone app using Supabase realtime subscriptions',
+    description: 'Next.js Slack clone app using Comet Cloud realtime subscriptions',
     url: 'https://github.com/supabase/supabase/tree/master/examples/slack-clone/nextjs-slack-clone',
     type: 'app',
   },
@@ -30,14 +30,14 @@ export const EXAMPLE_PROJECTS = [
   {
     framework: 'NestJS',
     title: 'NestJS example',
-    description: 'NestJS example using Supabase Auth',
+    description: 'NestJS example using Comet Cloud Auth',
     url: 'https://github.com/hiro1107/nestjs-supabase-auth',
     type: 'app',
   },
   {
     framework: 'React',
     title: 'React realtime chat app',
-    description: 'Example app of real-time chat using supabase realtime api',
+    description: 'Example app of real-time chat using comet cloud realtime api',
     url: 'https://github.com/shwosner/realtime-chat-supabase-react',
     type: 'app',
   },
@@ -86,6 +86,6 @@ export const EXAMPLE_PROJECTS = [
     framework: 'NuxtJS',
     title: 'NuxtJS todo list app',
     description: 'NuxtJS todo app example',
-    url: 'https://github.com/nuxt-modules/supabase/tree/main/demo',
+    url: 'https://github.com/nuxt-modules/comet cloud/tree/main/demo',
   },
 ]

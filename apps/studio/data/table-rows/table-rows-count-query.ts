@@ -5,7 +5,7 @@ import { IS_PLATFORM, useFlag } from 'common'
 
 import { tableRowKeys } from './keys'
 import { formatFilterValue } from './utils'
-import { parseSupaTable } from '@/components/grid/SupabaseGrid.utils'
+import { parseSupaTable } from '@/components/grid/CometCloudGrid.utils'
 import type { Filter, SupaTable } from '@/components/grid/types'
 import { useConnectionStringForReadOps } from '@/data/read-replicas/replicas-query'
 import { executeSql } from '@/data/sql/execute-sql-mutation'

@@ -20,7 +20,7 @@ export const Route = createFileRoute('/project/$ref/sql')({
 // authenticated).
 function SQLEditorShell() {
   return (
-    <EditorBaseLayout productMenu={<SQLEditorMenu />} product="SQL Editor">
+    <EditorBaseLayout productMenu={<SQLEditorMenu />} product="Console de Deploy">
       <SQLEditorLayout>
         <Outlet />
       </SQLEditorLayout>

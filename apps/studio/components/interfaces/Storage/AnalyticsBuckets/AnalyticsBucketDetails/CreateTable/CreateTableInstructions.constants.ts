@@ -22,7 +22,7 @@ from pyiceberg.catalog import load_catalog
 import pyarrow as pa
 import datetime
 
-# Supabase project ref
+# Comet Cloud project ref
 PROJECT_REF = "${ref ?? '<your-supabase-project-ref>'}"
 
 # Configuration for Iceberg REST Catalog
@@ -38,7 +38,7 @@ CATALOG_URI = f"${catalogUri ?? 'https://{PROJECT_REF}.supabase.co/storage/v1/ic
 
 # Load the Iceberg catalog
 catalog = load_catalog(
-    "supabase",
+    "cometcloud",
     type="rest",
     warehouse=WAREHOUSE,
     uri=CATALOG_URI,

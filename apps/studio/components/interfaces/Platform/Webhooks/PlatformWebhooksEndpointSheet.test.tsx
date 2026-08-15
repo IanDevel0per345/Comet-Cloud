@@ -58,7 +58,7 @@ const renderEndpointSheet = (
 const submitForm = () =>
   fireEvent.submit(document.getElementById('platform-webhook-endpoint-form')!)
 
-const getUrlInput = () => screen.getByPlaceholderText('https://api.example.com/webhooks/supabase')
+const getUrlInput = () => screen.getByPlaceholderText('https://api.example.com/webhooks/comet cloud')
 
 const findEventTypeCheckbox = (eventType: string) =>
   screen.findByRole('checkbox', {

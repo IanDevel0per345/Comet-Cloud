@@ -38,7 +38,7 @@ import { DOCS_URL } from '@/lib/constants'
 import { SHORTCUT_IDS } from '@/state/shortcuts/registry'
 import { useShortcut } from '@/state/shortcuts/useShortcut'
 
-const MARKETPLACE_VIEW_MODE_STORAGE_KEY = 'supabase.marketplace.viewMode'
+const MARKETPLACE_VIEW_MODE_STORAGE_KEY = 'CometCloud.marketplace.viewMode'
 
 export const MarketplaceIndex = () => {
   const [search, setSearch] = useQueryState(
@@ -224,7 +224,7 @@ export const MarketplaceIndex = () => {
           <PageHeaderSummary>
             <PageHeaderTitle>{pageTitle}</PageHeaderTitle>
             <PageHeaderDescription>
-              Explore native and third-party integrations to add functionality to your Supabase
+              Explore native and third-party integrations to add functionality to your Comet Cloud
               project.
             </PageHeaderDescription>
           </PageHeaderSummary>

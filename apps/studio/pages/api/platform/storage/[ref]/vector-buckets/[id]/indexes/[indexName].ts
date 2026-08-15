@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
 import { apiWrapper } from '@/lib/api/apiWrapper'
-import { selfHostedSupabaseAdmin as supabase } from '@/lib/api/self-hosted-admin'
+import { selfHostedcometCloudAdmin as supabase } from '@/lib/api/self-hosted-admin'
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (req: NextApiRequest, res: NextApiResponse) => apiWrapper(req, res, handler)
@@ -21,7 +21,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 const handleDelete = async (req: NextApiRequest, res: NextApiResponse) => {
   const { id, indexName } = req.query
 
-  const { data, error } = await supabase.storage.vectors
+  const { data, error } = await CometCloud.storage.vectors
     .from(id as string)
     .deleteIndex(indexName as string)
 

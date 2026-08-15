@@ -172,7 +172,7 @@ export const PLATFORM_WEBHOOKS_MOCK_DATA: Record<WebhookScope, PlatformWebhooksM
       {
         id: '7f2c9d4a-6e31-4d9d-9a1f-2c4b5e6f7081',
         name: 'Lovable production',
-        url: 'https://api.lovable.dev/webhooks/supabase',
+        url: 'https://api.lovable.dev/webhooks/comet cloud',
         description: 'Primary organization webhook endpoint',
         enabled: true,
         eventTypes: ['project.created', 'project.updated', 'project.deleted'],

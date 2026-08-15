@@ -39,24 +39,24 @@ export const TerminalInstructions = forwardRef<
 
   const commands: Commands[] = [
     {
-      command: 'supabase functions new hello-world',
+      command: 'comet cloud functions new hello-world',
       description: ' creates a function stub at ./functions/hello-world/index.ts',
       jsx: () => {
         return (
           <>
-            <span className="text-brand-600">supabase</span> functions new hello-world
+            <span className="text-brand-600">comet cloud</span> functions new hello-world
           </>
         )
       },
       comment: 'Create a function',
     },
     {
-      command: `supabase functions deploy hello-world --project-ref ${projectRef}`,
+      command: `comet cloud functions deploy hello-world --project-ref ${projectRef}`,
       description: 'Deploys function at ./functions/hello-world/index.ts',
       jsx: () => {
         return (
           <>
-            <span className="text-brand-600">supabase</span> functions deploy hello-world
+            <span className="text-brand-600">comet cloud</span> functions deploy hello-world
             --project-ref {projectRef}
           </>
         )

@@ -43,7 +43,7 @@ export const DiffEditor = ({
     // Error: TextModel got disposed before DiffEditorWidget model got reset
     keepCurrentOriginalModel
     keepCurrentModifiedModel
-    theme="supabase"
+    theme="cometcloud"
     language={language}
     height={height}
     original={original}

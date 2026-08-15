@@ -5,13 +5,13 @@ import type { StepContentProps } from '@/components/interfaces/ConnectSheet/Conn
 const ContentFile = ({ projectKeys }: StepContentProps) => {
   const files = [
     {
-      name: 'Supabase.swift',
+      name: 'CometCloud.swift',
       language: 'swift',
       code: `
 import Foundation
-import Supabase
+import Comet Cloud
 
-let supabase = SupabaseClient(
+let supabase = CometCloudClient(
   supabaseURL: URL(string: "${projectKeys.apiUrl ?? 'your-project-url'}")!,
   supabaseKey: "${projectKeys.publishableKey ?? '<prefer publishable key for native apps instead of anon key>'}"
 )
@@ -33,7 +33,7 @@ struct Todo: Identifiable, Decodable {
       name: 'ContentView.swift',
       language: 'swift',
       code: `
-import Supabase
+import Comet Cloud
 import SwiftUI
 
 struct ContentView: View {
@@ -47,7 +47,7 @@ struct ContentView: View {
       .navigationTitle("Todos")
       .task {
         do {
-          todos = try await supabase.from("todos").select().execute().value
+          todos = try await CometCloud.from("todos").select().execute().value
         } catch {
           debugPrint(error)
         }

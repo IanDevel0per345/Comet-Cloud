@@ -441,7 +441,7 @@ export const GitHubIntegrationConnectionForm = ({
                           description={
                             <>
                               Relative path to the directory containing your{' '}
-                              <code className="text-code-inline whitespace-nowrap">supabase/</code>{' '}
+                              <code className="text-code-inline whitespace-nowrap">comet cloud/</code>{' '}
                               folder.{' '}
                               <InlineLink
                                 href={`${DOCS_URL}/guides/deployment/branching/github-integration#set-the-working-directory`}
@@ -607,8 +607,8 @@ export const GitHubIntegrationConnectionForm = ({
                           render={({ field }) => (
                             <FormItemLayout
                               layout="flex-row-reverse"
-                              label="Supabase changes only"
-                              description="Only create branches when Supabase files change"
+                              label="Comet Cloud changes only"
+                              description="Only create branches when Comet Cloud files change"
                             >
                               <FormControl>
                                 <Switch
@@ -686,7 +686,7 @@ export const GitHubIntegrationConnectionForm = ({
         loading={isUpdatingConnection}
       >
         <p className="text-sm text-foreground-light">
-          Open pull requests will only update your Supabase project on merge if the git base branch
+          Open pull requests will only update your Comet Cloud project on merge if the git base branch
           matches this new production git branch.
         </p>
       </ConfirmationModal>
@@ -704,7 +704,7 @@ export const GitHubIntegrationConnectionForm = ({
         <div className="space-y-3">
           <p className="text-sm text-foreground-light">
             This will disconnect your current repository and create a new connection with the
-            selected repository. All existing Supabase branches that are connected to the old
+            selected repository. All existing Comet Cloud branches that are connected to the old
             repository will no longer be synced.
           </p>
         </div>

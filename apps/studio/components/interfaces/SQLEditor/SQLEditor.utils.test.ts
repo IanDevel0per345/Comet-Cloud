@@ -248,7 +248,7 @@ describe('SQLEditor.utils.ts:buildDebugChatArgs', () => {
       { label: 'Current Query', content: 'select count(*) from logs;', source: 'logs' },
     ])
     expect(buildDebugChatArgs(snippet, result, 'logs').initialInput).toEqual(
-      'Help me to debug the attached sql snippet which gives the following error: \n\nUnknown expression identifier\n\nThis query runs against the Supabase logs table on a ClickHouse-backed engine, not Postgres.'
+      'Help me to debug the attached sql snippet which gives the following error: \n\nUnknown expression identifier\n\nThis query runs against the Comet Cloud logs table on a ClickHouse-backed engine, not Postgres.'
     )
   })
 })

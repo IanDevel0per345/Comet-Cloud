@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
 import { apiWrapper } from '@/lib/api/apiWrapper'
-import { selfHostedSupabaseAdmin as supabase } from '@/lib/api/self-hosted-admin'
+import { selfHostedcometCloudAdmin as supabase } from '@/lib/api/self-hosted-admin'
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (req: NextApiRequest, res: NextApiResponse) => apiWrapper(req, res, handler)
@@ -24,7 +24,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 const handleGet = async (req: NextApiRequest, res: NextApiResponse) => {
   const { id } = req.query
 
-  const { data, error } = await supabase.storage.vectors
+  const { data, error } = await CometCloud.storage.vectors
     .from(id as string)
     .listIndexes({ maxResults: 100 })
 
@@ -32,7 +32,7 @@ const handleGet = async (req: NextApiRequest, res: NextApiResponse) => {
 
   const indexes = await Promise.all(
     data.indexes.map(async ({ indexName }) => {
-      return (await supabase.storage.vectors.from(id as string).getIndex(indexName)).data?.index
+      return (await CometCloud.storage.vectors.from(id as string).getIndex(indexName)).data?.index
     })
   )
 
@@ -50,7 +50,7 @@ const handlePost = async (req: NextApiRequest, res: NextApiResponse) => {
     metadataConfiguration: { nonFilterableMetadataKeys: metadataKeys },
   }
 
-  const { data, error } = await supabase.storage.vectors.from(id as string).createIndex(payload)
+  const { data, error } = await CometCloud.storage.vectors.from(id as string).createIndex(payload)
   if (error) return res.status(400).json({ error: { message: error.message } })
   return res.status(200).json(data)
 }

@@ -757,6 +757,13 @@ export default defineConfig(({ command, mode }) => {
     //   with `c is not a function` because its `styleHandler` import
     //   came in through the now-too-large `lucide-react` chunk). Pin
     //   React explicitly so it stays a leaf vendor chunk.
+    server: {
+      // Allow proxied domains (e.g. Manus sandbox previews / Vercel preview
+      // tunnels) to reach the dev server past Vite's allowedHosts check.
+      allowedHosts: process.env.ALLOWED_HOSTS
+        ? process.env.ALLOWED_HOSTS.split(',').map((h) => h.trim())
+        : true,
+    },
     build: {
       rollupOptions: {
         output: {

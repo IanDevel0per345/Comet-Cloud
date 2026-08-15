@@ -33,8 +33,8 @@ export function useAuthGotoCommands(options?: CommandOptions) {
     [
       {
         id: 'nav-auth-users',
-        name: 'Users',
-        value: 'Auth: Users',
+        name: 'Usuários',
+        value: 'Auth: Usuários',
         route: `/project/${ref}/auth/users`,
         defaultHidden: true,
       },
@@ -42,8 +42,8 @@ export function useAuthGotoCommands(options?: CommandOptions) {
         ? [
             {
               id: 'nav-auth-providers',
-              name: 'Providers',
-              value: 'Auth: Providers (Social Login, SSO)',
+              name: 'Provedores',
+              value: 'Auth: Provedores (Login Social, SSO)',
               route: `/project/${ref}/auth/providers`,
               defaultHidden: true,
             } as IRouteCommand,
@@ -53,8 +53,8 @@ export function useAuthGotoCommands(options?: CommandOptions) {
         ? [
             {
               id: 'nav-auth-providers-third-party',
-              name: 'Providers (Third Party)',
-              value: 'Auth: Providers (Third Party)',
+              name: 'Provedores (Terceiros)',
+              value: 'Auth: Provedores (Terceiros)',
               route: `/project/${ref}/auth/third-party`,
               defaultHidden: true,
             } as IRouteCommand,
@@ -62,8 +62,8 @@ export function useAuthGotoCommands(options?: CommandOptions) {
         : []),
       {
         id: 'nav-auth-sessions',
-        name: 'Sessions',
-        value: 'Auth: Sessions (User Sessions)',
+        name: 'Sessões',
+        value: 'Auth: Sessões (Sessões de Usuário)',
         route: `/project/${ref}/auth/sessions`,
         defaultHidden: true,
       },
@@ -71,8 +71,8 @@ export function useAuthGotoCommands(options?: CommandOptions) {
         ? [
             {
               id: 'nav-auth-rate-limits',
-              name: 'Rate Limits',
-              value: 'Auth: Rate Limits',
+              name: 'Limites de Requisição',
+              value: 'Auth: Limites de Requisição',
               route: `/project/${ref}/auth/rate-limits`,
               defaultHidden: true,
             } as IRouteCommand,
@@ -82,15 +82,15 @@ export function useAuthGotoCommands(options?: CommandOptions) {
         ? [
             {
               id: 'nav-auth-templates',
-              name: 'Email Templates',
-              value: 'Auth: Email Templates',
+              name: 'Modelos de E-mail',
+              value: 'Auth: Modelos de E-mail',
               route: `/project/${ref}/auth/templates`,
               defaultHidden: true,
             } as IRouteCommand,
             {
               id: 'nav-auth-smtp',
-              name: 'SMTP Settings',
-              value: 'Auth: SMTP Settings (Email Configuration)',
+              name: 'Configurações SMTP',
+              value: 'Auth: Configurações SMTP (E-mail)',
               route: `/project/${ref}/auth/smtp`,
               defaultHidden: true,
             } as IRouteCommand,
@@ -100,8 +100,8 @@ export function useAuthGotoCommands(options?: CommandOptions) {
         ? [
             {
               id: 'nav-auth-mfa',
-              name: 'Multi Factor Authentication (MFA)',
-              value: 'Auth: Multi Factor Authenticaiton (MFA)',
+              name: 'Autenticação Multifator (MFA)',
+              value: 'Auth: Autenticação Multifator (MFA)',
               route: `/project/${ref}/auth/mfa`,
               defaultHidden: true,
             } as IRouteCommand,
@@ -109,8 +109,8 @@ export function useAuthGotoCommands(options?: CommandOptions) {
         : []),
       {
         id: 'nav-auth-url-configuration',
-        name: 'URL Configuration',
-        value: 'Auth: URL Configuration (Site URL, Redirect URLs)',
+        name: 'Configuração de URLs',
+        value: 'Auth: Configuração de URLs (URL do site, Redirecionamentos)',
         route: `/project/${ref}/auth/url-configuration`,
         defaultHidden: true,
       },
@@ -118,8 +118,8 @@ export function useAuthGotoCommands(options?: CommandOptions) {
         ? [
             {
               id: 'nav-auth-attack-protection',
-              name: 'Attack Protection',
-              value: 'Auth: Attack Protection',
+              name: 'Proteção contra Ataques',
+              value: 'Auth: Proteção contra Ataques',
               route: `/project/${ref}/auth/protection`,
               defaultHidden: true,
             } as IRouteCommand,
@@ -127,8 +127,8 @@ export function useAuthGotoCommands(options?: CommandOptions) {
         : []),
       {
         id: 'nav-auth-auth-hooks',
-        name: 'Auth Hooks',
-        value: 'Auth: Auth Hooks',
+        name: 'Hooks de Autenticação',
+        value: 'Auth: Hooks de Autenticação',
         route: `/project/${ref}/auth/hooks`,
         defaultHidden: true,
       },
@@ -136,8 +136,8 @@ export function useAuthGotoCommands(options?: CommandOptions) {
         ? [
             {
               id: 'nav-auth-performance-settings',
-              name: 'Auth Performance Settings',
-              value: 'Auth: Performance Settings',
+              name: 'Desempenho da Autenticação',
+              value: 'Auth: Desempenho',
               route: `/project/${ref}/auth/performance`,
               defaultHidden: true,
             } as IRouteCommand,

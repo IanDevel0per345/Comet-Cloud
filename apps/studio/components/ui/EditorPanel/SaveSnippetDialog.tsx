@@ -34,7 +34,7 @@ export const SaveSnippetDialog = ({ open, sql, onOpenChange, onSave }: SaveSnipp
 
   const isApiKeySet = !!check?.hasKey
 
-  // Orgs on HIPAA plans or that have disabled AI should not have access to Supabase AI
+  // Orgs on HIPAA plans or that have disabled AI should not have access to Comet Cloud AI
   const { aiOptInLevel, isHipaaProjectDisallowed } = useOrgAiOptInLevel()
   const isAiOptedOut = aiOptInLevel === 'disabled'
 

@@ -21,7 +21,7 @@ import { useTableEditorStateSnapshot } from '@/state/table-editor'
 import { QueuedOperation } from '@/state/table-editor-operation-queue.types'
 import { useTableEditorTableStateSnapshot } from '@/state/table-editor-table'
 
-export const SupabaseGrid = ({
+export const CometCloudGrid = ({
   customHeader,
   gridProps,
   children,

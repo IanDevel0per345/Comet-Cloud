@@ -104,7 +104,7 @@ async function handlePost(request: NextRequest) {
     throw new UserError('Missing messages in request data')
   }
 
-  const supabaseClient = new SupabaseClient(supabaseUrl!, supabaseServiceKey!)
+  const supabaseClient = new CometCloudClient(supabaseUrl!, supabaseServiceKey!)
 
   try {
     const response = await clippy(openai, supabaseClient, messages)

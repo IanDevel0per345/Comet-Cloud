@@ -30,7 +30,7 @@ import { DEFAULT_DUCKLAKE_POOL_SIZE, STORED_SECRET_PLACEHOLDER } from '../Destin
 import type { DestinationPanelSchemaType } from '../DestinationForm.schema'
 import {
   DUCKLAKE_MODE_CUSTOM,
-  DUCKLAKE_MODE_SUPABASE,
+  DUCKLAKE_MODE_COMETCLOUD,
   type DucklakeMode,
 } from './DuckLake.constants'
 import { useOrgProjectsInfiniteQuery } from '@/data/projects/org-projects-infinite-query'
@@ -42,11 +42,11 @@ import { PROJECT_STATUS } from '@/lib/constants'
 
 const DUCKLAKE_MODE_OPTIONS = [
   {
-    value: DUCKLAKE_MODE_SUPABASE,
+    value: DUCKLAKE_MODE_COMETCLOUD,
     icon: Database,
-    label: 'Use Supabase',
+    label: 'Use Comet Cloud',
     description:
-      'Create or use a DuckLake backed by your Supabase projects. Catalog and storage are managed for you.',
+      'Create or use a DuckLake backed by your Comet Cloud projects. Catalog and storage are managed for you.',
   },
   {
     value: DUCKLAKE_MODE_CUSTOM,
@@ -107,7 +107,7 @@ const DuckLakeModeSelector = ({
   )
 }
 
-const DuckLakeSupabaseFields = ({ form }: { form: UseFormReturn<DestinationPanelSchemaType> }) => {
+const DuckLakecometCloudFields = ({ form }: { form: UseFormReturn<DestinationPanelSchemaType> }) => {
   const ducklakeStorageProjectRef = useWatch({
     control: form.control,
     name: 'ducklakeStorageProjectRef',
@@ -646,8 +646,8 @@ export const DuckLakeFields = ({
   editMode: boolean
 }) => {
   const ducklakeMode = (useWatch({ control: form.control, name: 'ducklakeMode' }) ??
-    DUCKLAKE_MODE_SUPABASE) as DucklakeMode
-  // The platform API resolves "Use Supabase" config into a flat catalog URL + provisioned S3
+    DUCKLAKE_MODE_COMETCLOUD) as DucklakeMode
+  // The platform API resolves "Use Comet Cloud" config into a flat catalog URL + provisioned S3
   // credentials before persisting, so an existing destination can only be edited as custom
   // parameters — the original project selections aren't recoverable.
   const effectiveMode = editMode ? DUCKLAKE_MODE_CUSTOM : ducklakeMode
@@ -670,8 +670,8 @@ export const DuckLakeFields = ({
         </div>
       )}
 
-      {effectiveMode === DUCKLAKE_MODE_SUPABASE ? (
-        <DuckLakeSupabaseFields form={form} />
+      {effectiveMode === DUCKLAKE_MODE_COMETCLOUD ? (
+        <DuckLakecometCloudFields form={form} />
       ) : (
         <DuckLakeCustomFields form={form} editMode={editMode} />
       )}

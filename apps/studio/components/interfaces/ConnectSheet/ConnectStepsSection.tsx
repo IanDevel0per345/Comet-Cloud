@@ -311,8 +311,8 @@ export function ConnectStepsSection({ steps, state, projectKeys }: ConnectStepsS
         {showSelfHostedMcpNotice && (
           <Admonition
             type="default"
-            title="MCP for self-hosted Supabase requires extra setup"
-            description="The configuration below points at the hosted Supabase MCP server. To use MCP against your self-hosted instance, follow the self-hosted MCP guide."
+            title="MCP for self-hosted Comet Cloud requires extra setup"
+            description="The configuration below points at the hosted Comet Cloud MCP server. To use MCP against your self-hosted instance, follow the self-hosted MCP guide."
             actions={[
               <DocsButton key="docs" href={`${DOCS_URL}/guides/self-hosting/enable-mcp`} />,
             ]}

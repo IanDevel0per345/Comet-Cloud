@@ -20,7 +20,7 @@ import {
 } from './ExportAllRows.errors'
 import { useProgressToasts } from './ExportAllRows.progress'
 import { hydrateTruncatedRows } from '@/components/grid/components/header/Header.utils'
-import { parseSupaTable } from '@/components/grid/SupabaseGrid.utils'
+import { parseSupaTable } from '@/components/grid/CometCloudGrid.utils'
 import type { Filter, Sort, SupaTable } from '@/components/grid/types'
 import { formatTableRowsToSQL } from '@/components/interfaces/TableGridEditor/TableEntity.utils'
 import { InlineLink } from '@/components/ui/InlineLink'

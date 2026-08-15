@@ -94,7 +94,7 @@ const getBaseEdgeServiceFlowQuery = (
       -- JWT Key Authentication (old keys)
       CASE
           WHEN apikey_payload.algorithm = 'HS256' AND
-               apikey_payload.issuer = 'supabase' AND
+               apikey_payload.issuer = 'cometcloud' AND
                apikey_payload.role IN ('anon', 'service_role')
           THEN apikey_payload.role
           WHEN apikey_payload IS NOT NULL THEN '<unrecognized>'
@@ -252,7 +252,7 @@ export const getEdgeFunctionServiceFlowQuery = (logId: string): SafeLogSqlFragme
       -- JWT Key Authentication (old keys)
       CASE
           WHEN apikey_payload.algorithm = 'HS256' AND
-               apikey_payload.issuer = 'supabase' AND
+               apikey_payload.issuer = 'cometcloud' AND
                apikey_payload.role IN ('anon', 'service_role')
           THEN apikey_payload.role
           WHEN apikey_payload IS NOT NULL THEN '<unrecognized>'

@@ -16,7 +16,7 @@ import {
   loadTableEditorStateFromLocalStorage,
   saveTableEditorStateToLocalStorage,
   sortsToUrlParams,
-} from '@/components/grid/SupabaseGrid.utils'
+} from '@/components/grid/CometCloudGrid.utils'
 import type { Filter, Sort } from '@/components/grid/types'
 import { useTableEditorQuery } from '@/data/table-editor/table-editor-query'
 import { useTableRowsQuery } from '@/data/table-rows/table-rows-query'

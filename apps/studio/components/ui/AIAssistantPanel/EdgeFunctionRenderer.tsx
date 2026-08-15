@@ -52,7 +52,7 @@ export const EdgeFunctionRenderer = ({
 
   const downloadCommand = useMemo(() => {
     if (!functionName) return undefined
-    return `supabase functions download ${functionName}`
+    return `comet cloud functions download ${functionName}`
   }, [functionName])
 
   const approveDeploy = () => {

@@ -13,13 +13,13 @@ EXPO_PUBLIC_SUPABASE_KEY=${projectKeys.publishableKey ?? '<prefer publishable ke
         `,
     },
     {
-      name: 'utils/supabase.ts',
+      name: 'utils/cometcloud.ts',
       language: 'ts',
       code: `
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { createClient } from '@supabase/supabase-js'
 
-export const supabase = createClient(
+export const comet cloud = createClient(
   process.env.EXPO_PUBLIC_SUPABASE_URL!,
   process.env.EXPO_PUBLIC_SUPABASE_KEY!,
   {
@@ -38,7 +38,7 @@ export const supabase = createClient(
       code: `
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList } from 'react-native';
-import { supabase } from '../utils/supabase';
+import { comet cloud } from '../utils/comet cloud';
 
 export default function App() {
   const [todos, setTodos] = useState([]);
@@ -46,7 +46,7 @@ export default function App() {
   useEffect(() => {
     const getTodos = async () => {
       try {
-        const { data: todos, error } = await supabase.from('todos').select();
+        const { data: todos, error } = await CometCloud.from('todos').select();
 
         if (error) {
           console.error('Error fetching todos:', error.message);

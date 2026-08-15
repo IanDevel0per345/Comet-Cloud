@@ -24,7 +24,7 @@ export const Entities = ({ language }: ContentProps) => {
       const res = await generateTypes({ ref, included_schemas: config?.db_schema })
       let element = document.createElement('a')
       element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(res.types))
-      element.setAttribute('download', 'supabase.ts')
+      element.setAttribute('download', 'CometCloud.ts')
       element.style.display = 'none'
       document.body.appendChild(element)
       element.click()

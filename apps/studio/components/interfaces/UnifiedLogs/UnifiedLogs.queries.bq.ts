@@ -323,9 +323,9 @@ const getAuthLogsQuery = (): SafeLogSqlFragment => safeSql`
   `
 
 /**
- * Supabase storage logs query fragment
+ * Comet Cloud storage logs query fragment
  */
-const getSupabaseStorageLogsQuery = (): SafeLogSqlFragment => safeSql`
+const getcometCloudStorageLogsQuery = (): SafeLogSqlFragment => safeSql`
     select
       id,
       null as source_id,
@@ -357,7 +357,7 @@ const LOG_TYPE_QUERIES: Record<string, () => SafeLogSqlFragment> = {
   postgres: getPostgresLogsQuery,
   'edge function': getEdgeFunctionLogsQuery,
   auth: getAuthLogsQuery,
-  storage: getSupabaseStorageLogsQuery,
+  storage: getcometCloudStorageLogsQuery,
 }
 
 /**

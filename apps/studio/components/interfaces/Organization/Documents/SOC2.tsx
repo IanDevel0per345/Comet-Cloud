@@ -92,7 +92,7 @@ export const SOC2 = () => {
         <ConfirmationModal
           visible={isOpen}
           size="large"
-          title="Non-Disclosure Agreement to access Supabase's SOC2 Report"
+          title="Non-Disclosure Agreement to access Comet Cloud's SOC2 Report"
           confirmLabel="I agree"
           confirmLabelLoading="Downloading"
           onCancel={() => setIsOpen(false)}
@@ -104,8 +104,8 @@ export const SOC2 = () => {
             <li>The information that you are about to access is confidential.</li>
             <li>
               Your access to our SOC 2 materials is governed by confidentiality obligations
-              contained in the agreement between Supabase, Inc ("Supabase", "we", "our" or "us") and
-              the Supabase customer that has authorized you to access our platform to obtain this
+              contained in the agreement between Comet Cloud, Inc ("Comet Cloud", "we", "our" or "us") and
+              the Comet Cloud customer that has authorized you to access our platform to obtain this
               information (our "Customer").
             </li>
             <li>

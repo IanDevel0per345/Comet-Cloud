@@ -224,7 +224,7 @@ export const QueryEditor = ({
           <ExplorerToolbarAction
             loading={isExecuting || isLoadingProject}
             icon={<Play />}
-            tooltip="Run query"
+            tooltip="Executar deploy"
             disabled={isLoadingProject || isExecuting || sql.trim().length === 0}
             onClick={() => handleRunQuery()}
           >

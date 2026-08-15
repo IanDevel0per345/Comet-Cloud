@@ -120,7 +120,7 @@ export const ActivityStats = () => {
     [migrationsData]
   )
   const migrationLabelText =
-    migrationsData.length === 0 ? 'No migrations' : (latestMigration?.name ?? 'Unknown')
+    migrationsData.length === 0 ? 'Nenhum deploy realizado' : (latestMigration?.name ?? 'Desconhecido')
 
   const { data: backupsData, isPending: isLoadingBackups } = useBackupsQuery({
     projectRef: project?.ref,
@@ -199,7 +199,7 @@ export const ActivityStats = () => {
           <SingleStat
             href={isHighAvailability ? undefined : `/project/${ref}/branches`}
             icon={<GitBranch size={18} strokeWidth={1.5} className="text-foreground" />}
-            label={<span>{isDefaultProject ? 'Recent branch' : 'Branch Created'}</span>}
+            label={<span>{isDefaultProject ? 'Branch recente' : 'Branch criado'}</span>}
             trackingProperties={{
               stat_type: 'branches',
               stat_value: branchesData?.length ?? 0,
@@ -218,11 +218,11 @@ export const ActivityStats = () => {
         </DisableInteraction>
 
         <SingleStat
-          href={`/project/${ref}/database/migrations`}
+          href={`/project/${ref}/sql`}
           icon={<Database size={18} strokeWidth={1.5} className="text-foreground" />}
-          label={<span>Last migration</span>}
+          label={<span>Último deploy</span>}
           trackingProperties={{
-            stat_type: 'migrations',
+            stat_type: 'deploys',
             stat_value: migrationsData?.length ?? 0,
           }}
           value={
@@ -243,18 +243,18 @@ export const ActivityStats = () => {
         />
 
         <SingleStat
-          href={`/project/${ref}/database/backups/scheduled`}
+          href={`/project/${ref}/sql`}
           icon={<Archive size={18} strokeWidth={1.5} className="text-foreground" />}
-          label={<span>Last backup</span>}
+          label={<span>Último snapshot</span>}
           trackingProperties={{
-            stat_type: 'backups',
+            stat_type: 'snapshots',
             stat_value: backupsData?.backups?.length ?? 0,
           }}
           value={
             isLoadingBackups ? (
               <Skeleton className="h-6 w-24" />
             ) : backupsData?.pitr_enabled ? (
-              <p>PITR enabled</p>
+              <p>Snapshots automáticos ativos</p>
             ) : latestBackup ? (
               <TimestampInfo
                 className="text-base"
@@ -263,7 +263,7 @@ export const ActivityStats = () => {
                 utcTimestamp={latestBackup.inserted_at}
               />
             ) : (
-              <p className="text-foreground-lighter">No backups</p>
+              <p className="text-foreground-lighter">Nenhum snapshot</p>
             )
           }
         />

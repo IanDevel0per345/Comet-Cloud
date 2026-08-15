@@ -23,7 +23,7 @@ export const getSupamonitorLogsQuery = (startTime: string, endTime: string) => {
   const safeEnd = new Date(endTime).toISOString()
 
   return `
--- This query is run by Supabase Query Insights to aggregate pg_stat_statements
+-- This query is run by Comet Cloud Query Insights to aggregate pg_stat_statements
 -- data collected by the supamonitor extension. It reads from Logflare and groups
 -- execution metrics (timing, call counts, percentiles) by query and minute so
 -- the dashboard can surface slow queries, high-call patterns, and planning overhead.

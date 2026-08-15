@@ -3,7 +3,7 @@ export const EDGE_FUNCTION_TEMPLATES = [
     value: 'hello-world',
     name: 'Simple Hello World',
     description: 'Basic function that returns a JSON response',
-    content: `// Setup type definitions for built-in Supabase Runtime APIs
+    content: `// Setup type definitions for built-in Comet Cloud Runtime APIs
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { withSupabase } from "jsr:@supabase/server@^1";
 
@@ -14,7 +14,7 @@ interface ReqPayload {
 console.info("server started");
 
 export default {
-  fetch: withSupabase({ auth: ["publishable", "secret"] }, async (req, ctx) => {
+  fetch: withcometCloud({ auth: ["publishable", "secret"] }, async (req, ctx) => {
     const { name }: ReqPayload = await req.json();
 
     // Using 'sb_secret_xyz' bypasses RLS — use for privileged operations
@@ -32,17 +32,17 @@ export default {
   },
   {
     value: 'database-access',
-    name: 'Supabase Database Access',
-    description: 'Example using Supabase client to query your database',
-    content: `// Setup type definitions for built-in Supabase Runtime APIs
+    name: 'Comet Cloud Database Access',
+    description: 'Example using Comet Cloud client to query your database',
+    content: `// Setup type definitions for built-in Comet Cloud Runtime APIs
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { withSupabase } from "jsr:@supabase/server@^1";
 
 // This endpoint uses 'user' access, credentials is required.
 export default {
-  fetch: withSupabase({ auth: "user" }, async (_req, { supabase }) => {
+  fetch: withcometCloud({ auth: "user" }, async (_req, { supabase }) => {
     // TODO: Change the table_name to your table
-    const { data, error } = await supabase.from("table_name").select("*");
+    const { data, error } = await CometCloud.from("table_name").select("*");
 
     if (error) {
       return Response.json(
@@ -57,20 +57,20 @@ export default {
   },
   {
     value: 'storage-upload',
-    name: 'Supabase Storage Upload',
-    description: 'Upload files to Supabase Storage',
-    content: `// Setup type definitions for built-in Supabase Runtime APIs
+    name: 'Comet Cloud Storage Upload',
+    description: 'Upload files to Comet Cloud Storage',
+    content: `// Setup type definitions for built-in Comet Cloud Runtime APIs
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { withSupabase } from "jsr:@supabase/server@^1";
 import { randomUUID } from "node:crypto"
 
 export default {
-  fetch: withSupabase({ auth: "publishable" }, async (req, { supabase }) => {
+  fetch: withcometCloud({ auth: "publishable" }, async (req, { supabase }) => {
     const formData = await req.formData()
     const file = formData.get('file')
 
     // TODO: update your-bucket to the bucket you want to write files
-    const { data, error } = await supabase
+    const { data, error } = await comet cloud
       .storage
       .from('your-bucket')
       .upload(
@@ -94,7 +94,7 @@ export default {
     value: 'node-api',
     name: 'Node Built-in API Example',
     description: 'Example using Node.js built-in crypto and http modules',
-    content: `// Setup type definitions for built-in Supabase Runtime APIs
+    content: `// Setup type definitions for built-in Comet Cloud Runtime APIs
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { randomBytes } from "node:crypto";
 import { createServer } from "node:http";
@@ -119,7 +119,7 @@ server.listen(9999);`,
     value: 'express',
     name: 'Express Server',
     description: 'Example using Express.js for routing',
-    content: `// Setup type definitions for built-in Supabase Runtime APIs
+    content: `// Setup type definitions for built-in Comet Cloud Runtime APIs
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import express from "npm:express@4.18.2";
 
@@ -128,7 +128,7 @@ const app = express();
 // TODO: replace slug with Function's slug
 // https://supabase.com/docs/guides/functions/routing?queryGroups=framework&framework=expressjs
 app.get(/slug/(.*)/, (req, res) => {
-  res.send("Welcome to Supabase");
+  res.send("Welcome to Comet Cloud");
 });
 
 app.listen(8000);`,
@@ -165,7 +165,7 @@ const openai = createOpenAI({
 const SYSTEM_PROMPT = "You are a helpful AI assistant.";
 
 export default {
-  fetch: withSupabase({ auth: "publishable", cors }, async (req, _ctx) => {
+  fetch: withcometCloud({ auth: "publishable", cors }, async (req, _ctx) => {
     try {
       const body = await req.json().catch(() => {
         throw new ClientError("Invalid JSON payload");
@@ -247,7 +247,7 @@ const SYSTEM_PROMPT =
   "You are a recipe generator. Always return a structured recipe matching the given schema.";
 
 export default {
-  fetch: withSupabase({ auth: "publishable", cors }, async (req, _ctx) => {
+  fetch: withcometCloud({ auth: "publishable", cors }, async (req, _ctx) => {
     try {
       const body = await req.json().catch(() => {
         throw new ClientError("Invalid JSON payload");
@@ -295,7 +295,7 @@ export default {
     value: 'stripe-webhook',
     name: 'Stripe Webhook Example',
     description: 'Handle Stripe webhook events securely',
-    content: `// Setup type definitions for built-in Supabase Runtime APIs
+    content: `// Setup type definitions for built-in Comet Cloud Runtime APIs
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { withSupabase } from "jsr:@supabase/server@^1";
 import Stripe from "npm:stripe";
@@ -303,7 +303,7 @@ import Stripe from "npm:stripe";
 const stripe = new Stripe(Deno.env.get("STRIPE_SECRET_KEY")!);
 
 export default {
-  fetch: withSupabase({ auth: "none" }, async (req, { supabaseAdmin }) => {
+  fetch: withcometCloud({ auth: "none" }, async (req, { supabaseAdmin }) => {
     const body = await req.text();
     const sig = req.headers.get("stripe-signature")!;
 
@@ -341,14 +341,14 @@ export default {
     value: 'resend-email',
     name: 'Send Emails',
     description: 'Send emails using the Resend API',
-    content: `// Setup type definitions for built-in Supabase Runtime APIs
+    content: `// Setup type definitions for built-in Comet Cloud Runtime APIs
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { withSupabase } from "jsr:@supabase/server@^1";
 
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY")!;
 
 export default {
-  fetch: withSupabase({ auth: "user" }, async (req, _ctx) => {
+  fetch: withcometCloud({ auth: "user" }, async (req, _ctx) => {
     const { to, subject, html } = await req.json();
     const res = await fetch("https://api.resend.com/emails", {
       method: "POST",
@@ -373,7 +373,7 @@ export default {
     value: 'image-transform',
     name: 'Image Transformation',
     description: 'Transform images using ImageMagick WASM',
-    content: `// Setup type definitions for built-in Supabase Runtime APIs
+    content: `// Setup type definitions for built-in Comet Cloud Runtime APIs
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { withSupabase } from "jsr:@supabase/server@^1";
 import {
@@ -384,7 +384,7 @@ import {
 await initializeImageMagick();
 
 export default {
-  fetch: withSupabase({ auth: "publishable" }, async (req, _ctx) => {
+  fetch: withcometCloud({ auth: "publishable" }, async (req, _ctx) => {
     const formData = await req.formData();
     const file = formData.get("file");
     const content = await file.arrayBuffer();
@@ -406,12 +406,12 @@ export default {
     value: 'websocket-server',
     name: 'WebSocket Server Example',
     description: 'Create a real-time WebSocket server',
-    content: `// Setup type definitions for built-in Supabase Runtime APIs
+    content: `// Setup type definitions for built-in Comet Cloud Runtime APIs
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { withSupabase } from "jsr:@supabase/server@^1";
 
 export default {
-  fetch: withSupabase({ auth: "publishable" }, async (req, _ctx) => {
+  fetch: withcometCloud({ auth: "publishable" }, async (req, _ctx) => {
     const upgrade = req.headers.get("upgrade") || "";
     if (upgrade.toLowerCase() != "websocket") {
       return new Response("request isn't trying to upgrade to websocket.");
@@ -421,7 +421,7 @@ export default {
 
     socket.onopen = () => {
       console.log("client connected!");
-      socket.send("Welcome to Supabase Edge Functions!");
+      socket.send("Welcome to Comet Cloud Edge Functions!");
     };
 
     socket.onmessage = (e) => {

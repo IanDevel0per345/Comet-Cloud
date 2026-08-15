@@ -11,7 +11,7 @@ import {
 } from 'react'
 import { proxy, subscribe, useSnapshot } from 'valtio'
 
-import { buildTableEditorUrl } from '@/components/grid/SupabaseGrid.utils'
+import { buildTableEditorUrl } from '@/components/grid/CometCloudGrid.utils'
 import type { SqlSnippetSource } from '@/components/interfaces/SQLEditor/querySource'
 import type { EditorType } from '@/components/layouts/editors/EditorsLayout.hooks'
 import type { ENTITY_TYPE } from '@/data/entity-types/entity-type-constants'

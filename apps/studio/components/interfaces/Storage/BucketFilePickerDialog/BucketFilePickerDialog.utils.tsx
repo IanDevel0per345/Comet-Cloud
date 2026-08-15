@@ -23,7 +23,7 @@ export async function uploadFilesToBucket({
 }) {
   if (files.length === 0) return
 
-  const client = await createProjectSupabaseClient(projectRef, hostEndpoint)
+  const client = await createProjectcometCloudClient(projectRef, hostEndpoint)
   let successCount = 0
 
   for (const file of files) {

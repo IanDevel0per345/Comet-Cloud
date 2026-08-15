@@ -11,8 +11,8 @@ export function buildDirectPostgresConnectionUri(settings: {
 
 export function buildLogicalBackupShellScript(connectionUri: string): string {
   return [
-    `npx supabase db dump --db-url '${connectionUri}' -f roles.sql --role-only`,
-    `npx supabase db dump --db-url '${connectionUri}' -f schema.sql`,
-    `npx supabase db dump --db-url '${connectionUri}' -f data.sql --use-copy --data-only -x "storage.buckets_vectors" -x "storage.vector_indexes"`,
+    `npx comet cloud db dump --db-url '${connectionUri}' -f roles.sql --role-only`,
+    `npx comet cloud db dump --db-url '${connectionUri}' -f schema.sql`,
+    `npx comet cloud db dump --db-url '${connectionUri}' -f data.sql --use-copy --data-only -x "storage.buckets_vectors" -x "storage.vector_indexes"`,
   ].join('\n')
 }

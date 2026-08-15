@@ -13,8 +13,8 @@ export function SettingsDatabaseEmptyStateLocal() {
         <CardContent>
           <p className="text-sm text-foreground-light mb-4">
             Configure database settings in{' '}
-            <code className="text-code-inline">supabase/config.toml</code> — applied automatically
-            on <code className="text-code-inline">supabase start</code>.
+            <code className="text-code-inline">comet cloud/config.toml</code> — applied automatically
+            on <code className="text-code-inline">comet cloud start</code>.
           </p>
           <DocsButton href={`${DOCS_URL}/guides/local-development/cli/config#database-config`} />
         </CardContent>
@@ -22,7 +22,7 @@ export function SettingsDatabaseEmptyStateLocal() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Self-Hosted Supabase</CardTitle>
+          <CardTitle>Self-Hosted Comet Cloud</CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-sm text-foreground-light mb-4">
@@ -45,7 +45,7 @@ export function SettingsDatabaseEmptyStateLocal() {
             .
           </p>
           <DocsButton
-            href={`${DOCS_URL}/guides/self-hosting/docker#configuring-and-securing-supabase`}
+            href={`${DOCS_URL}/guides/self-hosting/docker#configuring-and-securing-comet cloud`}
           />
         </CardContent>
       </Card>

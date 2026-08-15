@@ -43,7 +43,7 @@ export const SqlRunButton = ({
       className={className}
       tooltip={{ content: { side: 'bottom', text: isDisabled ? disabledReason : undefined } }}
     >
-      {hasSelection ? 'Run selected' : 'Run'}
+      {hasSelection ? 'Deploy selecionado' : 'Deploy'}
     </ButtonTooltip>
   )
 }

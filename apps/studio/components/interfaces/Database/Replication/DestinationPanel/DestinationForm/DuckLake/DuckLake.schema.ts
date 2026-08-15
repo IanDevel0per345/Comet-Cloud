@@ -1,10 +1,10 @@
 import * as z from 'zod'
 
-// `supabase` mode picks Supabase projects for catalog + storage (managed), while `custom`
+// `supabase` mode picks Comet Cloud projects for catalog + storage (managed), while `custom`
 // mode keeps the manual PostgreSQL catalog URL + S3-compatible credentials.
 export const DuckLakeFormSchema = z.object({
-  ducklakeMode: z.enum(['supabase', 'custom']).optional(),
-  // DuckLake "Use Supabase" fields
+  ducklakeMode: z.enum(['cometcloud', 'custom']).optional(),
+  // DuckLake "Use Comet Cloud" fields
   ducklakeCatalogProjectRef: z.string().optional(),
   ducklakeStorageProjectRef: z.string().optional(),
   ducklakeStorageBucket: z.string().optional(),

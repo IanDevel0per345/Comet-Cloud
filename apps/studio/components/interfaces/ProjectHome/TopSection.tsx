@@ -33,7 +33,7 @@ export const TopSection = () => {
       ? currentBranch.name
       : project?.name
         ? project.name
-        : 'Welcome to your project'
+        : 'Bem-vindo ao seu projeto'
 
   if (isPaused) {
     return <ProjectPausedState />
@@ -70,12 +70,12 @@ export const TopSection = () => {
                       <Badge variant="warning">OrioleDB</Badge>
                     </TooltipTrigger>
                     <TooltipContent side="bottom" align="start" className="max-w-80 text-center">
-                      This project is using Postgres with OrioleDB which is currently in preview and
-                      not suitable for production workloads. View our{' '}
-                      <InlineLink href={`${DOCS_URL}/guides/database/orioledb`}>
-                        documentation
+                      Este projeto está usando um runtime experimental que ainda está em prévia e
+                      não é adequado para cargas de produção. Veja a nossa{' '}
+                      <InlineLink href={`${DOCS_URL}/guides/platform/runtime`}>
+                        documentação
                       </InlineLink>{' '}
-                      for all limitations.
+                      para todas as limitações.
                     </TooltipContent>
                   </Tooltip>
                 )}

@@ -145,7 +145,7 @@ describe('connect.schema:INSTALL_COMMANDS', () => {
   })
 
   test('should have install command for supabase-py', () => {
-    expect(INSTALL_COMMANDS.supabasepy).toBe('pip install supabase')
+    expect(INSTALL_COMMANDS.CometCloudPy).toBe('pip install comet cloud')
   })
 
   test('should have install command for supabase-flutter', () => {
@@ -157,7 +157,7 @@ describe('connect.schema:INSTALL_COMMANDS', () => {
   })
 
   test('should have install command for supabase-kt', () => {
-    expect(INSTALL_COMMANDS.supabasekt).toContain('io.github.jan-tennert.supabase')
+    expect(INSTALL_COMMANDS.CometCloudKt).toContain('io.github.jan-tennert.comet cloud')
   })
 })
 

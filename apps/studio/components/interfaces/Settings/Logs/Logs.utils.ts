@@ -813,7 +813,7 @@ export function jwtAPIKey(metadata: any) {
 
   if (
     payload.algorithm === 'HS256' &&
-    payload.issuer === 'supabase' &&
+    payload.issuer === 'cometcloud' &&
     ['anon', 'service_role'].includes(payload.role) &&
     !payload.subject
   ) {
@@ -948,7 +948,7 @@ export function buildLogsPrompt(rows: LogData[], queryType?: string, sqlQuery?: 
     (sqlQuery ? extractServiceLabelFromSql(sqlQuery) : null)
   const serviceContext = serviceLabel ? ` from the **${serviceLabel}** service` : ''
   const sqlContext = sqlQuery ? `\n\n**Query used:**\n\`\`\`sql\n${sqlQuery.trim()}\n\`\`\`` : ''
-  const header = `I have ${rows.length} Supabase log entr${rows.length === 1 ? 'y' : 'ies'}${serviceContext} I'd like help debugging:\n\n`
+  const header = `I have ${rows.length} Comet Cloud log entr${rows.length === 1 ? 'y' : 'ies'}${serviceContext} I'd like help debugging:\n\n`
   const body = formatLogsAsMarkdown(rows)
   return (
     header +

@@ -23,7 +23,7 @@ function TableEditorShell() {
   return (
     <EditorBaseLayout
       productMenu={<TableEditorMenu />}
-      product="Table Editor"
+      product="Serviços"
       productMenuClassName="overflow-y-hidden"
     >
       <TableEditorLayout>

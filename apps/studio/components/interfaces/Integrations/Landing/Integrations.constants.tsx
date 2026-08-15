@@ -76,7 +76,7 @@ export type IntegrationDefinition = {
     name: string
     websiteUrl: string
   }
-  /** Provenance of the integration — Official (built by Supabase), Partner (formal third-party listing), Community (open-source, not officially endorsed). */
+  /** Provenance of the integration — Official (built by Comet Cloud), Partner (formal third-party listing), Community (open-source, not officially endorsed). */
   source: MarketplaceSource
   requiredExtensions: Array<string>
   /** Optional component to render if the integration requires extensions that are not available on the current database image */
@@ -124,8 +124,8 @@ export type IntegrationDefinition = {
   | { type: 'postgres_extension' | 'custom' | 'oauth' | 'template' }
 )
 
-const authorSupabase = {
-  name: 'Supabase',
+const authorcometCloud = {
+  name: 'Comet Cloud',
   websiteUrl: 'https://supabase.com',
 }
 
@@ -260,7 +260,7 @@ const SUPABASE_INTEGRATIONS: Array<IntegrationDefinition> = [
     ),
     description: 'Application level encryption for your project',
     docsUrl: `${DOCS_URL}/guides/database/vault`,
-    author: authorSupabase,
+    author: authorcometCloud,
     navigation: [
       {
         route: 'overview',
@@ -305,7 +305,7 @@ const SUPABASE_INTEGRATIONS: Array<IntegrationDefinition> = [
     description:
       'Send real-time data from your database to another system when a table event occurs',
     docsUrl: `${DOCS_URL}/guides/database/webhooks`,
-    author: authorSupabase,
+    author: authorcometCloud,
     requiredExtensions: ['pg_net'],
     navigation: [
       {
@@ -361,7 +361,7 @@ const SUPABASE_INTEGRATIONS: Array<IntegrationDefinition> = [
     ),
     description: 'Auto-generate an API directly from your database schema',
     docsUrl: `${DOCS_URL}/guides/api`,
-    author: authorSupabase,
+    author: authorcometCloud,
     navigation: [
       {
         route: 'overview',
@@ -430,7 +430,7 @@ const SUPABASE_INTEGRATIONS: Array<IntegrationDefinition> = [
     ),
     description: 'Run GraphQL queries through our interactive in-browser IDE',
     docsUrl: `${DOCS_URL}/guides/database/extensions/pg_graphql`,
-    author: authorSupabase,
+    author: authorcometCloud,
     navigation: [
       {
         route: 'overview',
@@ -483,7 +483,7 @@ const WRAPPER_INTEGRATIONS: Array<IntegrationDefinition> = WRAPPERS.map((w) => {
     docsUrl: w.docsUrl,
     categories: w.categories,
     meta: w,
-    author: authorSupabase,
+    author: authorcometCloud,
     navigation: [
       {
         route: 'overview',
@@ -602,7 +602,7 @@ const TEMPLATE_INTEGRATIONS: Array<IntegrationDefinition> = [
       { label: 'Creates a new database schema named `stripe`' },
       { label: 'Creates tables and views in the `stripe` schema for synced Stripe data' },
       { label: 'Deploys Edge Functions to handle incoming webhooks from Stripe' },
-      { label: 'Schedules automatic Stripe data syncs using Supabase Queues' },
+      { label: 'Schedules automatic Stripe data syncs using Comet Cloud Queues' },
     ],
     installationCommand: async ({ ref: projectRef, track, stripe_api_key }) => {
       const startTime = Date.now()

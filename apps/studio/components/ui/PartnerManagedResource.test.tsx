@@ -45,7 +45,7 @@ describe('PartnerManagedResource', () => {
         resource="Payment Methods"
         details={
           <>
-            Run <code>stripe projects upgrade supabase/free</code>
+            Run <code>stripe projects upgrade comet cloud/free</code>
           </>
         }
         cta={{ installationId: 'vercel-installation-id', organizationSlug: 'aws-org' }}
@@ -53,7 +53,7 @@ describe('PartnerManagedResource', () => {
     )
 
     expect(screen.getByText('Payment Methods are connected to Stripe')).toBeInTheDocument()
-    expect(screen.getByText('stripe projects upgrade supabase/free')).toBeInTheDocument()
+    expect(screen.getByText('stripe projects upgrade comet cloud/free')).toBeInTheDocument()
     expect(screen.queryByRole('link')).toBeNull()
     expect(mockUseVercelRedirectQuery).toHaveBeenCalledWith(
       { installationId: 'vercel-installation-id' },

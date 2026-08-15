@@ -1,30 +1,19 @@
 import { ChevronRight } from 'lucide-react'
 import { useRouter } from 'next/router'
-import { parseAsBoolean, parseAsString, useQueryState } from 'nuqs'
 import { useEffect, useRef } from 'react'
 import { Card, CardContent, cn } from 'ui'
 
-import { useAvailableConnectModes } from '../ConnectSheet/useAvailableConnectModes'
 import { CONNECT_ACTIONS } from './ConnectSection.config'
 import { useSelectedProjectQuery } from '@/hooks/misc/useSelectedProject'
 import { BASE_PATH, IS_PLATFORM, PROJECT_STATUS } from '@/lib/constants'
 import { useTrack } from '@/lib/telemetry/track'
-import { useAppStateSnapshot } from '@/state/app-state'
 
 export const ConnectSection = () => {
   const router = useRouter()
   const { data: selectedProject } = useSelectedProjectQuery()
-  const { setConnectSheetSource } = useAppStateSnapshot()
   const track = useTrack()
-  const [, setShowConnect] = useQueryState('showConnect', parseAsBoolean.withDefault(false))
-  const [, setConnectTab] = useQueryState('connectTab', parseAsString)
 
   const isActiveHealthy = selectedProject?.status === PROJECT_STATUS.ACTIVE_HEALTHY
-
-  const availableModeIds = useAvailableConnectModes()
-  const availableActions = CONNECT_ACTIONS.filter((action) =>
-    action.mode ? availableModeIds.includes(action.mode) : true
-  )
 
   const hasTrackedExposure = useRef(false)
 
@@ -38,13 +27,6 @@ export const ConnectSection = () => {
   const handleActionClick = (action: (typeof CONNECT_ACTIONS)[number]) => {
     track('home_connect_action_clicked', { mode: action.id })
 
-    if (action.mode) {
-      setConnectTab(action.mode)
-      setConnectSheetSource('connect_section')
-      setShowConnect(true)
-      return
-    }
-
     if (action.href && selectedProject?.ref) {
       router.push(action.href.replace('[ref]', selectedProject.ref))
     }
@@ -53,7 +35,7 @@ export const ConnectSection = () => {
   return (
     <section className="w-full">
       <div className="mb-6">
-        <h3 className="heading-section">Get connected</h3>
+        <h3 className="heading-section">Comece agora</h3>
       </div>
 
       <Card className="bg-background/25 border-dashed relative overflow-hidden">
@@ -73,7 +55,7 @@ export const ConnectSection = () => {
 
         <CardContent className="relative z-10 p-0">
           <div className="grid grid-cols-1 xl:grid-cols-6 divide-y xl:divide-y-0 xl:divide-x border-muted">
-            {availableActions.map((action) => (
+            {CONNECT_ACTIONS.map((action) => (
               <button
                 key={action.id}
                 type="button"

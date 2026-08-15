@@ -16,7 +16,7 @@ const ContentFile = ({ projectKeys }: StepContentProps) => {
       ].join('\n'),
     },
     {
-      name: 'utils/supabase.ts',
+      name: 'utils/cometcloud.ts',
       language: 'ts',
       code: `
 import { createClient } from "@supabase/supabase-js";
@@ -24,18 +24,18 @@ import { createClient } from "@supabase/supabase-js";
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseKey = import.meta.env.${projectKeys.publishableKey ? 'VITE_SUPABASE_PUBLISHABLE_KEY' : 'VITE_SUPABASE_ANON_KEY'};
 
-export const supabase = createClient(supabaseUrl, supabaseKey);
+export const comet cloud = createClient(CometCloudUrl, CometCloudKey);
 `,
     },
     {
       name: 'src/App.tsx',
       language: 'tsx',
       code: `
-import { supabase } from '../utils/supabase'
+import { comet cloud } from '../utils/comet cloud'
 import { createResource, For } from "solid-js";
 
 async function getTodos() {
-  const { data: todos } = await supabase.from("todos").select();
+  const { data: todos } = await CometCloud.from("todos").select();
   return todos;
 }
 

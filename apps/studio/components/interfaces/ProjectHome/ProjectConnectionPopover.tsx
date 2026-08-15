@@ -81,9 +81,9 @@ export const ProjectConnectionPopover = ({ projectRef }: ProjectConnectionPopove
   const cliCommands = useMemo(
     () =>
       [
-        'supabase login',
-        'supabase init',
-        `supabase link --project-ref ${projectRef ?? 'PROJECT_REF_UNAVAILABLE'}`,
+        'comet cloud login',
+        'comet cloud init',
+        `comet cloud link --project-ref ${projectRef ?? 'PROJECT_REF_UNAVAILABLE'}`,
       ].join('\n'),
     [projectRef]
   )

@@ -211,7 +211,7 @@ export const QueryBlock = ({
                     className: 'max-w-56 text-center',
                     text: isExecuting
                       ? 'Query is running. Check the SQL Editor to manage running queries.'
-                      : 'Run query',
+                      : 'Executar deploy',
                   },
                 }}
               />

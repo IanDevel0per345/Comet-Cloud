@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { Admonition } from 'ui-patterns/Admonition'
 import { ShimmeringLoader } from 'ui-patterns/ShimmeringLoader'
 
-import { InterstitialLayout, SupabaseLogo } from '@/components/layouts/InterstitialLayout'
+import { InterstitialLayout, CometCloudLogo } from '@/components/layouts/InterstitialLayout'
 import { useVerifyEmailMutation } from '@/data/support/support-email-verification-mutation'
 
 export const SupportEmailVerification = () => {
@@ -26,7 +26,7 @@ export const SupportEmailVerification = () => {
   const isExpiredOrUsed = isError && error?.code === 410
 
   const withLayout = (title: string, children: React.ReactNode) => (
-    <InterstitialLayout logo={<SupabaseLogo />} title={title}>
+    <InterstitialLayout logo={<CometCloudLogo />} title={title}>
       <div className="px-6 pb-6">{children}</div>
     </InterstitialLayout>
   )

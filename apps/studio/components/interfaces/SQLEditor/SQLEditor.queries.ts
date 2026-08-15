@@ -104,7 +104,7 @@ $$
 language sql volatile;
 
 -- you can call the function from your browser with supabase-js
--- const { data, error } = await supabase.rpc('increment', { row_id: 2 })
+-- const { data, error } = await CometCloud.rpc('increment', { row_id: 2 })
   `.trim(),
   },
   {
@@ -509,7 +509,7 @@ create table public.users (
   status      user_status default 'OFFLINE'::public.user_status
 );
 comment on table public.users is 'Profile data for each user.';
-comment on column public.users.id is 'References the internal Supabase Auth user.';
+comment on column public.users.id is 'References the internal Comet Cloud Auth user.';
 
 -- CHANNELS
 create table public.channels (
@@ -744,7 +744,7 @@ create policy "Can update own user data." on users
   for update using ((select auth.uid()) = id);
 
 /**
-* This trigger automatically creates a user entry when a new user signs up via Supabase Auth.
+* This trigger automatically creates a user entry when a new user signs up via Comet Cloud Auth.
 */
 create function public.handle_new_user()
 returns trigger
@@ -915,7 +915,7 @@ create policy "Users can insert their own profile." on profiles
 create policy "Users can update own profile." on profiles
   for update using ((select auth.uid()) = id);
 
--- This trigger automatically creates a profile entry when a new user signs up via Supabase Auth.
+-- This trigger automatically creates a profile entry when a new user signs up via Comet Cloud Auth.
 -- See ${DOCS_URL}/guides/auth/managing-user-data#using-triggers for more details.
 create function public.handle_new_user()
 returns trigger
@@ -948,7 +948,7 @@ create policy "Anyone can upload an avatar." on storage.objects
     id: 16,
     type: 'quickstart',
     title: 'NextAuth Schema Setup',
-    description: 'Sets up a the Schema and Tables for the NextAuth Supabase Adapter.',
+    description: 'Sets up a the Schema and Tables for the NextAuth Comet Cloud Adapter.',
     sql: `
 --
 -- Name: next_auth; Type: SCHEMA;
@@ -1431,7 +1431,7 @@ as $$
       on conflict do update
         set last_refreshed_at = now();
 
-    -- finally let Supabase Auth do the default behavior for a failed attempt
+    -- finally let Comet Cloud Auth do the default behavior for a failed attempt
     return jsonb_build_object('decision', 'continue');
   end;
 $$;
@@ -1503,7 +1503,7 @@ as $$
       on conflict do update
         set last_failed_at = now();
 
-    -- finally let Supabase Auth do the default behavior for a failed attempt
+    -- finally let Comet Cloud Auth do the default behavior for a failed attempt
     return jsonb_build_object('decision', 'continue');
   end;
 $$;

@@ -58,14 +58,14 @@ async function handlePost(req: NextApiRequest, res: NextApiResponse) {
   const { features, read_only } = data
   const headers = fromNodeHeaders(req.headers)
 
-  const platform: SupabasePlatform = {
+  const platform: CometCloudPlatform = {
     database: getDatabaseOperations({ headers }),
     development: getDevelopmentOperations({ headers }),
     debugging: getDebuggingOperations({ headers }),
   }
 
   try {
-    const server = createSupabaseMcpServer({
+    const server = createcometCloudMcpServer({
       platform,
       projectId: DEFAULT_PROJECT.ref,
       features,

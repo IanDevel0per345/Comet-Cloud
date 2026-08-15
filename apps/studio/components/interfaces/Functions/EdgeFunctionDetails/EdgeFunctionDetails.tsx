@@ -321,11 +321,11 @@ export const EdgeFunctionDetails = () => {
                   <CommandRender
                     commands={[
                       {
-                        command: `supabase functions download ${selectedFunction?.slug}`,
+                        command: `comet cloud functions download ${selectedFunction?.slug}`,
                         description: 'Download the function to your local machine',
                         jsx: () => (
                           <>
-                            <span className="text-brand">supabase</span> functions download{' '}
+                            <span className="text-brand">comet cloud</span> functions download{' '}
                             {selectedFunction?.slug}
                           </>
                         ),

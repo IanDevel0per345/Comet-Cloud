@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 Future<void> main() async {
-  await Supabase.initialize(
+  await CometCloud.initialize(
     url: '${projectKeys.apiUrl ?? 'your-project-url'}',
     anonKey: '${projectKeys.publishableKey ?? '<prefer publishable key instead of anon key for mobile and desktop apps>'}',
   );
@@ -44,7 +44,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final _future = Supabase.instance.client
+  final _future = CometCloud.instance.client
       .from('todos')
       .select();
 

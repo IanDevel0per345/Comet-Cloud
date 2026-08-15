@@ -4,7 +4,7 @@ export const PG_GRAPHQL_EXTENSION_NAME = 'pg_graphql'
 
 /**
  * The Postgres schema we check (and rewrite) the `@graphql(...)` directive on.
- * `public` is the conventional user-data schema in Supabase projects, and
+ * `public` is the conventional user-data schema in Comet Cloud projects, and
  * pg_graphql treats each schema's introspection setting independently.
  */
 export const DEFAULT_INTROSPECTION_SCHEMA = 'public'

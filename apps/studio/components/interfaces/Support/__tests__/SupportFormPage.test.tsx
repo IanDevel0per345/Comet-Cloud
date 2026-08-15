@@ -538,7 +538,7 @@ describe('SupportFormPage', () => {
     })
 
     mswServer.use(
-      http.get('http://localhost:3000/img/supabase-logo.svg', () => HttpResponse.text(''))
+      http.get('http://localhost:3000/img/comet-logo.svg', () => HttpResponse.text(''))
     )
   })
 
@@ -693,7 +693,7 @@ describe('SupportFormPage', () => {
     })
 
     await fillField(getSummaryField(screen), 'Cannot access my account')
-    await fillField(getMessageField(screen), 'I need help accessing my Supabase account')
+    await fillField(getMessageField(screen), 'I need help accessing my Comet Cloud account')
 
     await userEvent.click(getSubmitButton(screen))
 
@@ -1240,7 +1240,7 @@ describe('SupportFormPage', () => {
     renderSupportFormPage()
 
     await waitFor(() => {
-      expect(screen.getByText('Try Supabase Assistant')).toBeInTheDocument()
+      expect(screen.getByText('Try Comet Cloud Assistant')).toBeInTheDocument()
     })
   })
 
@@ -1890,7 +1890,7 @@ describe('SupportFormPage', () => {
     expect(getSupportAccessToggle(screen, 'query')).not.toBeInTheDocument()
 
     await fillField(getSummaryField(screen), 'Cannot access my account')
-    await fillField(getMessageField(screen), 'I need help accessing my Supabase account')
+    await fillField(getMessageField(screen), 'I need help accessing my Comet Cloud account')
 
     await userEvent.click(getSubmitButton(screen))
 
@@ -1912,7 +1912,7 @@ describe('SupportFormPage', () => {
       browserInformation: 'Chrome',
       dashboardStudioVersion: mockStudioVersion,
     })
-    expect(payload.message).toBe('I need help accessing my Supabase account')
+    expect(payload.message).toBe('I need help accessing my Comet Cloud account')
 
     await waitFor(() => {
       expect(screen.getByRole('heading', { name: /support request sent/i })).toBeInTheDocument()

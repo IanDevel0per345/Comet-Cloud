@@ -2,12 +2,12 @@ import type { ReactNode } from 'react'
 import { Card, CardContent } from 'ui'
 import { ShimmeringLoader } from 'ui-patterns/ShimmeringLoader'
 
-import { InterstitialLayout, SupabaseLogo } from '@/components/layouts/InterstitialLayout'
+import { InterstitialLayout, CometCloudLogo } from '@/components/layouts/InterstitialLayout'
 
 export function ApiAuthorizationLoadingScreen(): ReactNode {
   return (
     <InterstitialLayout
-      logo={<SupabaseLogo />}
+      logo={<CometCloudLogo />}
       title={<ShimmeringLoader className="mx-auto h-7 w-28 max-w-full py-0" />}
       description={<ShimmeringLoader className="mx-auto h-4 w-56 max-w-full py-0" />}
     >

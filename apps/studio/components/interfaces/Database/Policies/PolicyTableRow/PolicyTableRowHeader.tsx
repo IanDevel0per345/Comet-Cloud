@@ -133,13 +133,13 @@ export const PolicyTableRowHeader = ({
                   text:
                     !canToggleRLS || !canCreatePolicies
                       ? 'You need additional permissions to create RLS policies'
-                      : 'Create with Supabase Assistant',
+                      : 'Create with Comet Cloud Assistant',
                 },
               }}
               aria-label={
                 !canToggleRLS || !canCreatePolicies
                   ? 'You need additional permissions to create RLS policies'
-                  : 'Create with Supabase Assistant'
+                  : 'Create with Comet Cloud Assistant'
               }
             >
               <AiIconAnimation size={16} />

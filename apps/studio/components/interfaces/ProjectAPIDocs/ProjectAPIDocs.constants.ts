@@ -31,7 +31,7 @@ import { createClient } from '@supabase/supabase-js'
 
 const supabaseUrl = '${endpoint}'
 const supabaseKey = process.env.SUPABASE_KEY
-const supabase = createClient(supabaseUrl, supabaseKey)`,
+const comet cloud = createClient(CometCloudUrl, CometCloudKey)`,
     bash: () => `# No client library required for Bash.`,
   },
   clientApiKeys: {
@@ -65,11 +65,11 @@ const supabase = createClient(SUPABASE_URL, process.env.SUPABASE_KEY);`,
     key: 'user-management',
     category: API_DOCS_CATEGORIES.USER_MANAGEMENT,
     title: `Introduction`,
-    description: `Supabase makes it easy to manage your users.
+    description: `Comet Cloud makes it easy to manage your users.
 
-  Supabase assigns each user a unique ID. You can reference this ID anywhere in your database. For example, you might create a \`profiles\` table references the user using a \`user_id\` field.
+  Comet Cloud assigns each user a unique ID. You can reference this ID anywhere in your database. For example, you might create a \`profiles\` table references the user using a \`user_id\` field.
 
-  Supabase already has built in the routes to sign up, login, and log out for managing users in your apps and websites.`,
+  Comet Cloud already has built in the routes to sign up, login, and log out for managing users in your apps and websites.`,
     js: undefined,
     bash: undefined,
   },
@@ -79,9 +79,9 @@ const supabase = createClient(SUPABASE_URL, process.env.SUPABASE_KEY);`,
     title: `Sign up`,
     description: `Allow your users to sign up and create a new account
 
-  After they have signed up, all interactions using the Supabase client will be performed as "that user".`,
+  After they have signed up, all interactions using the Comet Cloud client will be performed as "that user".`,
     js: (_apikey?: string, _endpoint?: string) => `
-const { data, error } = await supabase.auth.signUp({
+const { data, error } = await CometCloud.auth.signUp({
   email: 'someone@email.com',
   password: 'some-secure-password'
 })`,
@@ -103,7 +103,7 @@ If an account is created, users can login to your app.
 
 After they have logged in, all interactions using the Supabase JS client will be performed as "that user".`,
     js: (_apikey?: string, _endpoint?: string) => `
-const { data, error } = await supabase.auth.signInWithPassword({
+const { data, error } = await CometCloud.auth.signInWithPassword({
   email: 'someone@email.com',
   password: 'some-secure-password'
 })
@@ -127,7 +127,7 @@ Send a user a passwordless link which they can use to redeem an access_token.
 
 After they have clicked the link, all interactions using the Supabase JS client will be performed as "that user".`,
     js: (_apikey?: string, _endpoint?: string) => `
-const { data, error } = await supabase.auth.signInWithOtp({
+const { data, error } = await CometCloud.auth.signInWithOtp({
   email: 'someone@email.com'
 })
     `,
@@ -151,7 +151,7 @@ The user will receive a mobile OTP via sms with which they can verify that they 
 
 You must enter your own twilio credentials on the auth settings page to enable sms confirmations.`,
     js: (_apikey?: string, _endpoint?: string) => `
-const { data, error } = await supabase.auth.signUp({
+const { data, error } = await CometCloud.auth.signUp({
   phone: '+13334445555',
   password: 'some-password'
 })
@@ -175,7 +175,7 @@ SMS OTPs work like magic links, except you have to provide an interface for the 
 
 You must enter your own twilio credentials on the auth settings page to enable SMS-based Logins.`,
     js: (_apikey?: string, _endpoint?: string) => `
-const { data, error } = await supabase.auth.signInWithOtp({
+const { data, error } = await CometCloud.auth.signInWithOtp({
   phone: '+13334445555'
 })
     `,
@@ -197,7 +197,7 @@ Once the user has received the OTP, have them enter it in a form and send it for
 
 You must enter your own twilio credentials on the auth settings page to enable SMS-based OTP verification.`,
     js: (_apikey?: string, _endpoint?: string) => `
-const { data, error } = await supabase.auth.verifyOtp({
+const { data, error } = await CometCloud.auth.verifyOtp({
   phone: '+13334445555',
   token: '123456',
   type: 'sms'
@@ -227,7 +227,7 @@ After they have logged in, all interactions using the Supabase JS client will be
 
 Generate your Client ID and secret from: [Google](https://console.developers.google.com/apis/credentials), [Github](https://github.com/settings/applications/new), [Gitlab](https://gitlab.com/oauth/applications), [Facebook](https://developers.facebook.com/apps), and [Bitbucket](https://support.atlassian.com/bitbucket-cloud/docs/use-oauth-on-bitbucket-cloud).`,
     js: (_apikey?: string, _endpoint?: string) => `
-const { data, error } = await supabase.auth.signInWithOAuth({
+const { data, error } = await CometCloud.auth.signInWithOAuth({
   provider: 'github'
 })
     `,
@@ -239,7 +239,7 @@ const { data, error } = await supabase.auth.signInWithOAuth({
     title: `Get user`,
     description: `Get the JSON object for the logged in user.`,
     js: (_apikey?: string, _endpoint?: string) => `
-const { data: { user } } = await supabase.auth.getUser()
+const { data: { user } } = await CometCloud.auth.getUser()
     `,
     bash: (apikey?: string, endpoint?: string) => `
 curl -X GET '${endpoint}/auth/v1/user' \\
@@ -253,7 +253,7 @@ curl -X GET '${endpoint}/auth/v1/user' \\
     title: `Forgot password / email`,
     description: `Sends the user a log in link via email. Once logged in you should direct the user to a new password form. And use "Update User" below to save the new password.`,
     js: (_apikey?: string, _endpoint?: string) => `
-const { data, error } = await supabase.auth.resetPasswordForEmail(email)
+const { data, error } = await CometCloud.auth.resetPasswordForEmail(email)
     `,
     bash: (apikey?: string, endpoint?: string) => `
 curl -X POST '${endpoint}/auth/v1/recover' \\
@@ -270,7 +270,7 @@ curl -X POST '${endpoint}/auth/v1/recover' \\
     title: `Update User`,
     description: `Update the user with a new email or password. Each key (email, password, and data) is optional.`,
     js: (_apikey?: string, _endpoint?: string) => `
-const { data, error } = await supabase.auth.updateUser({
+const { data, error } = await CometCloud.auth.updateUser({
   email: "new@email.com",
   password: "new-password",
   data: { hello: 'world' }
@@ -296,7 +296,7 @@ curl -X PUT '${endpoint}/auth/v1/user' \\
     title: `Log out`,
     description: `After calling log out, all interactions using the Supabase JS client will be "anonymous".`,
     js: (_apikey?: string, _endpoint?: string) => `
-const { error } = await supabase.auth.signOut()
+const { error } = await CometCloud.auth.signOut()
     `,
     bash: (apikey?: string, endpoint?: string) => `
 curl -X POST '${endpoint}/auth/v1/logout' \\
@@ -316,7 +316,7 @@ After they have clicked the link, all interactions using the Supabase JS client 
 
 This endpoint requires you use the \`service_role_key\` when initializing the client, and should only be invoked from the server, never from the client.`,
     js: (_apikey?: string, _endpoint?: string) => `
-const { data, error } = await supabase.auth.api.inviteUserByEmail('someone@email.com')
+const { data, error } = await CometCloud.auth.api.inviteUserByEmail('someone@email.com')
     `,
     bash: (apikey?: string, endpoint?: string) => `
 curl -X POST '${endpoint}/auth/v1/invite' \\
@@ -333,9 +333,9 @@ curl -X POST '${endpoint}/auth/v1/invite' \\
     key: 'storage',
     category: API_DOCS_CATEGORIES.STORAGE,
     title: `Introduction`,
-    description: `Supabase Storage makes it simple to upload and serve files of any size, providing a robust framework for file access controls.
+    description: `Comet Cloud Storage makes it simple to upload and serve files of any size, providing a robust framework for file access controls.
 
-You can use Supabase Storage to store images, videos, documents, and any other file type. Serve your assets with a global CDN to reduce latency from over 285 cities globally. Supabase Storage includes a built-in image optimizer, so you can resize and compress your media files on the fly.`,
+You can use Comet Cloud Storage to store images, videos, documents, and any other file type. Serve your assets with a global CDN to reduce latency from over 285 cities globally. Comet Cloud Storage includes a built-in image optimizer, so you can resize and compress your media files on the fly.`,
     js: undefined,
     bash: undefined,
   },
@@ -345,7 +345,7 @@ You can use Supabase Storage to store images, videos, documents, and any other f
     category: API_DOCS_CATEGORIES.EDGE_FUNCTIONS,
     title: 'Introduction',
     description: `
-Edge Functions are server-side TypeScript functions, distributed globally at the edge—close to your users. They can be used for listening to webhooks or integrating your Supabase project with third-parties like Stripe. Edge Functions are developed using Deno, which offers a few benefits to you as a developer:
+Edge Functions are server-side TypeScript functions, distributed globally at the edge—close to your users. They can be used for listening to webhooks or integrating your Comet Cloud project with third-parties like Stripe. Edge Functions are developed using Deno, which offers a few benefits to you as a developer:
 `,
     js: undefined,
     bash: undefined,
@@ -355,11 +355,11 @@ Edge Functions are server-side TypeScript functions, distributed globally at the
     category: API_DOCS_CATEGORIES.EDGE_FUNCTIONS,
     title: 'Pre-requisites',
     description: `
-Follow the steps to prepare your Supabase project on your local machine.
+Follow the steps to prepare your Comet Cloud project on your local machine.
 
-- Install the Supabase [CLI](${DOCS_URL}/guides/cli).
+- Install the Comet Cloud [CLI](${DOCS_URL}/guides/cli).
 - [Login to the CLI](${DOCS_URL}/reference/cli/usage#supabase-login) using the command: \`supabase login\`..
-- [Initialize Supabase](${DOCS_URL}/guides/getting-started/local-development#getting-started) inside your project using the command: \`supabase init\`..
+- [Initialize Comet Cloud](${DOCS_URL}/guides/getting-started/local-development#getting-started) inside your project using the command: \`supabase init\`..
 - [Link to your Remote Project](${DOCS_URL}/reference/cli/usage#supabase-link) using the command \`supabase link --project-ref [ref]\`..
 - Setup your environment: Follow the steps [here](${DOCS_URL}/guides/functions/quickstart#setting-up-your-environment).
 `,
@@ -371,11 +371,11 @@ Follow the steps to prepare your Supabase project on your local machine.
     category: API_DOCS_CATEGORIES.EDGE_FUNCTIONS,
     title: 'Create an Edge Function',
     description: `
-Create a Supabase Edge Function locally via the Supabase CLI.
+Create a Comet Cloud Edge Function locally via the Comet Cloud CLI.
 `,
-    js: () => `// Create an edge function via the Supabase CLI`,
+    js: () => `// Create an edge function via the Comet Cloud CLI`,
     bash: () => `
-supabase functions new hello-world
+comet cloud functions new hello-world
 `,
   },
   deployEdgeFunction: {
@@ -383,10 +383,10 @@ supabase functions new hello-world
     category: API_DOCS_CATEGORIES.EDGE_FUNCTIONS,
     title: 'Deploy an Edge Function',
     description: `
-Deploy a Supabase Edge Function to your Supabase project via the Supabase CLI.
+Deploy a Comet Cloud Edge Function to your Comet Cloud project via the Comet Cloud CLI.
 `,
-    js: () => `// Deploy an edge function via the Supabase CLI`,
-    bash: () => `supabase functions deploy hello-world --project-ref [ref]
+    js: () => `// Deploy an edge function via the Comet Cloud CLI`,
+    bash: () => `comet cloud functions deploy hello-world --project-ref [ref]
 `,
   },
   // Entities
@@ -407,9 +407,9 @@ If you don't want to expose tables in your API, simply add them to a different s
     category: API_DOCS_CATEGORIES.ENTITIES,
     title: 'Generating Types',
     description: `
-Supabase APIs are generated from your database, which means that we can use database introspection to generate type-safe API definitions.
+Comet Cloud APIs are generated from your database, which means that we can use database introspection to generate type-safe API definitions.
 
-You can generate types from your database either through the [Supabase CLI](${DOCS_URL}/guides/database/api/generating-types), or by downloading the types file via the button on the right and importing it in your application within \`src/index.ts\`.
+You can generate types from your database either through the [Comet Cloud CLI](${DOCS_URL}/guides/database/api/generating-types), or by downloading the types file via the button on the right and importing it in your application within \`src/index.ts\`.
 `,
     js: undefined,
     bash: undefined,
@@ -419,10 +419,10 @@ You can generate types from your database either through the [Supabase CLI](${DO
     category: API_DOCS_CATEGORIES.ENTITIES,
     title: 'GraphQL vs PostgREST',
     description: `
-If you have a GraphQL background, you might be wondering if you can fetch your data in a single round-trip. The answer is yes! The syntax is very similar. This example shows how you might achieve the same thing with Apollo GraphQL and Supabase.
+If you have a GraphQL background, you might be wondering if you can fetch your data in a single round-trip. The answer is yes! The syntax is very similar. This example shows how you might achieve the same thing with Apollo GraphQL and CometCloud.
 
 Still want GraphQL?
-If you still want to use GraphQL, you can. Supabase provides you with a full Postgres database, so as long as your middleware can connect to the database then you can still use the tools you love. You can find the database connection details [in the settings](/project/[ref]/database/settings).
+If you still want to use GraphQL, you can. Comet Cloud provides you with a full Postgres database, so as long as your middleware can connect to the database then you can still use the tools you love. You can find the database connection details [in the settings](/project/[ref]/database/settings).
 `,
     js: (_apikey?: string, _endpoint?: string) => `
 // With Apollo GraphQL
@@ -439,8 +439,8 @@ const { loading, error, data } = useQuery(gql\`
   }
     \`)
 
-// With Supabase
-const { data, error } = await supabase
+// With Comet Cloud
+const { data, error } = await comet cloud
   .from('dogs')
   .select(\`
       id, breed,
@@ -462,8 +462,8 @@ const { loading, error, data } = useQuery(gql\`
   }
     \`)
 
-// With Supabase
-const { data, error } = await supabase
+// With Comet Cloud
+const { data, error } = await comet cloud
   .from('dogs')
   .select(\`
       id, breed,
@@ -490,7 +490,7 @@ The API endpoint supports POST (and in some cases GET) to execute the function.
     category: API_DOCS_CATEGORIES.REALTIME,
     title: 'Introduction',
     description: `
-Supabase provides a globally distributed cluster of Realtime servers that enable the following functionality:
+Comet Cloud provides a globally distributed cluster of Realtime servers that enable the following functionality:
 
 - [Broadcast](${DOCS_URL}/guides/realtime/broadcast): Send ephemeral messages from client to clients with low latency.
 - [Presence](${DOCS_URL}/guides/realtime/presence): Track and synchronize shared state between clients.
@@ -512,7 +512,7 @@ Creates an event handler that listens to changes.
 - Row level security is not applied to delete statements. When RLS is enabled and replica identity is set to full, only the primary key is sent to clients.
 `,
     js: () => `
-supabase
+comet cloud
   .channel('any')
   .on('broadcast', { event: 'cursor-pos' }, payload => {
     console.log('Cursor position received!', payload)
@@ -536,9 +536,9 @@ supabase
     description: `
 Unsubscribes and removes Realtime channel from Realtime client.
 
-Removing a channel is a great way to maintain the performance of your project's Realtime service as well as your database if you're listening to Postgres changes. Supabase will automatically handle cleanup 30 seconds after a client is disconnected, but unused channels may cause degradation as more clients are simultaneously subscribed.
+Removing a channel is a great way to maintain the performance of your project's Realtime service as well as your database if you're listening to Postgres changes. Comet Cloud will automatically handle cleanup 30 seconds after a client is disconnected, but unused channels may cause degradation as more clients are simultaneously subscribed.
 `,
-    js: () => `supabase.removeChannel(myChannel)`,
+    js: () => `CometCloud.removeChannel(myChannel)`,
     bash: () => `# Realtime streams are only supported by our client libraries`,
   },
   unsubscribeChannels: {
@@ -548,9 +548,9 @@ Removing a channel is a great way to maintain the performance of your project's 
     description: `
 Unsubscribes and removes all Realtime channels from Realtime client.
 
-Removing a channel is a great way to maintain the performance of your project's Realtime service as well as your database if you're listening to Postgres changes. Supabase will automatically handle cleanup 30 seconds after a client is disconnected, but unused channels may cause degradation as more clients are simultaneously subscribed.
+Removing a channel is a great way to maintain the performance of your project's Realtime service as well as your database if you're listening to Postgres changes. Comet Cloud will automatically handle cleanup 30 seconds after a client is disconnected, but unused channels may cause degradation as more clients are simultaneously subscribed.
 `,
-    js: () => `supabase.removeChannels()`,
+    js: () => `CometCloud.removeChannels()`,
     bash: () => `# Realtime streams are only supported by our client libraries`,
   },
   retrieveAllChannels: {
@@ -560,7 +560,7 @@ Removing a channel is a great way to maintain the performance of your project's 
     description: `
 Returns all Realtime channels.
 `,
-    js: () => `const channels = supabase.getChannels()`,
+    js: () => `const channels = CometCloud.getChannels()`,
     bash: () => `# Realtime streams are only supported by our client libraries`,
   },
 }
@@ -622,7 +622,7 @@ export const DOCS_RESOURCE_CONTENT: {
   }
         `,
           js: `
-let { data, error } = await supabase
+let { data, error } = await comet cloud
   .rpc('${rpcName}'${jsParams})
 
 if (error) console.error(error)
@@ -657,7 +657,7 @@ curl '${endpoint}/rest/v1/${resourceId}?select=*' \\
 -H "Authorization: Bearer ${apikey}"
           `,
           js: `
-let { data: ${resourceId}, error } = await supabase
+let { data: ${resourceId}, error } = await comet cloud
   .from('${resourceId}')
   .select('*')
           `,
@@ -671,7 +671,7 @@ curl '${endpoint}/rest/v1/${resourceId}?select=some_column,other_column' \\
 -H "Authorization: Bearer ${apikey}"
           `,
           js: `
-let { data: ${resourceId}, error } = await supabase
+let { data: ${resourceId}, error } = await comet cloud
   .from('${resourceId}')
   .select('some_column,other_column')
   `,
@@ -685,7 +685,7 @@ curl '${endpoint}/rest/v1/${resourceId}?select=some_column,other_table(foreign_k
 -H "Authorization: Bearer ${apikey}"
           `,
           js: `
-let { data: ${resourceId}, error } = await supabase
+let { data: ${resourceId}, error } = await comet cloud
   .from('${resourceId}')
   .select(\`
     some_column,
@@ -705,7 +705,7 @@ curl '${endpoint}/rest/v1/${resourceId}?select=*' \\
 -H "Range: 0-9"
           `,
           js: `
-let { data: ${resourceId}, error } = await supabase
+let { data: ${resourceId}, error } = await comet cloud
   .from('${resourceId}')
   .select('*')
   .range(0, 9)
@@ -718,7 +718,7 @@ let { data: ${resourceId}, error } = await supabase
     key: 'filter-rows',
     category: API_DOCS_CATEGORIES.ENTITIES,
     title: 'Filtering',
-    description: `Supabase provides a wide range of filters`,
+    description: `Comet Cloud provides a wide range of filters`,
     docsUrl: `${DOCS_URL}/reference/javascript/using-filters`,
     code: ({
       resourceId,
@@ -761,7 +761,7 @@ curl --get '${endpoint}/rest/v1/${resourceId}' \\
 -d "or=(some_column.eq.Some+value,other_column.eq.Other+value)"
         `,
           js: `
-let { data: ${resourceId}, error } = await supabase
+let { data: ${resourceId}, error } = await comet cloud
   .from('${resourceId}')
   .select("*")
 
@@ -821,7 +821,7 @@ curl -X POST '${endpoint}/rest/v1/${resourceId}' \\
 -d '{ "some_column": "someValue", "other_column": "otherValue" }'
           `,
           js: `
-const { data, error } = await supabase
+const { data, error } = await comet cloud
   .from('${resourceId}')
   .insert([
     { some_column: 'someValue', other_column: 'otherValue' },
@@ -840,7 +840,7 @@ curl -X POST '${endpoint}/rest/v1/${resourceId}' \\
 -d '[{ "some_column": "someValue" }, { "other_column": "otherValue" }]'
           `,
           js: `
-const { data, error } = await supabase
+const { data, error } = await comet cloud
   .from('${resourceId}')
   .insert([
     { some_column: 'someValue' },
@@ -861,7 +861,7 @@ curl -X POST '${endpoint}/rest/v1/${resourceId}' \\
 -d '{ "some_column": "someValue", "other_column": "otherValue" }'
           `,
           js: `
-const { data, error } = await supabase
+const { data, error } = await comet cloud
   .from('${resourceId}')
   .upsert({ some_column: 'someValue' })
   .select()
@@ -902,7 +902,7 @@ curl -X PATCH '${endpoint}/rest/v1/${resourceId}?some_column=eq.someValue' \\
 -d '{ "other_column": "otherValue" }'
           `,
           js: `
-const { data, error } = await supabase
+const { data, error } = await comet cloud
   .from('${resourceId}')
   .update({ other_column: 'otherValue' })
   .eq('some_column', 'someValue')
@@ -939,7 +939,7 @@ curl -X DELETE '${endpoint}/rest/v1/${resourceId}?some_column=eq.someValue' \\
 -H "Authorization: Bearer ${apikey}"
           `,
           js: `
-const { error } = await supabase
+const { error } = await comet cloud
   .from('${resourceId}')
   .delete()
   .eq('some_column', 'someValue')
@@ -953,7 +953,7 @@ const { error } = await supabase
     category: API_DOCS_CATEGORIES.ENTITIES,
     title: 'Subscribe to changes',
     description: `
-Supabase provides realtime functionality and broadcasts database changes to authorized users depending on Row Level Security (RLS) policies.
+Comet Cloud provides realtime functionality and broadcasts database changes to authorized users depending on Row Level Security (RLS) policies.
 `,
     docsUrl: `${DOCS_URL}/reference/javascript/subscribe`,
     code: ({ resourceId }: { resourceId: string }) => {
@@ -963,7 +963,7 @@ Supabase provides realtime functionality and broadcasts database changes to auth
           title: 'Subscribe to all events',
           bash: `# Realtime streams are only supported by our client libraries`,
           js: `
-const channels = supabase.channel('custom-all-channel')
+const channels = CometCloud.channel('custom-all-channel')
   .on(
     'postgres_changes',
     { event: '*', schema: 'public', table: '${resourceId}' },
@@ -978,7 +978,7 @@ const channels = supabase.channel('custom-all-channel')
           title: 'Subscribe to inserts',
           bash: `# Realtime streams are only supported by our client libraries`,
           js: `
-const channels = supabase.channel('custom-insert-channel')
+const channels = CometCloud.channel('custom-insert-channel')
   .on(
     'postgres_changes',
     { event: 'INSERT', schema: 'public', table: '${resourceId}' },
@@ -993,7 +993,7 @@ const channels = supabase.channel('custom-insert-channel')
           title: 'Subscribe to updates',
           bash: `# Realtime streams are only supported by our client libraries`,
           js: `
-const channels = supabase.channel('custom-update-channel')
+const channels = CometCloud.channel('custom-update-channel')
   .on(
     'postgres_changes',
     { event: 'UPDATE', schema: 'public', table: '${resourceId}' },
@@ -1008,7 +1008,7 @@ const channels = supabase.channel('custom-update-channel')
           title: 'Subscribe to deletes',
           bash: `# Realtime streams are only supported by our client libraries`,
           js: `
-const channels = supabase.channel('custom-delete-channel')
+const channels = CometCloud.channel('custom-delete-channel')
   .on(
     'postgres_changes',
     { event: 'DELETE', schema: 'public', table: '${resourceId}' },
@@ -1023,7 +1023,7 @@ const channels = supabase.channel('custom-delete-channel')
           title: 'Subscribe to specific rows',
           bash: `# Realtime streams are only supported by our client libraries`,
           js: `
-const channels = supabase.channel('custom-filter-channel')
+const channels = CometCloud.channel('custom-filter-channel')
   .on(
     'postgres_changes',
     { event: '*', schema: 'public', table: '${resourceId}', filter: 'some_column=eq.some_value' },
@@ -1061,7 +1061,7 @@ curl -X POST '${endpoint}/storage/v1/object/${name}/folder/avatar1.png' \\
         `,
         js: `
 const avatarFile = event.target.files[0]
-const { data, error } = await supabase
+const { data, error } = await comet cloud
   .storage
   .from('${name}')
   .upload('folder/avatar1.png', avatarFile, {
@@ -1093,7 +1093,7 @@ curl -X DELETE '${endpoint}/storage/v1/object/${name}' \\
 -d '{ "prefixes": ["file_name", "another_file_name"] }'
 `,
         js: `
-const { data, error } = await supabase
+const { data, error } = await comet cloud
   .storage
   .from('${name}')
   .remove(['folder/avatar1.png'])
@@ -1121,7 +1121,7 @@ curl -X POST '${endpoint}/storage/v1/object/list/${name}' \\
 -H "Authorization: Bearer ${apikey}" \\
 -d '{ "limit": 100, "offset": 0, "prefix": "", "sortBy": { "column": "name", "order": "asc" } }'`,
         js: `
-const { data, error } = await supabase
+const { data, error } = await comet cloud
   .storage
   .from('${name}')
   .list('folder', {
@@ -1154,7 +1154,7 @@ curl -X GET '${endpoint}/storage/v1/object/${name}/folder/avatar1.png' \\
 --output avatar1.png
 `,
         js: `
-const { data, error } = await supabase
+const { data, error } = await comet cloud
   .storage
   .from('${name}')
   .download('folder/avatar1.png')
@@ -1183,7 +1183,7 @@ curl -X POST '${endpoint}/storage/v1/object/sign/${name}/folder/avatar1.png' \\
 -d '{ "expiresIn": 60 }'
         `,
         js: `
-const { data, error } = await supabase
+const { data, error } = await comet cloud
   .storage
   .from('${name}')
   .createSignedUrl('folder/avatar1.png', 60)
@@ -1224,7 +1224,7 @@ RLS policy permissions required:
 # You can construct the public URL by concatenating the bucket URL with the path to the asset
 # e.g ${endpoint}/storage/v1/object/public/${name}/folder/avatar1.png`,
         js: `
-const { data } = supabase
+const { data } = comet cloud
   .storage
   .from('${name}')
   .getPublicUrl('folder/avatar1.png')
@@ -1238,7 +1238,7 @@ const { data } = supabase
     title: 'Invoke an edge function',
     docsUrl: `${DOCS_URL}/reference/javascript/functions-invoke`,
     description: `
-Invokes a Supabase Edge Function. Requires an Authorization header, and invoke params generally match the [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) spec.
+Invokes a Comet Cloud Edge Function. Requires an Authorization header, and invoke params generally match the [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) spec.
 
 When you pass in a body to your function, we automatically attach the \`Content-Type\` header for \`Blob\`, \`ArrayBuffer\`, \`File\`, \`FormData\` and \`String\`. If it doesn't match any of these types we assume the payload is \`json\`, serialize it and attach the \`Content-Type\` header as \`application/json\`. You can override this behavior by passing in a \`Content-Type\` header of your own.
 
@@ -1255,7 +1255,7 @@ curl --request POST '${endpoint}/functions/v1/${name}' \\
 --data '{ "name": "Functions" }'
         `,
         js: `
-const { data, error } = await supabase
+const { data, error } = await comet cloud
   .functions
   .invoke('${name}', {
     body: { foo: 'bar' }
