@@ -51,6 +51,36 @@ function rewriteAuthQuery(q: string): string {
   // Must run AFTER the table rename and only match unqualified "users.".
   out = out.replace(/(?<!auth\.)(?<!neon_auth\.)\busers\.(id|email|banned_until|created_at|confirmed_at|confirmation_sent_at|is_anonymous|is_sso_user|invited_at|last_sign_in_at|phone|raw_app_meta_data|raw_user_meta_data|updated_at)\b/gi, 'neon_auth."user".$1')
   out = out.replace(/users_data\.id/gi, 'users_data.id')
+  // Unqualified GoTrue column tokens (e.g. `order by created_at desc`,
+  // `where email_confirmed_at is not null`). neon_auth columns are camelCase
+  // and MUST stay quoted, otherwise Postgres lowercases them and errors.
+  const unqCols: [RegExp, string][] = [
+    [/\bcreated_at\b/gi, '"createdAt"'],
+    [/\bupdated_at\b/gi, '"updatedAt"'],
+    [/\blast_sign_in_at\b/gi, '"updatedAt"'],
+    [/\bbanned_until\b/gi, '"banExpires"'],
+    [/\bemail_confirmed_at\b/gi, '"emailConfirmed"'],
+    [/\bphone_confirmed_at\b/gi, '"phoneConfirmed"'],
+    [/\bconfirmation_sent_at\b/gi, '"confirmationSentAt"'],
+    [/\bis_anonymous\b/gi, '"isAnonymous"'],
+    [/\bis_sso_user\b/gi, '"isSsoUser"'],
+    [/\binvited_at\b/gi, '"invitedAt"'],
+    [/\braw_app_meta_data\b/gi, '"rawAppMetadata"'],
+    [/\braw_user_meta_data\b/gi, '"rawUserMetadata"'],
+  ]
+  for (const [re, rep] of unqCols) {
+    out = out.replace(re, rep)
+  }
+  // WHERE-context comparisons against the synthetic columns above would fail,
+  // since neon_auth has no such columns. Translate common verified/unverified
+  // filter patterns to always-match/never-match booleans.
+  out = out.replace(/"emailConfirmed"\s+IS\s+NOT\s+NULL/gi, 'true')
+  out = out.replace(/"phoneConfirmed"\s+IS\s+NOT\s+NULL/gi, 'true')
+  out = out.replace(/"emailConfirmed"\s+IS\s+NULL/gi, 'false')
+  out = out.replace(/"phoneConfirmed"\s+IS\s+NULL/gi, 'false')
+  out = out.replace(/"isAnonymous"\s*(=|is)\s*true/gi, 'false')
+  out = out.replace(/"emailConfirmed"\s*(=|is)\s*true/gi, 'true')
+  out = out.replace(/"phoneConfirmed"\s*(=|is)\s*true/gi, 'true')
   // count_estimate & pg_class lookups reference auth.users regclass — fall back to a safe constant.
   out = out.replace(/'auth\.users'::regclass/gi, 'NULL::regclass')
   out = out.replace(/pg_temp\.count_estimate/gi, 'pg_temp.count_estimate_safe')
