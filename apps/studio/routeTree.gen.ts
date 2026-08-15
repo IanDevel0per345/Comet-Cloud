@@ -176,6 +176,7 @@ import { Route as ProjectRefAdvisorsRulesRouteImport } from './routes/project/$r
 import { Route as ProjectRefAdvisorsPerformanceRouteImport } from './routes/project/$ref/advisors/performance'
 import { Route as ApiPlatformTelemetryEventRouteImport } from './routes/api/platform/telemetry/event'
 import { Route as ApiPlatformIntegrationsSlugRouteImport } from './routes/api/platform/integrations/$slug'
+import { Route as ApiCometMetaRefQueryRouteImport } from './routes/api/comet-meta/$ref/query'
 import { Route as ApiAiSqlTitleV2RouteImport } from './routes/api/ai/sql/title-v2'
 import { Route as ApiAiSqlPolicyRouteImport } from './routes/api/ai/sql/policy'
 import { Route as ApiAiSqlParseClientCodeRouteImport } from './routes/api/ai/sql/parse-client-code'
@@ -1223,6 +1224,11 @@ const ApiPlatformIntegrationsSlugRoute =
     path: '/api/platform/integrations/$slug',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ApiCometMetaRefQueryRoute = ApiCometMetaRefQueryRouteImport.update({
+  id: '/api/comet-meta/$ref/query',
+  path: '/api/comet-meta/$ref/query',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiAiSqlTitleV2Route = ApiAiSqlTitleV2RouteImport.update({
   id: '/api/ai/sql/title-v2',
   path: '/api/ai/sql/title-v2',
@@ -2165,6 +2171,7 @@ export interface FileRoutesByFullPath {
   '/api/ai/sql/parse-client-code': typeof ApiAiSqlParseClientCodeRoute
   '/api/ai/sql/policy': typeof ApiAiSqlPolicyRoute
   '/api/ai/sql/title-v2': typeof ApiAiSqlTitleV2Route
+  '/api/comet-meta/$ref/query': typeof ApiCometMetaRefQueryRoute
   '/api/platform/integrations/$slug': typeof ApiPlatformIntegrationsSlugRoute
   '/api/platform/telemetry/event': typeof ApiPlatformTelemetryEventRoute
   '/project/$ref/advisors/performance': typeof ProjectRefAdvisorsPerformanceRoute
@@ -2467,6 +2474,7 @@ export interface FileRoutesByTo {
   '/api/ai/sql/parse-client-code': typeof ApiAiSqlParseClientCodeRoute
   '/api/ai/sql/policy': typeof ApiAiSqlPolicyRoute
   '/api/ai/sql/title-v2': typeof ApiAiSqlTitleV2Route
+  '/api/comet-meta/$ref/query': typeof ApiCometMetaRefQueryRoute
   '/api/platform/integrations/$slug': typeof ApiPlatformIntegrationsSlugRoute
   '/api/platform/telemetry/event': typeof ApiPlatformTelemetryEventRoute
   '/project/$ref/advisors/performance': typeof ProjectRefAdvisorsPerformanceRoute
@@ -2779,6 +2787,7 @@ export interface FileRoutesById {
   '/api/ai/sql/parse-client-code': typeof ApiAiSqlParseClientCodeRoute
   '/api/ai/sql/policy': typeof ApiAiSqlPolicyRoute
   '/api/ai/sql/title-v2': typeof ApiAiSqlTitleV2Route
+  '/api/comet-meta/$ref/query': typeof ApiCometMetaRefQueryRoute
   '/api/platform/integrations/$slug': typeof ApiPlatformIntegrationsSlugRoute
   '/api/platform/telemetry/event': typeof ApiPlatformTelemetryEventRoute
   '/project/$ref/advisors/performance': typeof ProjectRefAdvisorsPerformanceRoute
@@ -3093,6 +3102,7 @@ export interface FileRouteTypes {
     | '/api/ai/sql/parse-client-code'
     | '/api/ai/sql/policy'
     | '/api/ai/sql/title-v2'
+    | '/api/comet-meta/$ref/query'
     | '/api/platform/integrations/$slug'
     | '/api/platform/telemetry/event'
     | '/project/$ref/advisors/performance'
@@ -3395,6 +3405,7 @@ export interface FileRouteTypes {
     | '/api/ai/sql/parse-client-code'
     | '/api/ai/sql/policy'
     | '/api/ai/sql/title-v2'
+    | '/api/comet-meta/$ref/query'
     | '/api/platform/integrations/$slug'
     | '/api/platform/telemetry/event'
     | '/project/$ref/advisors/performance'
@@ -3706,6 +3717,7 @@ export interface FileRouteTypes {
     | '/api/ai/sql/parse-client-code'
     | '/api/ai/sql/policy'
     | '/api/ai/sql/title-v2'
+    | '/api/comet-meta/$ref/query'
     | '/api/platform/integrations/$slug'
     | '/api/platform/telemetry/event'
     | '/project/$ref/advisors/performance'
@@ -3971,6 +3983,7 @@ export interface RootRouteChildren {
   ApiAiSqlParseClientCodeRoute: typeof ApiAiSqlParseClientCodeRoute
   ApiAiSqlPolicyRoute: typeof ApiAiSqlPolicyRoute
   ApiAiSqlTitleV2Route: typeof ApiAiSqlTitleV2Route
+  ApiCometMetaRefQueryRoute: typeof ApiCometMetaRefQueryRoute
   ApiPlatformIntegrationsSlugRoute: typeof ApiPlatformIntegrationsSlugRoute
   ApiPlatformTelemetryEventRoute: typeof ApiPlatformTelemetryEventRoute
   ApiPlatformOrganizationsIndexRoute: typeof ApiPlatformOrganizationsIndexRoute
@@ -5214,6 +5227,13 @@ declare module '@tanstack/react-router' {
       path: '/api/platform/integrations/$slug'
       fullPath: '/api/platform/integrations/$slug'
       preLoaderRoute: typeof ApiPlatformIntegrationsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/comet-meta/$ref/query': {
+      id: '/api/comet-meta/$ref/query'
+      path: '/api/comet-meta/$ref/query'
+      fullPath: '/api/comet-meta/$ref/query'
+      preLoaderRoute: typeof ApiCometMetaRefQueryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/ai/sql/title-v2': {
@@ -6977,6 +6997,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiAiSqlParseClientCodeRoute: ApiAiSqlParseClientCodeRoute,
   ApiAiSqlPolicyRoute: ApiAiSqlPolicyRoute,
   ApiAiSqlTitleV2Route: ApiAiSqlTitleV2Route,
+  ApiCometMetaRefQueryRoute: ApiCometMetaRefQueryRoute,
   ApiPlatformIntegrationsSlugRoute: ApiPlatformIntegrationsSlugRoute,
   ApiPlatformTelemetryEventRoute: ApiPlatformTelemetryEventRoute,
   ApiPlatformOrganizationsIndexRoute: ApiPlatformOrganizationsIndexRoute,

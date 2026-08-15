@@ -378,3 +378,131 @@ Observações: (1) a página home /project/default no primeiro load mostra a se�
 - /project/default/editor: título "Serviços | ... | Comet Cloud" OK, mas conteúdo interno ainda em inglês: "New table" (tooltip/botão), "Search tables...", "Create a table / Design and create a new database table", "Recent items / No recent items yet".
 - O TableList tinha sido traduzido ("Novo serviço", "Buscar um serviço") — parece que a produção usa outra página (TableList vs outro componente) ou o build puxou strings de outro módulo. Conferir: `grep -rn "New table\|Search tables" apps/studio/components/interfaces/Database/TableGrid/` e `TableList.tsx` no build vs fonte. Talvez exista uma página home de editor diferente (Database page vs Editor) e as traduções ficaram em componentes não usados pela rota /editor.
 - Ações: (1) achar onde essas strings vivem; (2) aplicar pt-BR (Novo serviço, Buscar serviços, Criar um serviço...); (3) commit+push; (4) aguardar redeploy automático; (5) revalidar.
+
+## ATUALIZACAO 29 — Deploy a461e8d em fila
+
+- Push do commit a461e8d disparou deploy 28uth7tXq8DW9ifKExC6hXqzsa49 (Queued). Deploy anterior HZwGuag7 segue Ready. Aguardar ~4-6min e revalidar.
+
+## ATUALIZACAO 30 — NOVO REQUISITO: integrar Neon como banco de dados
+
+Usuário: "Conectei o néon para banco de dados aí na manus ai... o banco de dados da plataforma será o néon... para user e etc".
+
+Estado da Neon: conector "Neon" (uid 9a0c8590-c0d9-498b-9b3d-bd0df0dbc134) aparece em config.json com enabled:true, MAS o servidor MCP não está registrado em ~/.mcp/servers.json (só supabase e vercel estão lá). `manus-mcp-cli tool list --server neon` → "server not found". Tentar nomes alternativos (neondatabase etc.) também falhou. O MCP da Neon pode precisar ser registrado manualmente.
+
+Caminho oficial do MCP remoto da Neon: https://mcp.neon.tech/mcp (OAuth-secured remote server, docs: https://neon.com/docs/ai/neon-mcp-server). Ferramentas do mcp-server-neon: gerenciar projetos Neon e executar SQL. Para usar, provavelmente precisa criar conector via `manus-config connector create` com mode form/url, ou o usuário conectou mas a sessão sandbox não viu o registro.
+
+Plano de integração Neon na plataforma:
+1. Registrar o MCP Neon (se não possível, pedir conexão OAuth/criar conector).
+2. Listar projetos Neon → identificar projeto/banco que o usuário conectou.
+3. Criar schema: organizations(id,name,slug...), users(id,email,name,role,org_id...), projects(id,name,ref,org_id...), api_keys...
+4. Substituir mock stores (store.ts / lib/data) por chamadas Postgres via Neon (client side) — cuidado: connection string não pode ficar no client em produção sem proxy. Opção prática: usar o endpoint SQL público do Neon (https://console.neon.tech/app/projects/<id>) via API REST https://api.console.neon.tech com API key, OU rodar queries via neon-mcp na fase de setup e embutir dados; runtime: Next API routes na Vercel com driver postgresty/vercel-postgres+neon usando connection string em env var.
+5. Deploy, validar.
+
+## Estado atual dos deploys (para retomada)
+- Deploy a461e8d (28uth7tXq8) está Queued; bloqueado pelo build do projeto cometcloud-studio (FMuKNzdkJJpges175s6vDQKTP2Jq, Building há ~14min, build Next default que trava) — se continuar travado, cancelar como antes.
+- Deploy anterior HZwGuag7 está Ready (produção atual com strings traduzidas exceto novas).
+- Produção: https://comet-cloud.vercel.app
+- Vercel: team team_blUibRDb9z436C4e1zxs9As3, projeto prj_sWmThPT282UG9z7JUWUwmfQ7BCzv
+
+## ATUALIZACAO 31 — Investigação Neon
+
+- Conector "Neon" na Manus: uid 9a0c8590, tipo mcp/http, URL https://mcp.neon.tech/mcp, enabled:true, MAS não está registrado em ~/.mcp/servers.json (só supabase e vercel). `manus-mcp-cli tool list --server neon` → server not found. Toggle disable/enable: user confirmou enable, mas servidores.json continua sem neon.
+- curl no endpoint https://mcp.neon.tech/mcp → 401 (precisa auth token; Manus faz token replacement mas o proxy da sessão não foi ativado).
+- Sem env vars NEON_* no shell nem em .user_env.
+- Vercel env vars do projeto comet-cloud: só SKIP_ASSET_UPLOAD e STUDIO_FRAMEWORK — sem DATABASE_URL.
+- Conclusão: para acessar o Neon desta sessão, criar conector custom MCP (form mode) com token, OU pedir ao usuário a connection string/API key do projeto Neon. O usuário insiste que "conectou o neon na manus" — provavelmente conectou o App Neon em outra sessão/tarefa; conector Apps ficam visíveis mas o MCP de apps pode não ser registrado automaticamente.
+- Plano alternativo sem depender do MCP: pedir ao usuário para (a) criar uma API key do Neon (console.neon.tech → Settings → Developer → API Key) e informar o project ID do banco, OU (b) passar a connection string do banco Neon. Com isso eu crio o schema e integro via SQL (mcp-server-neon usa Neon Management API; eu mesmo posso chamar a API com a key).
+
+## ATUALIZACAO 32 — Neon API funcional!
+
+API key do usuário funciona (neon console API v2). Org: `org-late-dew-57360253` (Ian, free). Projetos: `mute-sky-99475069` nome "Comet DB" (criado 2026-08-15 04:48, provável banco da plataforma, região sa-east-1, pg18) e `billowing-credit-66644866` nome "Obsidian Group". Usarei "Comet DB" (mute-sky-99475069). Endpoints: GET /api/v2/projects?org_id=..., /api/v2/users/me/organizations, /api/v2/users/me. Para SQL: POST /api/v2/projects/{id}/sql (execute queries via Management API). Connection string: obter via GET /api/v2/projects/{id}/connection_strings (branch main, role neondb).
+
+## ATUALIZACAO 33 — Neon integrado (API v2) — DADOS CRÍTICOS
+
+**Neon API Key do usuário (me fornecida):** napi_bwati2bqse8tg1xl8y1gcldlxgz381t35hbtly3b384408vckeh9k0vmmfw1laal (usar `Authorization: Bearer <key>` em https://console.neon.tech/api/v2/...)
+**Usuário Neon:** ianguilherme05@gmail.com, id 297f23a0-8ba4-486e-aa33-4d57ca2c32a4
+**Org:** org-late-dew-57360253 (GET /api/v2/users/me/organizations)
+**Projeto Neon "Comet DB" (banco da plataforma):** project_id = mute-sky-99475069, branch_id = br-twilight-cake-acmt8pp2, db = neondb, pg18, sa-east-1
+**Endpoint host:** ep-dawn-voice-acok4ijv.sa-east-1.aws.neon.tech (pooler: ep-dawn-voice-acok4ijv-pooler.sa-east-1.aws.neon.tech)
+
+**Data API habilitada (POST /projects/{pid}/branches/{bid}/data-api/neondb com {"auth_provider":"neon_auth","add_default_grants":true})** → 201 Created
+- Data API URL: https://ep-dawn-voice-acok4ijv.apirest.sa-east-1.aws.neon.tech/neondb/rest/v1
+- Neon Auth (Better Auth) provisioning: auth_provider_project_id = b0c8f257-2e72-4669-8614-21e37fddeb9a
+- Auth base URL: https://ep-dawn-voice-acok4ijv.neonauth.sa-east-1.aws.neon.tech/neondb/auth (JWKS: /auth/.well-known/jwks.json)
+- Auth usa Better Auth: signup/login endpoints REST no Auth URL
+
+**Próximos passos da integração:**
+1. Criar service role key (POST /api/v2/projects/{pid}/service-roles?branch_id=...&role_name=neon_superuser) → obter DATABASE_URL (postgres://) — guardar como env var NEON_DATABASE_URL na Vercel (não expor ao client).
+2. Usar service role para rodar SQL de setup: tabelas organizations, users/memberships, projects, api_keys (seguindo spec seção 6/7).
+3. App usa @neondatabase/serverless (postgres.js) nas API routes OU Neon Auth + Data API p/ client. Simplest robust path: Next.js API routes com neondb/neon-serverless, auth: cookies de sessão própria (JWT signed) ou usar a JWKS do Neon Auth p/ validar tokens no server.
+4. Env vars Vercel: NEON_DATABASE_URL (connection string com role neondb), NEON_AUTH_URL (base url), NEON_AUTH_JWKS_URL, NEON_AUTH_PROJECT_ID.
+5. Commit+push → deploy Vercel.
+
+**Cuidado:** não colocar a API key/credentials do Neon no código; usar env vars. Não expor service role no frontend.
+
+## ATUALIZACAO 34 — Arquitetura de dados do Studio (self-hosted)
+
+A camada de dados self-hosted funciona assim: `executeQuery` (lib/api/self-hosted/query.ts) envia SQL para o serviço pg-meta local (`PG_META_URL/query`) com conexão criptografada via AES (key = `PG_META_CRYPTO_KEY`, default 'SAMPLE_KEY'). A connection string é montada em `lib/api/self-hosted/util.ts` a partir de env vars: POSTGRES_HOST (default 'db'), POSTGRES_PORT (5432), POSTGRES_DB, POSTGRES_PASSWORD, POSTGRES_USER_READ_WRITE ('supabase_admin'), POSTGRES_USER_READ_ONLY. Ou seja: **basta apontar POSTGRES_HOST/PORT/DB/PASSWORD para o Neon e o Studio inteiro passa a ler/escrever no banco real via pg-meta existente** (pg-meta é o meta do próprio banco — as "tabelas" viram "serviços" via SQL).
+
+Plano Neon (evitar pg-meta incompatibilidade — pg-meta é serviço próprio da Supabase CLI; o endpoint PG_META_URL é o servidor pg-meta do Studio self-hosted. Sem esse servidor rodando, o Studio self-hosted não funciona localmente; na Vercel deploy, as chamadas a PG_META_URL iriam falhar). VERIFICAR: no deploy Vercel atual o que acontece — provavelmente o pg-meta não está disponível na Vercel. Testar o que já funciona: o editor "Serviços" está em produção — logo algo provê os dados. Checar PG_META_URL env/default.
+
+Decisão arquitetural: em vez de rodar pg-meta na Vercel, criar rota API própria no Studio (`pages/api/comet/*`) usando @neondatabase/serverless + service_role do Neon, e sobrepor os endpoints que o UI consome — OU, mais simples e menos invasivo: apontar o Studio para o Neon via variáveis POSTGRES_* E fazer o pg-meta rodar? Não — pg-meta não roda na Vercel serverless. 
+MELHOR CAMINHO: usar a Neon Data API / API REST própria: criar páginas API Next.js (`pages/api/comet/...`) que servem tabelas (services), variáveis, etc., com @neondatabase/serverless + DATABASE_URL service_role. Adaptar os hooks da UI para chamar essas rotas em vez do pg-meta quando IS_PLATFORM=false.
+
+Credenciais criadas: role `service_role`, senha npg_peL0HJ6kODEC (resetada: npg_peL0HJ6kODEC → atual npg_peL0HJ6kODEC... na verdade a senha atual é a do segundo reset: npg_peL0HJ6kODEC? VERIFICAR — última senha emitida: npg_peL0HJ6kODEC; reset2 retornou npg_peL0HJ6kODEC cortado na resposta "npg_peL0HJ6kODEC" → confirmar).
+- DATABASE_URL validada: postgres://service_role:npg_peL0HJ6kODEC@ep-dawn-voice-acok4ijv.sa-east-1.aws.neon.tech/neondb?sslmode=require (teste SELECT ok, tabelas public vazias).
+- Neon Auth (Better Auth) provisionado: base URL https://ep-dawn-voice-acok4ijv.neonauth.sa-east-1.aws.neon.tech/neondb/auth; JWKS https://ep-dawn-voice-acok4ijv.neonauth.sa-east-1.aws.neon.tech/neondb/auth/.well-known/jwks.json; auth_provider_project_id b0c8f257-2e72-4669-8614-21e37fddeb9a.
+
+## ATUALIZACAO 35 — Decisão arquitetural Neon (confirmado em produção)
+
+Confirmado: em produção (Vercel), `PG_META_URL` é undefined → `/api/platform/pg-meta/default/tables` retorna erro "Failed to parse URL from undefined/tables". Ou seja, os dados hoje vêm de fallback/estado vazio no client. A camada pg-meta não existe na Vercel.
+
+Decisão: criar um "Comet Meta API" próprio em `pages/api/comet/` usando @neondatabase/serverless com a service_role do Neon (já criada; DATABASE_URL postgres://service_role:npg_peL0HJ6kODEC@ep-dawn-voice-acok4ijv.sa-east-1.aws.neon.tech/neondb?sslmode=require). Implementar endpoints que imitam o contrato do pg-meta: GET /tables (return [{id,name,schema,...}]), /views, /columns/:id, /tables/:id/columns, /query (POST {query}) etc. Aplicar schema SQL primeiro (tabela `services`? não — o contrato pg-meta é sobre tabelas reais do Postgres; melhor: criar tabelas reais postgres no Neon: `services` (nome, tipo, status, url, ...), e o meta API lista as tabelas do schema public que representam serviços + dados via /query.
+
+Mais simples e fiel: aplicar no Neon:
+- tabela `comet_services` (id serial pk, name, slug, type [bot/api/site/app], status [online/failed/deploying/paused], region, runtime, build_cmd, start_cmd, port, url, created_at)
+- tabela `comet_deployments`, `comet_env_vars`, `comet_members`, `comet_domains`? Manter escopo mínimo viável para os 7 flows: services (tabelas), e deixar membros/usuários via Neon Auth (auth schema do Better Auth). UI lê `services` como se fossem tabelas do banco.
+
+Estratégia de integração do UI: como as queries pg-meta vão para PG_META_URL (undefined em prod), criar env var STUDIO_PG_META_URL apontando para /api/comet/proxy... não — mais limpo: definir PG_META_URL como URL relativa? Não é possível. Alternativa escolhida: modificar `lib/constants/index.ts` para que IS_PLATFORM=false em produção use um endpoint próprio: `process.env.COMET_META_URL || ...` e criar rota `/api/comet/meta` que implementa os endpoints pg-meta necessários (/tables, /columns/:id, /query) lendo o banco Neon via neon() + SQL direto (introspect pg_catalog!). Isso é elegante: o pg-meta padrão usa pg_catalog para introspect; nosso /api/comet/meta pode responder as mesmas queries com o banco Neon real.
+- Env vars Vercel a adicionar: NEON_SERVICE_URL (postgres://...service_role...), COMET_META_URL (https://comet-cloud.vercel.app/api/comet/meta).
+- Auth da plataforma: usar o Neon Auth (Better Auth) — endpoints REST: POST /signup, POST /login. Store JWT em cookie.
+
+## ATUALIZACAO 36 — Estado Neon (fase schema)
+
+Problema: role `service_role` (senha npg_peL0HJ6kODEC) NÃO tem permissão CREATE no schema public ("permission denied for schema public") — só pode ler/escrever o que já existe. Os CREATE TABLE falharam e nenhum objeto existe ainda (t1 não foi criada). Roles na branch: neondb_owner, authenticator, anonymous, authenticated. neondb_owner não expõe senha via API (protegida? — response 200 sem campo password; `protected: false`, mas senha só exibida na criação/reset).
+
+Solução: usar a Neon Data API (já habilitada com neon_auth) ou rodar SQL via API de query admin. Alternativa mais simples: resetar a senha do `neondb_owner` via POST /api/v2/projects/mute-sky-99475069/branches/br-twilight-cake-acmt8pp2/roles/neondb_owner/reset_password (API key admin) → conecta com neondb_owner → GRANT USAGE,CREATE ON SCHEMA public TO service_role → depois rodar schema com service_role.
+
+Arquivo de SQL pronto: /home/ubuntu/neon_schema.sql (tabela comet_services, comet_deployments, comet_env_vars, comet_domains, comet_volumes, comet_members, comet_api_keys, comet_activity + dados de exemplo).
+Applier: /home/ubuntu/apply_schema.js (usa sql.query(s, []) com env DATABASE_URL).
+@neondatabase/serverless está instalado no apps/studio (add pg também).
+DATABASE_URL: postgres://service_role:npg_peL0HJ6kODEC@ep-dawn-voice-acok4ijv.sa-east-1.aws.neon.tech/neondb?sslmode=require
+
+## ATUALIZACAO 37 — Arquitetura da integração Neon decidida
+
+Schema aplicado com sucesso no Neon (8 tabelas + dados exemplo). Credenciais: owner npg_upQgmSBdK6Y9 (neondb_owner), service npg_peL0HJ6kODEC. Host ep-dawn-voice-acok4ijv.sa-east-1.aws.neon.tech, db neondb.
+
+Decisão de integração (fase 3): o Studio self-hosted funila tudo via POST /platform/pg-meta/{ref}/query (executeSql) e via PG_META_URL (listas de tabelas/views etc.). Em produção Vercel não há serviço pg-meta — por isso os dados estão vazios/quebrados.
+
+Estratégia escolhida: criar um proxy "pg-meta" próprio em `pages/api/comet-meta/` que implementa os endpoints que o UI consome (tables, views, materialized-views, foreign-tables, column-privileges, query, schemas-via-SQL) executando SQL contra o Neon via @neondatabase/serverless (service_role). Depois apontar a env Vercel STUDIO_PG_META_URL para esse proxy (https://comet-cloud.vercel.app/api/comet-meta). Vantagem: nenhuma mudança no UI; o contrato pg-meta é HTTP (GET /tables → array de {id,name,schema,...}) e POST /query {query} → array de linhas. O UI usa @supabase/pg-meta para gerar SQL strings, então o proxy só precisa executar SQL e retornar rows.
+
+Pontos de atenção:
+- /query também é usado no Console de Deploy (produto="Console de Deploy") — deve aceitar qualquer SQL (o UI converteu Run→Deploy, mas por baixo executa SQL).
+- Self-hosted executeQuery usa PG_META_URL + connection-encrypted (AES com PG_META_CRYPTO_KEY). No proxy próprio posso usar GET /query?connection_encrypted=... — replicar a lógica de decrypt em Node é fácil (crypto-js AES). Simpler: meu proxy não valida connection_encrypted se a env NEON_SERVICE_URL estiver definida (modo Comet Cloud).
+- Também endpoints: GET /schemas? (não existe endpoint pg-meta para schemas — usa SQL), GET /tables, GET /views, GET /materialized-views, GET /foreign-tables, GET /column-privileges?id=..., GET /triggers, GET /policies, GET /extensions, GET /publications, GET /types.
+- O editor de serviços usa /tables e depois /columns/{tableId} (checar) — verificar quais endpoints o TableEditor consome.
+- Storage (buckets→volumes): GET /storage/v1/buckets é PostgREST via /rest/v1 — outro endpoint separado; tratar depois se possível.
+- Auth: usar Neon Auth (Better Auth) nos endpoints REST da base URL https://ep-dawn-voice-acok4ijv.neonauth.sa-east-1.aws.neon.tech/neondb/auth (signup/login). JWT retornado armazenado em cookie; validar via JWKS no server quando necessário.
+- Env vars a criar na Vercel: NEON_SERVICE_URL=postgres://service_role:npg_peL0HJ6kODEC@ep-dawn-voice-acok4ijv.sa-east-1.aws.neon.tech/neondb?sslmode=require, STUDIO_PG_META_URL=https://comet-cloud.vercel.app/api/comet-meta, NEXT_PUBLIC_API_URL=... (verificar se já existe), NEON_AUTH_URL=https://ep-dawn-voice-acok4ijv.neonauth.sa-east-1.aws.neon.tech/neondb/auth
+
+## ATUALIZACAO 38 — Integração Neon (fase 3 em andamento)
+
+Decisão arquitetural executada: toda a leitura/escrita do banco funila por `POST /api/platform/pg-meta/{ref}/query` (executeSql). Em vez de criar mais rotas, modifiquei `pages/api/platform/pg-meta/[ref]/query/index.ts` para, quando `NEON_SERVICE_URL` estiver definida no servidor, executar o SQL direto no Neon via @neondatabase/serverless (fullResults:true → array de linhas, mesmo shape do pg-meta). O fallback `PG_META_URL || '/api/comet-meta'` em lib/constants/index.ts ainda é útil se algum consumidor chamar PG_META_URL+/query diretamente; e criei também a rota complementar `pages/api/comet-meta/[ref]/query.ts` + `routes/api/comet-meta/$ref/query.ts` (routeTree.gen.ts já regenerou com a nova rota — watcher ativo).
+
+Neon creds: host ep-dawn-voice-acok4ijv.sa-east-1.aws.neon.tech, db neondb, service_role npg_peL0HJ6kODEC, owner npg_upQgmSBdK6Y9.
+
+Arquivos alterados: pages/api/platform/pg-meta/[ref]/query/index.ts (handleNeonQuery + dispatch no handlePost), pages/api/comet-meta/[ref]/query.ts (nova), routes/api/comet-meta/$ref/query.ts (nova), lib/constants/index.ts (fallback).
+
+Próximos passos: (1) adicionar env NEON_SERVICE_URL na Vercel (Production+Preview): postgres://service_role:npg_peL0HJ6kODEC@ep-dawn-voice-acok4ijv.sa-east-1.aws.neon.tech/neondb?sslmode=require; (2) commit+push; (3) build + teste; (4) validar editor com dados reais; (5) storage/rest e auth Neon depois.
+
+Build local com vite é pesado (OOM 143 no sandbox) — usar tsc seletivo para checar; Vercel faz o build completo (~4-5 min).
