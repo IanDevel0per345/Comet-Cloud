@@ -12,7 +12,7 @@ export interface StorageLayoutProps {
 const StorageLayout = ({ title, children }: StorageLayoutProps) => {
   return (
     <ProjectLayout
-      product="Storage"
+      product="Armazenamento"
       browserTitle={{ section: title }}
       productMenu={<StorageMenuV2 />}
     >

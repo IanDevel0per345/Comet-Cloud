@@ -98,7 +98,7 @@ const ObservabilityLayoutContent = ({
   if (reportsAll) {
     return (
       <ProjectLayout
-        product="Observability"
+        product="Monitoramento"
         browserTitle={{ section: title }}
         productMenu={<ObservabilityMenu />}
         isBlocking={false}

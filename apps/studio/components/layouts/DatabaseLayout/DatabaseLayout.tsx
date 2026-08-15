@@ -26,7 +26,7 @@ const DatabaseLayout = ({ children, title }: PropsWithChildren<DatabaseLayoutPro
 
   return (
     <ProjectLayout
-      product="Database"
+      product="Serviços"
       browserTitle={{ section: title }}
       productMenu={<ProductMenu page={page} menu={menu} />}
       isBlocking={false}

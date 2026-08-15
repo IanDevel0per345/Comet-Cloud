@@ -59,7 +59,7 @@ export const RealtimeLayout = ({ title, children }: PropsWithChildren<RealtimeLa
 
   return (
     <ProjectLayout
-      product="Realtime"
+      product="Logs"
       browserTitle={{ section: title }}
       productMenu={<ProductMenu page={page} menu={menu} />}
       isBlocking={false}
