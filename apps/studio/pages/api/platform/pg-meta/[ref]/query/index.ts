@@ -27,7 +27,27 @@ function rewriteAuthQuery(q: string): string {
   out = out.replace(/auth\.users\.banned_until/gi, 'neon_auth."user"."banExpires"')
   out = out.replace(/auth\.users\.created_at/gi, 'neon_auth."user"."createdAt"')
   out = out.replace(/auth\.users\.updated_at/gi, 'neon_auth."user"."updatedAt"')
-  out = out.replace(/auth\.users\.last_sign_in_at/gi, 'neon_auth."user"."updatedAt"')
+  out = out.replace(/auth\.users\.(last_sign_in_at)/gi, 'neon_auth."user"."updatedAt"')
+  // Neon Auth has no GoTrue legacy columns: instance_id, aud, role are
+  // always constant for Comet Cloud single-tenant usage.
+  out = out.replace(/auth\.users\.instance_id/gi, "'00000000-0000-0000-0000-000000000000'::uuid AS instance_id")
+  out = out.replace(/auth\.users\.aud/gi, "'authenticated'::text AS aud")
+  out = out.replace(/auth\.users\.role/gi, "'authenticated'::text AS role")
+  out = out.replace(/auth\.users\.phone_confirmed_at/gi, 'NULL::timestamptz AS phone_confirmed_at')
+  out = out.replace(/auth\.users\.encrypted_password/gi, "''::text AS encrypted_password")
+  out = out.replace(/auth\.users\.reauthentication_token/gi, "''::text AS reauthentication_token")
+  out = out.replace(/auth\.users\.reauthentication_sent_at/gi, 'NULL::timestamptz AS reauthentication_sent_at')
+  out = out.replace(/auth\.users\.email_change_token_new/gi, "''::text AS email_change_token_new")
+  out = out.replace(/auth\.users\.email_change/gi, "''::text AS email_change")
+  out = out.replace(/auth\.users\.email_change_sent_at/gi, 'NULL::timestamptz AS email_change_sent_at')
+  out = out.replace(/auth\.users\.phone_change_token/gi, "''::text AS phone_change_token")
+  out = out.replace(/auth\.users\.phone_change/gi, "''::text AS phone_change")
+  out = out.replace(/auth\.users\.phone_change_sent_at/gi, 'NULL::timestamptz AS phone_change_sent_at')
+  out = out.replace(/auth\.users\.phone_change_confirm_at/gi, 'NULL::timestamptz AS phone_change_confirm_at')
+  out = out.replace(/auth\.users\.confirmation_token/gi, "''::text AS confirmation_token")
+  out = out.replace(/auth\.users\.recovery_token/gi, "''::text AS recovery_token")
+  out = out.replace(/auth\.users\.recovery_sent_at/gi, 'NULL::timestamptz AS recovery_sent_at')
+  out = out.replace(/auth\.users\.banned_until/gi, 'neon_auth."user"."banExpires"')
   out = out.replace(/auth\.users\.confirmed_at/gi, 'NULL::timestamptz AS confirmed_at')
   out = out.replace(/auth\.users\.confirmation_sent_at/gi, 'NULL::timestamptz AS confirmation_sent_at')
   out = out.replace(/auth\.users\.is_anonymous/gi, 'false AS is_anonymous')
@@ -55,6 +75,9 @@ function rewriteAuthQuery(q: string): string {
   // `where email_confirmed_at is not null`). neon_auth columns are camelCase
   // and MUST stay quoted, otherwise Postgres lowercases them and errors.
   const unqCols: [RegExp, string][] = [
+    [/\binstance_id\b/gi, "'00000000-0000-0000-0000-000000000000'::uuid AS instance_id"],
+    [/\baud\b/gi, "'authenticated'::text AS aud"],
+    [/\b"role"\b/gi, "'authenticated'::text AS role"],
     [/\bcreated_at\b/gi, '"createdAt"'],
     [/\bupdated_at\b/gi, '"updatedAt"'],
     [/\blast_sign_in_at\b/gi, '"updatedAt"'],
