@@ -506,3 +506,30 @@ Arquivos alterados: pages/api/platform/pg-meta/[ref]/query/index.ts (handleNeonQ
 Próximos passos: (1) adicionar env NEON_SERVICE_URL na Vercel (Production+Preview): postgres://service_role:npg_peL0HJ6kODEC@ep-dawn-voice-acok4ijv.sa-east-1.aws.neon.tech/neondb?sslmode=require; (2) commit+push; (3) build + teste; (4) validar editor com dados reais; (5) storage/rest e auth Neon depois.
 
 Build local com vite é pesado (OOM 143 no sandbox) — usar tsc seletivo para checar; Vercel faz o build completo (~4-5 min).
+
+## ATUALIZACAO 39 — Env NEON_SERVICE_URL criada na Vercel
+
+NEON_SERVICE_URL (Sensitive, Production and Preview) adicionada com sucesso no projeto comet-cloud na Vercel. A Vercel exibe toast "Added Environment Variable successfully. A new deployment is needed for changes to take effect" com botão Redeploy. Push anterior (d8ba0042b2, feat neon) já está no master; se o webhook não criar novo deploy, clicar Redeploy na aba Environment Variables ou em Deployments.
+
+Próximos passos: confirmar novo deploy builds com sucesso; validar /project/default/editor com dados reais do Neon (4 serviços); depois validar Console de Deploy (SQL editor), Storage e Editor de serviço; considerar auth Neon (signup/login) na sequência.
+
+## ATUALIZACAO 40 — Redeploy disparado
+
+Toast "Deployment created". Novo deploy: A5zT17GFoPFoBUkhDXwwomrPW5my (produção, master feat neon + NEON_SERVICE_URL). Monitorar até READY e validar editor com dados Neon.
+
+## ATUALIZACAO 41 — Bloqueio removido
+
+Cometcloud-studio build 9VPxYtwSQ cancelado (bloqueava a fila do Hobby). Deploy do comet-cloud A5zT17GFoPFoBUkhDXwwomrPW5my está em fila e deve iniciar agora. Aguardar ~5min e checar status. Depois validar produção: editor com dados reais do Neon (4 serviços: Bot de Discord, API de Pagamentos, Landing Page, Worker de Notificações).
+
+## ATUALIZACAO 42 — Deploy A5zT17GF Ready; Neon funcional em produção
+
+- Deploy A5zT17GFoPFoBUkhDXwwomrPW5my = READY (4m26s). Bloqueio da fila: cometcloud-studio cancelado de novo.
+- /api/platform/pg-meta/default/query em produção executa SQL direto no Neon: retorno OK com tables do schema (neon_auth: user/session/org etc. + public: comet_services etc.).
+- Dados reais: 4 serviços (Bot de Discord, API de Pagamentos, Landing Page, Worker de Notificações) retornados via SQL.
+- PROBLEMA: página /project/default/editor NÃO lista os serviços — mostra só "Criar um serviço". A lista usa outro endpoint (GET /platform/pg-meta/default/tables ou cliente pg-meta via /api?). Editor deve usar client.get('/platform/pg-meta/.../tables') — endpoint GET sem rota comet-meta. VERIFICAR qual endpoint usa e criar rota GET correspondente ou fazer handler.
+
+## ATUALIZACAO 43 — Root cause do editor vazio
+
+O endpoint /api/platform/pg-meta/default/query funciona (SQL genérico retorna dados), MAS o SQL de introspecção que o pg-meta gera (pgMeta.tables.list com colunas) referencia a coluna is_hidden de information_schema.columns, que NÃO existe no Neon (Postgres 16 — is_hidden é PG17+). Resultado: 400 "column is_hidden does not exist" e o editor renderiza vazio.
+
+Solução em andamento: interceptar/reescrever SQL na camada Neon (handler handleNeonQuery) — fazer find/replace de columns selects para substituir is_hidden por CASE/omitir, e outros diffs PG16→PG17 que aparecerem (ex: is_system, generated columns). Alternativa: adicionar colunas faltantes via DO $$... mas is_hidden vem do catálogo interno, não dá pra criar em information_schema. Melhor: sql rewrite no handler. Testar o SQL exato de pgMeta.tables.list no sandbox antes (rodar `node` com @supabase/pg-meta source — o código usa knex e monta SQL; melhor extrair SQL real via import do pacote no apps/studio node_modules).
