@@ -5,7 +5,7 @@
 [data-theme='classic-dark'],
 .classic-dark {
   --helpers-os-appearance: Dark;
-  --hue: 30;
+  --hue: 40;
   --chroma: 0.018;
   --surface: 0.16;
   --foreground-lightness: 0.985;
@@ -22,13 +22,13 @@
   --secondary-default: 247.8deg 100% 70%;
   --secondary-400: 248.3deg 54.5% 25.9%;
   --secondary-200: 248deg 53.6% 11%;
-  --brand-link: 24deg 100% 50%;
-  --brand-default: 24deg 100% 50%;
-  --brand-600: 24deg 100% 70%;
-  --brand-500: 24deg 90% 20%;
-  --brand-400: 24deg 100% 10%;
-  --brand-300: 24deg 100% 8%;
-  --brand-200: 24deg 100% 3%;
+  --brand-link: 22.8deg 100% 50%;
+  --brand-default: 22.8deg 100% 50%;
+  --brand-600: 22.8deg 100% 70%;
+  --brand-500: 22.8deg 90% 20%;
+  --brand-400: 22.8deg 100% 10%;
+  --brand-300: 22.8deg 100% 8%;
+  --brand-200: 22.8deg 100% 3%;
   --warning-default: 38.9deg 100% 42.9%;
   --warning-600: 38.9deg 100% 42.9%;
   --warning-500: 34.8deg 90.9% 21.6%;

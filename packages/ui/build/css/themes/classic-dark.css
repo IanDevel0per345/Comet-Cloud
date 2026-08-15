@@ -1,10 +1,11 @@
 [data-theme='classic-dark'],
 .classic-dark {
   --helpers-os-appearance: Dark;
-  --hue: 30;
-  --chroma: 0.014;
-  --surface: 0.205;
-  --foreground-lightness: 0.97;
+  /* Vertra Cloud warm paper: #1f1e1c (h 40, c ~0.014, l 0.20); ink #f2f0e9 (l 0.93) */
+  --hue: 40;
+  --chroma: 0.016;
+  --surface: 0.20;
+  --foreground-lightness: 0.93;
   --muted-foreground-level: 0.72;
   --tertiary-foreground-level: 0.52;
 
@@ -18,13 +19,14 @@
   --secondary-default: 0deg 0% 100%;
   --secondary-400: 0deg 0% 100%;
   --secondary-200: 0deg 0% 100%;
-  --brand-link: 24deg 100% 50%;
-  --brand-default: 24deg 100% 50%;
-  --brand-600: 24deg 100% 70%;
-  --brand-500: 24deg 80% 22%;
-  --brand-400: 24deg 100% 12%;
-  --brand-300: 24deg 100% 8%;
-  --brand-200: 24deg 100% 5%;
+  /* Vertra-inspired warm accent #ff6100 (h 22.8deg 100% 50%) */
+  --brand-link: 22.8deg 100% 50%;
+  --brand-default: 22.8deg 100% 50%;
+  --brand-600: 33deg 100% 62%;
+  --brand-500: 27deg 100% 33%;
+  --brand-400: 22.8deg 100% 12%;
+  --brand-300: 22.8deg 100% 8%;
+  --brand-200: 22.8deg 100% 5%;
   --warning-default: 38.9deg 100% 57.1%;
   --warning-600: 38.9deg 89.8% 49.8%;
   --warning-500: 34.8deg 90.9% 21.6%;

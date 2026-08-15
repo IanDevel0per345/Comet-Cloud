@@ -17,12 +17,14 @@
    * Both default to --hue (Supabase green ≈159° in OKLCH), so a theme that only
    * sets --hue keeps surfaces and brand locked together as before; override
    * either one to let them diverge. */
-  --hue: 30;
+  /* Vertra Cloud-inspired warm neutral (hue 40) with orange brand (hue 22.8 = #ff6100) */
+  --hue: 40;
   --surface-hue: var(--hue);
-  --primary-hue: var(--hue);
+  --primary-hue: 22.8;
   /* Root defaults mirror the dark theme (the app's default appearance). */
-  --chroma: 0.016;
-  --surface: 0.17;
+  /* Warm near-black paper #1f1e1c — slightly warmer (c) and lighter than gray-black */
+  --chroma: 0.014;
+  --surface: 0.20;
 
   --foreground-lightness: 0.95;
   /* How far muted/tertiary text sits from --surface toward --foreground-lightness
@@ -104,7 +106,7 @@
    * (matching the "no additional charge" badge); like the others it pulls a touch
    * with the brand --primary-hue but clamps so it always reads violet.
    */
-  --brand-hue-reference: 30;
+  --brand-hue-reference: 22.8;
   --status-hue-pull: 0.15;
   --warning-hue: clamp(
     65,

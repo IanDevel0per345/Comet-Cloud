@@ -1,8 +1,8 @@
 [data-theme='light'],
 .light {
   --helpers-os-appearance: Light;
-  --hue: 30;
-  --surface-hue: 34;
+  --hue: 40;
+  --surface-hue: 40;
   --chroma: 0;
   /*
    * Soft-gray canvas (not pure white) so elevated surfaces have headroom to
@@ -38,13 +38,13 @@
   --secondary-default: 247.8deg 100% 70%;
   --secondary-400: 248.3deg 54.5% 25.9%;
   --secondary-200: 248deg 53.6% 11%;
-  --brand-link: 24deg 90% 30%;
-  --brand-default: 24deg 100% 52%;
-  --brand-600: 24deg 90% 28%;
-  --brand-500: 24deg 95% 42%;
-  --brand-400: 24deg 100% 68%;
-  --brand-300: 24deg 100% 82%;
-  --brand-200: 24deg 100% 92%;
+  --brand-link: 22.8deg 90% 30%;
+  --brand-default: 22.8deg 100% 52%;
+  --brand-600: 22.8deg 90% 28%;
+  --brand-500: 22.8deg 95% 42%;
+  --brand-400: 22.8deg 100% 68%;
+  --brand-300: 22.8deg 100% 82%;
+  --brand-200: 22.8deg 100% 92%;
   /* --warning-default: 30.3deg 80.3% 47.8%; */
   --warning-600: 30.3deg 80.3% 47.8%;
   --warning-500: 36.3deg 85.7% 67.1%;
