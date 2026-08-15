@@ -43,6 +43,6 @@ describe('SupportRequestMessage', () => {
     expect(screen.queryByText('project-1')).not.toBeInTheDocument()
     expect(screen.queryByText('Granted')).not.toBeInTheDocument()
     expect(screen.queryByText('Client library')).not.toBeInTheDocument()
-    expect(screen.queryByText(/human member of the comet cloud support team/i)).not.toBeInTheDocument()
+    expect(screen.queryByText(/human member of the cometCloud support team/i)).not.toBeInTheDocument()
   })
 })

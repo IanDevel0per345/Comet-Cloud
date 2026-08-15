@@ -382,7 +382,7 @@ const EdgeFunctionDetailsLayout = ({
                             readOnly
                             containerClassName=""
                             className="text-xs font-mono tracking-tighter"
-                            value={`comet cloud functions download ${functionSlug}`}
+                            value={`cometCloud functions download ${functionSlug}`}
                           />
                         </div>
                         <Separator className="bg-border-overlay!" />

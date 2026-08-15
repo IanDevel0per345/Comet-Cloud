@@ -13,8 +13,8 @@ export function SettingsDatabaseEmptyStateLocal() {
         <CardContent>
           <p className="text-sm text-foreground-light mb-4">
             Configure database settings in{' '}
-            <code className="text-code-inline">comet cloud/config.toml</code> — applied automatically
-            on <code className="text-code-inline">comet cloud start</code>.
+            <code className="text-code-inline">cometcloud/config.toml</code> — applied automatically
+            on <code className="text-code-inline">cometcloud start</code>.
           </p>
           <DocsButton href={`${DOCS_URL}/guides/local-development/cli/config#database-config`} />
         </CardContent>
@@ -45,7 +45,7 @@ export function SettingsDatabaseEmptyStateLocal() {
             .
           </p>
           <DocsButton
-            href={`${DOCS_URL}/guides/self-hosting/docker#configuring-and-securing-comet cloud`}
+            href={`${DOCS_URL}/guides/self-hosting/docker#configuring-and-securing-cometcloud`}
           />
         </CardContent>
       </Card>

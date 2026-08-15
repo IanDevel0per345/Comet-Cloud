@@ -12,7 +12,7 @@ function ClaudeAuthenticateContent(_props: StepContentProps) {
         language="bash"
       />
       <p className="text-sm text-foreground-lighter">
-        Select the <code className="text-code-inline">comet cloud</code> server, then{' '}
+        Select the <code className="text-code-inline">cometcloud</code> server, then{' '}
         <code className="text-code-inline">Authenticate</code> to begin the flow.
       </p>
     </div>

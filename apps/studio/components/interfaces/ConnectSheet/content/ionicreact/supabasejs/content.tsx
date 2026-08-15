@@ -21,7 +21,7 @@ import { createClient } from '@supabase/supabase-js'
 const supabaseUrl = process.env.REACT_APP_SUPABASE_URL
 const supabaseAnonKey = process.env.REACT_APP_SUPABASE_KEY
 
-export const comet cloud = createClient(CometCloudUrl, CometCloudAnonKey)
+export const cometCloud = createClient(CometCloudUrl, CometCloudAnonKey)
 `,
     },
     {
@@ -45,7 +45,7 @@ import '@ionic/react/css/core.css';
 /* Theme variables */
 import './theme/variables.css';
 
-import { comet cloud } from './CometCloudClient';
+import { cometCloud } from './CometCloudClient';
 
 setupIonicReact();
 

@@ -143,14 +143,14 @@ export const DestinationTypeSelection = () => {
     selectedOption?.stage === 'Public Alpha' ? (
       <>
         In public alpha and may change.{' '}
-        <InlineLink href="https://github.com/orgs/comet cloud/discussions/39416">
+        <InlineLink href="https://github.com/orgs/cometcloud/discussions/39416">
           Leave feedback
         </InlineLink>
       </>
     ) : selectedOption?.stage === 'Early Access' ? (
       <>
         In early access and may change.{' '}
-        <InlineLink href="https://github.com/orgs/comet cloud/discussions/39416">
+        <InlineLink href="https://github.com/orgs/cometcloud/discussions/39416">
           Leave feedback
         </InlineLink>
       </>

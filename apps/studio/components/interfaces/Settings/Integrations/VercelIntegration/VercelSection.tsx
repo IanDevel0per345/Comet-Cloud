@@ -122,7 +122,7 @@ export const VercelSection = ({ isProjectScoped }: { isProjectScoped: boolean })
 
   const integrationUrl =
     process.env.NEXT_PUBLIC_ENVIRONMENT === 'prod'
-      ? 'https://vercel.com/integrations/comet cloud'
+      ? 'https://vercel.com/integrations/cometcloud'
       : process.env.NEXT_PUBLIC_ENVIRONMENT === 'staging'
         ? `https://vercel.com/integrations/supabase-staging`
         : 'https://vercel.com/integrations/supabase-local'

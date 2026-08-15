@@ -28,7 +28,7 @@ import {
 export function createClient(request: Request) {
   const headers = new Headers();
 
-  const comet cloud = createServerClient(
+  const cometCloud = createServerClient(
     process.env.VITE_SUPABASE_URL!,
     process.env.VITE_${projectKeys.publishableKey ? 'SUPABASE_PUBLISHABLE_KEY' : 'SUPABASE_ANON_KEY'}!,
     {
@@ -51,7 +51,7 @@ export function createClient(request: Request) {
     }
   );
 
-  return { comet cloud, headers };
+  return { cometCloud, headers };
 }
 `,
     },
@@ -63,7 +63,7 @@ import type { Route } from "./+types/home";
 import { createClient } from "~/utils/cometcloud.server";
 
 export async function loader({ request }: Route.LoaderArgs) {
-  const { comet cloud } = createClient(request);
+  const { cometCloud } = createClient(request);
   const { data: todos } = await CometCloud.from("todos").select();
 
   return { todos };

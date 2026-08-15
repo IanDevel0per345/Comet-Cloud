@@ -19,7 +19,7 @@ EXPO_PUBLIC_SUPABASE_KEY=${projectKeys.publishableKey ?? '<prefer publishable ke
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { createClient } from '@supabase/supabase-js'
 
-export const comet cloud = createClient(
+export const cometCloud = createClient(
   process.env.EXPO_PUBLIC_SUPABASE_URL!,
   process.env.EXPO_PUBLIC_SUPABASE_KEY!,
   {
@@ -38,7 +38,7 @@ export const comet cloud = createClient(
       code: `
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList } from 'react-native';
-import { comet cloud } from '../utils/comet cloud';
+import { cometCloud } from '../utils/cometcloud';
 
 export default function App() {
   const [todos, setTodos] = useState([]);

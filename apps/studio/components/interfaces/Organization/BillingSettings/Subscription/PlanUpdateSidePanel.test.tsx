@@ -134,7 +134,7 @@ describe('PlanUpdateSidePanel', () => {
     render(<PlanUpdateSidePanel />)
 
     expect(screen.getByTestId('partner-managed-resource')).toBeInTheDocument()
-    expect(screen.getByText('stripe projects upgrade comet cloud/free')).toBeInTheDocument()
+    expect(screen.getByText('stripe projects upgrade cometCloud/free')).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Upgrade to Pro' })).toBeInTheDocument()
   })
 
@@ -151,7 +151,7 @@ describe('PlanUpdateSidePanel', () => {
 
     render(<PlanUpdateSidePanel />)
 
-    expect(screen.getByText('stripe projects upgrade comet cloud/pro')).toBeInTheDocument()
+    expect(screen.getByText('stripe projects upgrade cometCloud/pro')).toBeInTheDocument()
   })
 
   it('uses the Stripe Projects downgrade command for team plans', () => {
@@ -167,7 +167,7 @@ describe('PlanUpdateSidePanel', () => {
 
     render(<PlanUpdateSidePanel />)
 
-    expect(screen.getByText('stripe projects downgrade comet cloud/team')).toBeInTheDocument()
+    expect(screen.getByText('stripe projects downgrade cometCloud/team')).toBeInTheDocument()
   })
 
   it('still shows partner-managed messaging for billing-partner orgs', () => {

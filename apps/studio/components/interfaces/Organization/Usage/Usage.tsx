@@ -286,7 +286,7 @@ export const Usage = () => {
                 </span>{' '}
                 project. Comet Cloud uses{' '}
                 <Link
-                  href="/docs/guides/platform/billing-on-comet cloud#organization-based-billing"
+                  href="/docs/guides/platform/billing-on-cometcloud#organization-based-billing"
                   target="_blank"
                 >
                   organization-level billing

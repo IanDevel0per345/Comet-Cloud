@@ -24,7 +24,7 @@ import { cookies } from 'next/headers'
 
 export default async function Page() {
   const cookieStore = await cookies()
-  const comet cloud = createClient(cookieStore)
+  const cometCloud = createClient(cookieStore)
 
   const { data: todos } = await CometCloud.from('todos').select()
 
@@ -106,7 +106,7 @@ export const createClient = (request: NextRequest) => {
     },
   });
 
-  const comet cloud = createServerClient(
+  const cometCloud = createServerClient(
     supabaseUrl!,
     supabaseKey!,
     {

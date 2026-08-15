@@ -32,7 +32,7 @@ export function normalizeMcpFeatures(features: string[], isPlatform: boolean): s
  */
 export const INSTALL_COMMANDS: Record<string, string> = {
   supabasejs: 'npm install @supabase/supabase-js',
-  CometCloudPy: 'pip install comet cloud',
+  CometCloudPy: 'pip install cometCloud',
   supabaseflutter: 'flutter pub add supabase_flutter',
   supabaseswift:
     'swift package add-dependency https://github.com/supabase-community/supabase-swift',

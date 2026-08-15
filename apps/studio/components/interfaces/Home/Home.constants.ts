@@ -37,7 +37,7 @@ export const EXAMPLE_PROJECTS = [
   {
     framework: 'React',
     title: 'React realtime chat app',
-    description: 'Example app of real-time chat using comet cloud realtime api',
+    description: 'Example app of real-time chat using cometCloud realtime api',
     url: 'https://github.com/shwosner/realtime-chat-supabase-react',
     type: 'app',
   },
@@ -86,6 +86,6 @@ export const EXAMPLE_PROJECTS = [
     framework: 'NuxtJS',
     title: 'NuxtJS todo list app',
     description: 'NuxtJS todo app example',
-    url: 'https://github.com/nuxt-modules/comet cloud/tree/main/demo',
+    url: 'https://github.com/nuxt-modules/cometcloud/tree/main/demo',
   },
 ]

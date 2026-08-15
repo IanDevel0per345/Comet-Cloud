@@ -31,7 +31,7 @@ import { createClient } from '@supabase/supabase-js'
 
 const supabaseUrl = '${endpoint}'
 const supabaseKey = process.env.SUPABASE_KEY
-const comet cloud = createClient(CometCloudUrl, CometCloudKey)`,
+const cometCloud = createClient(CometCloudUrl, CometCloudKey)`,
     bash: () => `# No client library required for Bash.`,
   },
   clientApiKeys: {
@@ -375,7 +375,7 @@ Create a Comet Cloud Edge Function locally via the Comet Cloud CLI.
 `,
     js: () => `// Create an edge function via the Comet Cloud CLI`,
     bash: () => `
-comet cloud functions new hello-world
+cometcloud functions new hello-world
 `,
   },
   deployEdgeFunction: {
@@ -386,7 +386,7 @@ comet cloud functions new hello-world
 Deploy a Comet Cloud Edge Function to your Comet Cloud project via the Comet Cloud CLI.
 `,
     js: () => `// Deploy an edge function via the Comet Cloud CLI`,
-    bash: () => `comet cloud functions deploy hello-world --project-ref [ref]
+    bash: () => `cometCloud functions deploy hello-world --project-ref [ref]
 `,
   },
   // Entities
@@ -440,7 +440,7 @@ const { loading, error, data } = useQuery(gql\`
     \`)
 
 // With Comet Cloud
-const { data, error } = await comet cloud
+const { data, error } = await cometCloud
   .from('dogs')
   .select(\`
       id, breed,
@@ -463,7 +463,7 @@ const { loading, error, data } = useQuery(gql\`
     \`)
 
 // With Comet Cloud
-const { data, error } = await comet cloud
+const { data, error } = await cometCloud
   .from('dogs')
   .select(\`
       id, breed,
@@ -512,7 +512,7 @@ Creates an event handler that listens to changes.
 - Row level security is not applied to delete statements. When RLS is enabled and replica identity is set to full, only the primary key is sent to clients.
 `,
     js: () => `
-comet cloud
+cometcloud
   .channel('any')
   .on('broadcast', { event: 'cursor-pos' }, payload => {
     console.log('Cursor position received!', payload)
@@ -622,7 +622,7 @@ export const DOCS_RESOURCE_CONTENT: {
   }
         `,
           js: `
-let { data, error } = await comet cloud
+let { data, error } = await cometCloud
   .rpc('${rpcName}'${jsParams})
 
 if (error) console.error(error)
@@ -657,7 +657,7 @@ curl '${endpoint}/rest/v1/${resourceId}?select=*' \\
 -H "Authorization: Bearer ${apikey}"
           `,
           js: `
-let { data: ${resourceId}, error } = await comet cloud
+let { data: ${resourceId}, error } = await cometCloud
   .from('${resourceId}')
   .select('*')
           `,
@@ -671,7 +671,7 @@ curl '${endpoint}/rest/v1/${resourceId}?select=some_column,other_column' \\
 -H "Authorization: Bearer ${apikey}"
           `,
           js: `
-let { data: ${resourceId}, error } = await comet cloud
+let { data: ${resourceId}, error } = await cometCloud
   .from('${resourceId}')
   .select('some_column,other_column')
   `,
@@ -685,7 +685,7 @@ curl '${endpoint}/rest/v1/${resourceId}?select=some_column,other_table(foreign_k
 -H "Authorization: Bearer ${apikey}"
           `,
           js: `
-let { data: ${resourceId}, error } = await comet cloud
+let { data: ${resourceId}, error } = await cometCloud
   .from('${resourceId}')
   .select(\`
     some_column,
@@ -705,7 +705,7 @@ curl '${endpoint}/rest/v1/${resourceId}?select=*' \\
 -H "Range: 0-9"
           `,
           js: `
-let { data: ${resourceId}, error } = await comet cloud
+let { data: ${resourceId}, error } = await cometCloud
   .from('${resourceId}')
   .select('*')
   .range(0, 9)
@@ -761,7 +761,7 @@ curl --get '${endpoint}/rest/v1/${resourceId}' \\
 -d "or=(some_column.eq.Some+value,other_column.eq.Other+value)"
         `,
           js: `
-let { data: ${resourceId}, error } = await comet cloud
+let { data: ${resourceId}, error } = await cometCloud
   .from('${resourceId}')
   .select("*")
 
@@ -821,7 +821,7 @@ curl -X POST '${endpoint}/rest/v1/${resourceId}' \\
 -d '{ "some_column": "someValue", "other_column": "otherValue" }'
           `,
           js: `
-const { data, error } = await comet cloud
+const { data, error } = await cometCloud
   .from('${resourceId}')
   .insert([
     { some_column: 'someValue', other_column: 'otherValue' },
@@ -840,7 +840,7 @@ curl -X POST '${endpoint}/rest/v1/${resourceId}' \\
 -d '[{ "some_column": "someValue" }, { "other_column": "otherValue" }]'
           `,
           js: `
-const { data, error } = await comet cloud
+const { data, error } = await cometCloud
   .from('${resourceId}')
   .insert([
     { some_column: 'someValue' },
@@ -861,7 +861,7 @@ curl -X POST '${endpoint}/rest/v1/${resourceId}' \\
 -d '{ "some_column": "someValue", "other_column": "otherValue" }'
           `,
           js: `
-const { data, error } = await comet cloud
+const { data, error } = await cometCloud
   .from('${resourceId}')
   .upsert({ some_column: 'someValue' })
   .select()
@@ -902,7 +902,7 @@ curl -X PATCH '${endpoint}/rest/v1/${resourceId}?some_column=eq.someValue' \\
 -d '{ "other_column": "otherValue" }'
           `,
           js: `
-const { data, error } = await comet cloud
+const { data, error } = await cometCloud
   .from('${resourceId}')
   .update({ other_column: 'otherValue' })
   .eq('some_column', 'someValue')
@@ -939,7 +939,7 @@ curl -X DELETE '${endpoint}/rest/v1/${resourceId}?some_column=eq.someValue' \\
 -H "Authorization: Bearer ${apikey}"
           `,
           js: `
-const { error } = await comet cloud
+const { error } = await cometCloud
   .from('${resourceId}')
   .delete()
   .eq('some_column', 'someValue')
@@ -1061,7 +1061,7 @@ curl -X POST '${endpoint}/storage/v1/object/${name}/folder/avatar1.png' \\
         `,
         js: `
 const avatarFile = event.target.files[0]
-const { data, error } = await comet cloud
+const { data, error } = await cometCloud
   .storage
   .from('${name}')
   .upload('folder/avatar1.png', avatarFile, {
@@ -1093,7 +1093,7 @@ curl -X DELETE '${endpoint}/storage/v1/object/${name}' \\
 -d '{ "prefixes": ["file_name", "another_file_name"] }'
 `,
         js: `
-const { data, error } = await comet cloud
+const { data, error } = await cometCloud
   .storage
   .from('${name}')
   .remove(['folder/avatar1.png'])
@@ -1121,7 +1121,7 @@ curl -X POST '${endpoint}/storage/v1/object/list/${name}' \\
 -H "Authorization: Bearer ${apikey}" \\
 -d '{ "limit": 100, "offset": 0, "prefix": "", "sortBy": { "column": "name", "order": "asc" } }'`,
         js: `
-const { data, error } = await comet cloud
+const { data, error } = await cometCloud
   .storage
   .from('${name}')
   .list('folder', {
@@ -1154,7 +1154,7 @@ curl -X GET '${endpoint}/storage/v1/object/${name}/folder/avatar1.png' \\
 --output avatar1.png
 `,
         js: `
-const { data, error } = await comet cloud
+const { data, error } = await cometCloud
   .storage
   .from('${name}')
   .download('folder/avatar1.png')
@@ -1183,7 +1183,7 @@ curl -X POST '${endpoint}/storage/v1/object/sign/${name}/folder/avatar1.png' \\
 -d '{ "expiresIn": 60 }'
         `,
         js: `
-const { data, error } = await comet cloud
+const { data, error } = await cometCloud
   .storage
   .from('${name}')
   .createSignedUrl('folder/avatar1.png', 60)
@@ -1224,7 +1224,7 @@ RLS policy permissions required:
 # You can construct the public URL by concatenating the bucket URL with the path to the asset
 # e.g ${endpoint}/storage/v1/object/public/${name}/folder/avatar1.png`,
         js: `
-const { data } = comet cloud
+const { data } = cometCloud
   .storage
   .from('${name}')
   .getPublicUrl('folder/avatar1.png')
@@ -1255,7 +1255,7 @@ curl --request POST '${endpoint}/functions/v1/${name}' \\
 --data '{ "name": "Functions" }'
         `,
         js: `
-const { data, error } = await comet cloud
+const { data, error } = await cometCloud
   .functions
   .invoke('${name}', {
     body: { foo: 'bar' }

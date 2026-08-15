@@ -441,7 +441,7 @@ export const GitHubIntegrationConnectionForm = ({
                           description={
                             <>
                               Relative path to the directory containing your{' '}
-                              <code className="text-code-inline whitespace-nowrap">comet cloud/</code>{' '}
+                              <code className="text-code-inline whitespace-nowrap">cometcloud/</code>{' '}
                               folder.{' '}
                               <InlineLink
                                 href={`${DOCS_URL}/guides/deployment/branching/github-integration#set-the-working-directory`}

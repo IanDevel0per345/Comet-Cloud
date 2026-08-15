@@ -18,7 +18,7 @@ VITE_SUPABASE_KEY=${projectKeys.publishableKey ?? projectKeys.anonKey ?? 'your-a
       code: `
 import { createClient } from "@supabase/supabase-js";
 
-export const comet cloud = createClient(
+export const cometCloud = createClient(
   import.meta.env.VITE_SUPABASE_URL,
   import.meta.env.VITE_SUPABASE_KEY
 );
@@ -29,7 +29,7 @@ export const comet cloud = createClient(
       language: 'tsx',
       code: `
 import { createFileRoute } from '@tanstack/react-router'
-import { comet cloud } from '../utils/comet cloud'
+import { cometCloud } from '../utils/cometcloud'
 
 export const Route = createFileRoute('/')({
   loader: async () => {

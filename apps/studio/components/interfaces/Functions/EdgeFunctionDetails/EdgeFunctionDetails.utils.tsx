@@ -14,24 +14,24 @@ export const generateCLICommands = ({
 }) => {
   const managementCommands: any = [
     {
-      command: `comet cloud functions deploy ${selectedFunction?.slug}`,
+      command: `cometCloud functions deploy ${selectedFunction?.slug}`,
       description: 'This will overwrite the deployed function with your new function',
       jsx: () => {
         return (
           <>
-            <span className="text-brand">comet cloud</span> functions deploy {selectedFunction?.slug}
+            <span className="text-brand">cometcloud</span> functions deploy {selectedFunction?.slug}
           </>
         )
       },
       comment: 'Deploy a new version',
     },
     {
-      command: `comet cloud functions delete ${selectedFunction?.slug}`,
+      command: `cometCloud functions delete ${selectedFunction?.slug}`,
       description: 'This will remove the function and all the logs associated with it',
       jsx: () => {
         return (
           <>
-            <span className="text-brand">comet cloud</span> functions delete {selectedFunction?.slug}
+            <span className="text-brand">cometcloud</span> functions delete {selectedFunction?.slug}
           </>
         )
       },
@@ -41,36 +41,36 @@ export const generateCLICommands = ({
 
   const secretCommands: any = [
     {
-      command: `comet cloud secrets list`,
+      command: `cometCloud secrets list`,
       description: 'This will list all the secrets for your project',
       jsx: () => {
         return (
           <>
-            <span className="text-brand">comet cloud</span> secrets list
+            <span className="text-brand">cometcloud</span> secrets list
           </>
         )
       },
       comment: 'View all secrets',
     },
     {
-      command: `comet cloud secrets set NAME1=VALUE1 NAME2=VALUE2`,
+      command: `cometCloud secrets set NAME1=VALUE1 NAME2=VALUE2`,
       description: 'This will set secrets for your project',
       jsx: () => {
         return (
           <>
-            <span className="text-brand">comet cloud</span> secrets set NAME1=VALUE1 NAME2=VALUE2
+            <span className="text-brand">cometcloud</span> secrets set NAME1=VALUE1 NAME2=VALUE2
           </>
         )
       },
       comment: 'Set secrets for your project',
     },
     {
-      command: `comet cloud secrets unset NAME1 NAME2 `,
+      command: `cometCloud secrets unset NAME1 NAME2 `,
       description: 'This will delete secrets for your project',
       jsx: () => {
         return (
           <>
-            <span className="text-brand">comet cloud</span> secrets unset NAME1 NAME2
+            <span className="text-brand">cometcloud</span> secrets unset NAME1 NAME2
           </>
         )
       },

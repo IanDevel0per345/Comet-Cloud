@@ -11,33 +11,33 @@ export const MigrationsEmptyState = () => {
   const commands = [
     {
       comment: 'Link your project',
-      command: `comet cloud link --project-ref ${ref}`,
+      command: `cometCloud link --project-ref ${ref}`,
       jsx: () => {
         return (
           <>
-            <span className="text-brand-600">comet cloud</span> link --project-ref {ref}
+            <span className="text-brand-600">cometcloud</span> link --project-ref {ref}
           </>
         )
       },
     },
     {
       comment: 'Create a new migration called "new-migration"',
-      command: `comet cloud migration new new-migration`,
+      command: `cometCloud migration new new-migration`,
       jsx: () => {
         return (
           <>
-            <span className="text-brand-600">comet cloud</span> migration new new-migration
+            <span className="text-brand-600">cometcloud</span> migration new new-migration
           </>
         )
       },
     },
     {
       comment: 'Run all migrations for this project',
-      command: `comet cloud db push`,
+      command: `cometCloud db push`,
       jsx: () => {
         return (
           <>
-            <span className="text-brand-600">comet cloud</span> db push
+            <span className="text-brand-600">cometcloud</span> db push
           </>
         )
       },

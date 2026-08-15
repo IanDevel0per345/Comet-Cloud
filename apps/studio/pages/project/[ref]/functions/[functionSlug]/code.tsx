@@ -171,7 +171,7 @@ const CodePage = () => {
                 <li>
                   2. Redeploy your function using:{' '}
                   <code className="text-xs bg-muted px-1 py-0.5 rounded">
-                    comet cloud functions deploy
+                    cometCloud functions deploy
                   </code>
                 </li>
                 <li>

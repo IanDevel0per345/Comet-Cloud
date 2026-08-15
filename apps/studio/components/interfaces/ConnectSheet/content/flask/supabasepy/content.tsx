@@ -18,14 +18,14 @@ SUPABASE_KEY=${projectKeys.publishableKey ?? projectKeys.anonKey ?? 'your-anon-k
       code: `
 import os
 from flask import Flask
-from comet cloud import create_client, Client
+from cometCloud import create_client, Client
 from dotenv import load_dotenv
 
 load_dotenv()
 
 app = Flask(__name__)
 
-comet cloud: Client = create_client(
+cometcloud: Client = create_client(
     os.environ.get("SUPABASE_URL"),
     os.environ.get("SUPABASE_KEY")
 )

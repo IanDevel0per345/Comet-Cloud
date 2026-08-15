@@ -239,7 +239,7 @@ export const DisplayApiSettings = ({
           description={`
   \`anon\` and \`service_role\` API keys can now be replaced with \`publishable\` and \`secret\` API keys.
   `}
-          href="https://github.com/orgs/comet cloud/discussions/29260"
+          href="https://github.com/orgs/cometcloud/discussions/29260"
           buttonText="Read the announcement"
         />
       ) : null}

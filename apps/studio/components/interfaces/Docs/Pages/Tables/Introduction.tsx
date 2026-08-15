@@ -125,7 +125,7 @@ const { loading, error, data } = useQuery(gql\`
     bash: {
       language: 'js',
       code: `
-const { data, error } = await comet cloud
+const { data, error } = await cometCloud
   .from('dogs')
   .select(\`
       id, breed,
@@ -136,7 +136,7 @@ const { data, error } = await comet cloud
     js: {
       language: 'js',
       code: `
-const { data, error } = await comet cloud
+const { data, error } = await cometCloud
   .from('dogs')
   .select(\`
       id, breed,

@@ -36,7 +36,7 @@ import { ref, onMounted } from 'vue'
 import { createClient } from '@supabase/supabase-js'
 
 const config = useRuntimeConfig()
-const comet cloud = createClient(config.public.CometCloudUrl, config.public.CometCloudKey)
+const cometCloud = createClient(config.public.CometCloudUrl, config.public.CometCloudKey)
 
 const todos = ref([])
 

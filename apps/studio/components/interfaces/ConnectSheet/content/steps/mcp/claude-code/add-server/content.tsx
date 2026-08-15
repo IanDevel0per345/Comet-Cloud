@@ -5,7 +5,7 @@ import { useMcpUrl } from '@/components/interfaces/ConnectSheet/useMcpUrl'
 
 function ClaudeAddServerContent({ state, projectKeys }: StepContentProps) {
   const mcpUrl = useMcpUrl(state, projectKeys)
-  const command = `claude mcp add --scope project --transport http comet cloud "${mcpUrl}"`
+  const command = `claude mcp add --scope project --transport http cometCloud "${mcpUrl}"`
 
   return (
     <CodeBlock

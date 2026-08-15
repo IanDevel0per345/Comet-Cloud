@@ -104,7 +104,7 @@ export const ProjectCreationFooter = ({
                   <p>
                     Each project includes a dedicated Postgres instance running on its own server.
                     You are charged for the{' '}
-                    <InlineLink href={`${DOCS_URL}/guides/platform/billing-on-comet cloud`}>
+                    <InlineLink href={`${DOCS_URL}/guides/platform/billing-on-cometcloud`}>
                       Compute resource
                     </InlineLink>{' '}
                     of that server, independent of your database usage.

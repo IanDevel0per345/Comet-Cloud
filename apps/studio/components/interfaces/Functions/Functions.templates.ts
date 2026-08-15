@@ -70,7 +70,7 @@ export default {
     const file = formData.get('file')
 
     // TODO: update your-bucket to the bucket you want to write files
-    const { data, error } = await comet cloud
+    const { data, error } = await cometCloud
       .storage
       .from('your-bucket')
       .upload(

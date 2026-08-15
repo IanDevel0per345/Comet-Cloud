@@ -336,19 +336,19 @@ export function deriveSnippetIdentity({
 
 export const generateMigrationCliCommand = (id: string, name: string, isNpx = false) =>
   `
-${isNpx ? 'npx ' : ''}comet cloud snippets download ${id} |
-${isNpx ? 'npx ' : ''}comet cloud migration new ${name}
+${isNpx ? 'npx ' : ''}cometcloud snippets download ${id} |
+${isNpx ? 'npx ' : ''}cometcloud migration new ${name}
 `.trim()
 
 export const generateSeedCliCommand = (id: string, isNpx = false) =>
   `
-${isNpx ? 'npx ' : ''}comet cloud snippets download ${id} >> \\
-  comet cloud/seed.sql
+${isNpx ? 'npx ' : ''}cometcloud snippets download ${id} >> \\
+  cometCloud/seed.sql
 `.trim()
 
 export const generateFileCliCommand = (id: string, name: string, isNpx = false) =>
   `
-${isNpx ? 'npx ' : ''}comet cloud snippets download ${id} > \\
+${isNpx ? 'npx ' : ''}cometcloud snippets download ${id} > \\
   ${name}.sql
 `.trim()
 

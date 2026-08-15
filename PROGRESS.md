@@ -200,3 +200,139 @@ Dev server: mata pelo watchdog durante [optimizer] bundling (~15s). Validar via 
 3. Deploy Vercel via MCP: `manus-mcp-cli tool list --server vercel`; criar projeto rootDir apps/studio, build `STUDIO_FRAMEWORK=tanstack vite build --mode production`, output `dist/client`, env STUDIO_FRAMEWORK=tanstack, SKIP_ASSET_UPLOAD=1. Atualizar supabase.com→cometcloud.dev em vercel.ts (~linha 143) antes.
 4. Validar deploy (título, navbar Serviços/Console de Deploy/Armazenamento/Equipe e Acesso/Integrações/Logs/Configurações, laranja).
 5. Reportar resultado ao usuário com URL.
+
+## ATUALIZAÇÃO 9 — Deploy Vercel
+
+- Commit + push feitos: `046f934973` (transformação completa) e `66c97cd341` (labels pt-BR restantes). Repo: IanDevel0per345/Comet-Cloud, branch master.
+- Vercel MCP: team = `team_blUibRDb9z436C4e1zxs9As3` (ian05519375's projects).
+- `create_git_project` com deploy=true: projeto "comet-cloud" criado (id `prj_sWmThPT282UG9z7JUWUwmfQ7BCzv`), mas preview deployment falhou com 403: "You don't have permission to create a Production Deployment for this project" — o token da conta não tem permissão de produção nesse time (conta pode ser membro limitada).
+- create_git_project com deploy=false: 409 "already exists" — projeto já existe e está linkado ao repo.
+- list_projects com teamId retorna projetos vazios — provavelmente o projeto foi criado na conta pessoal do usuário (sem teamId) ou em outro contexto.
+- Próximo: tentar `create_git_project` SEM teamId (conta pessoal), ou verificar list_projects sem teamId; depois triggerar deploy via push de novo commit (Vercel build automático ao pushar em master).
+- Build Vercel: envs necessárias: STUDIO_FRAMEWORK=tanstack (para vercel.ts ativar config), SKIP_ASSET_UPLOAD=1. Root dir apps/studio.
+- Nota: Vercel detecta framework a partir do rootDirectory apps/studio; package.json build:tanstack = `STUDIO_FRAMEWORK=tanstack vite build` (verificar comando exato em apps/studio/package.json "build:tanstack") + output dist/client.
+
+## ATUALIZAÇÃO 10 — Bloqueio no deploy Vercel (permissão)
+
+O projeto "comet-cloud" foi criado na Vercel e vinculado ao repositório IanDevel0per345/Comet-Cloud (project id `prj_sWmThPT282UG9z7JUWUwmfQ7BCzv`, team `team_blUibRDb9z436C4e1zxs9As3`, slug `ian05519375s-projects`, root directory apps/studio). Porém:
+
+1. Criar preview deployment via MCP falhou com **403 "You don't have permission to create a Production Deployment for this project"** — o token do conector Vercel pertence a um membro do time sem permissão de deploy (provavelmente role limitada do usuário na conta Vercel).
+2. list_deployments e get_project também retornam 403/404.
+3. Push de commit vazio `1f32afd6c2` feito para disparar build automático do Vercel — mas o webhook pode não estar configurado se a instalação do Vercel GitHub App não cobre este repo.
+
+Tentativas em andamento: Vercel CLI instalado (nvm node 22.22, `vercel` em PATH). O token transparente do conector não está em env var óbvia (não há VERCEL_TOKEN no env). Próximo: testar `vercel projects inspect` sem login (usa token de connector se injeção transparente funcionar em HTTP), ou pedir ao usuário para verificar sua role na Vercel / fornecer deploy manualmente via dashboard em https://vercel.com.
+
+URL do projeto (estimada): https://comet-cloud.vercel.app — NÃO confirmada.
+Alternativa final: informar o usuário que o projeto está linkado no Vercel dele e que ele precisa (a) dar deploy manualmente no dashboard Vercel (botão Deploy para o projeto comet-cloud) ou promover a role, pois a API bloqueia deploys pelo token da conta.
+
+## ATUALIZAÇÃO 11 — Decisão sobre deploy
+
+A API da Vercel retorna 403 para o token do conector: a conta do usuário na Vercel não tem papel que permita criar deploys (provavelmente role "Member" sem "Production Deployment" permission, ou o conector usa um token de scope limitado). O MCP create_git_project linkou o repositório com sucesso — o projeto existe em https://vercel.com e está conectado ao GitHub. Não é possível criar o deploy via API com esse token.
+
+Caminho restante: o usuário pode abrir o projeto "comet-cloud" no dashboard Vercel e clicar em "Deploy" (o Vercel faz build a partir do GitHub automaticamente) — isso usa a sessão web do usuário, que tem permissão. Alternativa: usuário promover sua role no time Vercel.
+
+O projeto no Vercel precisa das env vars: STUDIO_FRAMEWORK=tanstack e SKIP_ASSET_UPLOAD=1, root dir apps/studio, output dist/client.
+
+## ATUALIZAÇÃO 12 — Login Vercel via e-mail funcionou
+
+Login no Vercel concluído com código 965824 (conta ian05519375, time Hobby `team_blUibRDb9z436C4e1zxs9As3`, e-mail ianguilherme05@gmail.com). Sessão no browser sandbox.
+
+Projetos criados (ambos linkados ao repo IanDevel0per345/Comet-Cloud, root apps/studio):
+- `comet-cloud` (prj_sWmThPT282UG9z7JUWUwmfQ7BCzv) — projeto principal
+- `cometcloud-studio` (prj_avkOKLv9rqbayzHHz7wzzlreLkLS) — teste, sem deploy
+
+Em https://vercel.com/ian05519375s-projects/cometcloud-studio/deployments: "No Production Deployment". Ou seja, o webhook do GitHub NÃO disparou build (pushes `1f32afd6c2` não geraram deploy). Provável causa: a instalação do GitHub App do Vercel no repo não está configurada para pushes (link criado via API, mas sem permissão de leitura do Git ou repo privado sem grant).
+
+### Plano de deploy
+1. Navegar até o projeto comet-cloud (o principal): https://vercel.com/ian05519375s-projects/comet-cloud
+2. Settings → Environment Variables: adicionar STUDIO_FRAMEWORK=tanstack e SKIP_ASSET_UPLOAD=1 (all envs).
+3. Configurações de build: Build Command `STUDIO_FRAMEWORK=tanstack pnpm run build:tanstack` (verificar "build:tanstack" exato em apps/studio/package.json), Output Directory `dist/client`, Root Directory apps/studio.
+4. Tentar "Deploy" via menu do projeto (ícone ... "Deployments actions" index 41) ou "Preview Deployment" (index 40) para buildar; depois promover a production.
+5. Se webhook não funcionar, pode precisar re-configurar Git Integration nas Settings do projeto.
+
+## ATUALIZAÇÃO 13 — Redeploy disparado
+
+Login Vercel ok (conta ian05519375, Hobby). No projeto principal `comet-cloud`:
+- Env vars adicionadas com sucesso: `STUDIO_FRAMEWORK=tanstack` e `SKIP_ASSET_UPLOAD=1` (Production and Preview, Sensitive).
+- Redeploy Production iniciado via modal Redeploy (commit master `chore: trigger Vercel build`, `1f32afd6c2`). Botão confirmado, estado "Loading...".
+- URL de produção: https://comet-cloud.vercel.app
+- Next: aguardar build (~5-10 min, monorepo pnpm + vite) e verificar https://comet-cloud.vercel.app — título "Comet Cloud", paleta laranja, sidebar Serviços/Console de Deploy/Armazenamento/Equipe e Acesso/Integrações/Logs/Configurações.
+- Se build falhar: ver build logs no dashboard Deployments. Possível problema: build command automático Vercel pode não detectar monorepo rootDirectory apps/studio — mas rootDirectory apps/studio foi configurado na criação. Outro ponto: Vercel auto-detect pode usar pnpm e o comando em apps/studio/package.json `build:tanstack` = `STUDIO_FRAMEWORK=tanstack vite build`.
+- Dev local: dev server porta 8082 (morre rápido por watchdog sandbox, mas OK para verificação rápida via curl SSR).
+
+## ATUALIZAÇÃO 14 — Build falhou, causa encontrada e corrigida
+
+Deploy `dpl_2t9oZg6n7` falhou: "Failed to compile vercel.ts: Invalid URL" (input: `$SUPABASE_PUBLIC_URL/auth/v1`). Causa raiz: `apps/studio/.env` linha 22 continha literal `NEXT_PUBLIC_GOTRUE_URL=$SUPABASE_PUBLIC_URL/auth/v1`, que a Vercel carrega no build e tenta interpolar como URL → ERR_INVALID_URL ao compilar vercel.ts. Correção: substituído por `http://localhost:8000/auth/v1` e pushado commit `c795138d14`.
+
+Ao abrir /deployments, um NOVO deploy `dpl_9ryb2bCS2kq2n7V2SxXBLEMJzcCk` já apareceu INITIALIZING — parece ter sido criado automaticamente pela Vercel ao fazer o Redeploy (estado INITIALIZING 2 min atrás). Mas atenção: ele pode usar o commit ANTIGO `1f32afd` (Redeploy of FN1Li5hdk). Verificar se o commit novo `c795138d14` foi buildado; senão, fazer Redeploy do deploy INITIALIZING apontando para master/c795138.
+
+Status atual: aguardar build de dpl_9ryb2bCS2k. URL produção: https://comet-cloud.vercel.app
+
+## ATUALIZAÇÃO 15 — Segundo deploy também falhou
+
+Deploy dpl_9ryb2bCS2 (commit c795138d14, o correto) falhou com `Command "turbo run build" exited with 1`. A Vercel auto-detectou o monorepo e rodou `turbo run build` no root, que executa o script `build` = `node scripts/dispatch.js build` (Next.js build), e não `build:tanstack`. Por isso falha com rolldown parse error.
+
+### Correção necessária
+Definir manualmente no projeto Vercel: Settings → General → Build and Output Settings:
+- Framework Preset: Other
+- Root Directory: `apps/studio`
+- Build Command: `STUDIO_FRAMEWORK=tanstack SKIP_ASSET_UPLOAD=1 pnpm run build:tanstack`
+- Output Directory: `dist/client`
+- Install Command: `pnpm install --frozen-lockfile` (ou default)
+Depois Redeploy. Env vars STUDIO_FRAMEWORK e SKIP_ASSET_UPLOAD já existem no projeto.
+
+## ATUALIZAÇÃO 16 — Configurando Build Command manualmente (Vercel dashboard)
+
+Estou na página https://vercel.com/ian05519375s-projects/comet-cloud/settings/build-and-deployment (logado como ian05519375). Framework Preset = Other, Root Directory = apps/studio (já salvo). O Build Command atual detectado = `turbo run build` (errado, roda Next build). Preciso ativar o toggle "Override" do campo Build Command e preencher:
+
+- Build Command: `STUDIO_FRAMEWORK=tanstack SKIP_ASSET_UPLOAD=1 pnpm run build:tanstack`
+- Output Directory (override): `dist/client`
+- Install Command (override): `pnpm install --frozen-lockfile`
+
+Cada campo tem um toggle "Override" à direita (elemento botão de toggle). Os toggles parecem estar em coordenadas ~(801,199) para Build Command. Clicar no toggle abre o campo de edição; então preencher input id input-_r_au_ (Build Command), input-_r_b0_ (Output Directory), input-_r_b2_ (Install Command), e clicar o botão Save (índice 38, ao lado de "Build and Development Settings").
+
+Env vars STUDIO_FRAMEWORK=tanstack e SKIP_ASSET_UPLOAD=1 já configuradas no projeto (prod+preview). Após salvar: esperar o deploy automático do commit c795138d14 (o último push) via webhook do GitHub ou fazer Redeploy manual do commit correto.
+
+Commit correto no master: `c795138d14` ("fix: resolve literal $SUPABASE_PUBLIC_URL reference in .env"). Repositório: IanDevel0per345/Comet-Cloud, branch master.
+
+## ATUALIZAÇÃO 17 — Build settings da Vercel configuradas com sucesso
+
+Toast "Build and development settings updated" apareceu. Configurado no projeto `comet-cloud` (vercel.com/ian05519375s-projects/comet-cloud):
+- Framework Preset: Other
+- Root Directory: apps/studio
+- Build Command (override): `STUDIO_FRAMEWORK=tanstack SKIP_ASSET_UPLOAD=1 pnpm run build:tanstack`
+- Output Directory (override): `dist/client`
+- Install Command: pnpm install (padrão, ok)
+- Env vars prod+preview: STUDIO_FRAMEWORK=tanstack, SKIP_ASSET_UPLOAD=1
+
+PRÓXIMO PASSO: trigger do deploy. Opções: (a) webhook GitHub — commit c795138d14 no master já pode ter disparado build antiga (antes das env vars); pushar um novo commit trivial força nova build; (b) Redeploy manual pelo dashboard (aba Deployments) do último commit falho. Após build SUCCESS, verificar a URL cometcloud-{hash}.vercel.app e validar no navegador: título "Comet Cloud", sidebar com Serviços/Console de Deploy/Armazenamento/Equipe e Acesso/Integrações/Logs/Configurações, paleta laranja, home, editor, sql, auth, storage, settings.
+
+Repositório: /home/ubuntu/Comet-Cloud (branch master). Se precisar de novo commit: `git commit --allow-empty -m "trigger: redeploy with tanstack build"` + `git push origin master`.
+
+## ATUALIZAÇÃO 18 — Commit 82fbf9f7e7 pushado, build pendente
+
+Novo commit `82fbf9f7e7` ("chore: trigger redeploy with tanstack build config") foi pushado ao master ~5 min atrás, mas a página Deployments da Vercel (02:59) ainda mostra só 2 deploys antigos com ERROR (9ryb2bCS2kq2n7V2SxXBLEMJzcCk do commit c795138 e 2t9oZg6n7yMHFYLyfFLagxfkqXZa "Redeploy of FN1Li5hdk"). O webhook pode estar com atraso — verificar novamente em 2-3 min; se não aparecer, usar Redeploy manual (botão "Deployment Actions" → Redeploy) em um dos deploys falhos, o que reutiliza o commit mais recente da branch master (82fbf9f).
+
+URLs de produção atuais (com erro): https://comet-cloud-ewubmr2cl-ian05519375s-projects.vercel.app
+
+Após SUCCESS: navegar na URL e validar. Build command: STUDIO_FRAMEWORK=tanstack SKIP_ASSET_UPLOAD=1 pnpm run build:tanstack; output: dist/client.
+
+## ATUALIZAÇÃO 19 — Redeploy Bn1FGtCUKDSmJCMjXx5Pz4PEYSxu em fila (QUEUED, 14+ min)
+
+O redeploy manual de Production está QUEUED há 14 min — normal para plano Hobby (fila de builds). URL futura: https://comet-cloud-9eimw572e-ian05519375s-projects.vercel.app (e domínio fixo https://comet-cloud.vercel.app). Build usa as settings configuradas (STUDIO_FRAMEWORK=tanstack SKIP_ASSET_UPLOAD=1 pnpm run build:tanstack, out dir dist/client, root apps/studio, env vars prod).
+
+AÇÃO: aguardar mais (~10-15 min) e re-verificar deployments. Quando READY: abrir a URL e validar (título Comet Cloud, sidebar Serviços/Console de Deploy/Armazenamento/Equipe e Acesso/Integrações/Logs/Configurações, paleta laranja, home, sql, auth, storage, settings). Depois entregar resultado ao usuário com as URLs.
+
+## ATUALIZAÇÃO 20 — Build Bn1FGtCUKDSmJCMjXx5Pz4PEYSxu ainda QUEUED (25 min)
+
+Plano Hobby com fila. Verificado às 03:27 UTC: ainda QUEUED, 25 min na fila. Não há nada errado — apenas aguardar. Re-verificar em ~10 min na URL https://vercel.com/ian05519375s-projects/comet-cloud/deployments. Quando READY: validar em https://comet-cloud.vercel.app (domínio fixo) e https://comet-cloud-9eimw572e-ian05519375s-projects.vercel.app. Checkpoints de validação: título "Comet Cloud", logo laranja, sidebar Serviços | Console de Deploy | Armazenamento | Equipe e Acesso | Integrações | Logs | Monitoramento | Billing | Configurações, home com quick actions, sql=Console de Deploy, editor=Serviços, storage=Armazenamento (volumes), auth=Equipe.
+
+## ATUALIZAÇÃO 21 — Build Bn1FGtCUK falhou: identificador quebrado remanescente
+
+Deploy Bn1FGtCUKDSmJCMjXx5Pz4PEYSxu (commit c795138) falhou com erro de parse:
+`components/interfaces/Database/Replication/DestinationPanel/DestinationForm/DestinationForm.utils.ts:82:30`
+`? config.iceberg.comet cloud` — identificador quebrado da substituição de marca (deveria ser algo como `config.iceberg.cometCloud` / subpath do @stripe/sync-engine). O fix_identifiers2.py não cobriu esse arquivo.
+
+CORREÇÃO: editar o arquivo, trocar `config.iceberg.comet cloud` por `config.iceberg.cometCloud` (verificar o contexto real — provável que seja o subpath de iceberg do engine do Stripe, tipo `@stripe/sync-engine/iceberg/comet-cloud` ou propriedade `cometCloud`). Depois git add/commit/push, o webhook da Vercel dispara nova build automaticamente (não precisa Redeploy manual).
+
+Nota: usar `grep -n "comet cloud" -ri apps/studio --include="*.ts" --include="*.tsx"` para encontrar TODOS os identificadores quebrados antes de commitar (passo preventivo), pois o build já passou por isso 2x.

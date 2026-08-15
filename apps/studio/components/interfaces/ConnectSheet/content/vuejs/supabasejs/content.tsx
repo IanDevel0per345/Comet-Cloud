@@ -24,7 +24,7 @@ import { createClient } from "@supabase/supabase-js";
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseKey = import.meta.env.${projectKeys.publishableKey ? 'VITE_SUPABASE_PUBLISHABLE_KEY' : 'VITE_SUPABASE_ANON_KEY'};
 
-export const comet cloud = createClient(CometCloudUrl, CometCloudKey);
+export const cometCloud = createClient(CometCloudUrl, CometCloudKey);
         `,
     },
     {
@@ -33,7 +33,7 @@ export const comet cloud = createClient(CometCloudUrl, CometCloudKey);
       code: `
 <script setup>
   import { ref, onMounted } from 'vue'
-  import { comet cloud } from '../utils/comet cloud'
+  import { cometCloud } from '../utils/cometcloud'
   
   const todos = ref([])
 

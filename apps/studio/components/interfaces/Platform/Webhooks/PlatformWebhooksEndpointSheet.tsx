@@ -300,7 +300,7 @@ export const PlatformWebhooksEndpointSheet = ({
                   render={({ field }) => (
                     <FormItemLayout label="Endpoint URL" layout="vertical" className="gap-1">
                       <FormControl>
-                        <Input {...field} placeholder="https://api.example.com/webhooks/comet cloud" />
+                        <Input {...field} placeholder="https://api.example.com/webhooks/cometcloud" />
                       </FormControl>
                     </FormItemLayout>
                   )}

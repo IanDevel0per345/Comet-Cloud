@@ -427,7 +427,7 @@ const baseDucklakecometCloudFormData = {
 }
 
 describe('DestinationForm.utils DuckLake (Use Comet Cloud)', () => {
-  it('builds DuckLake validation config from project refs in comet cloud mode', () => {
+  it('builds DuckLake validation config from project refs in cometCloud mode', () => {
     const config = buildDestinationConfigForValidation({
       projectRef: 'project-ref',
       selectedType: 'DuckLake',
@@ -445,7 +445,7 @@ describe('DestinationForm.utils DuckLake (Use Comet Cloud)', () => {
     })
   })
 
-  it('builds DuckLake submit config from project refs in comet cloud mode', async () => {
+  it('builds DuckLake submit config from project refs in cometCloud mode', async () => {
     const createS3AccessKey = vi.fn()
     const resolveNamespace = vi.fn()
 
@@ -470,13 +470,13 @@ describe('DestinationForm.utils DuckLake (Use Comet Cloud)', () => {
     expect(resolveNamespace).not.toHaveBeenCalled()
   })
 
-  it('returns required-field errors for missing comet cloud selections, ignoring custom fields', () => {
+  it('returns required-field errors for missing cometCloud selections, ignoring custom fields', () => {
     const issues = getDucklakeValidationIssues({
       ducklakeMode: 'cometcloud',
       ducklakeCatalogProjectRef: '',
       ducklakeStorageProjectRef: '',
       ducklakeStorageBucket: '',
-      // Custom-mode fields are intentionally blank and must not be validated in comet cloud mode
+      // Custom-mode fields are intentionally blank and must not be validated in cometCloud mode
       ducklakeCatalogUrl: '',
       ducklakeDataPath: '',
       ducklakeS3AccessKeyId: '',
@@ -493,7 +493,7 @@ describe('DestinationForm.utils DuckLake (Use Comet Cloud)', () => {
     ])
   })
 
-  it('accepts a complete comet cloud configuration', () => {
+  it('accepts a complete cometCloud configuration', () => {
     expect(
       getDucklakeValidationIssues({
         ducklakeMode: 'cometcloud',

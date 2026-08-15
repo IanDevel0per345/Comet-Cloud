@@ -119,8 +119,8 @@ export const General = () => {
               description={
                 <p>
                   Project settings are configured in{' '}
-                  <code className="text-code-inline">comet cloud/config.toml</code> — applied on{' '}
-                  <code className="text-code-inline">comet cloud start</code>.
+                  <code className="text-code-inline">cometcloud/config.toml</code> — applied on{' '}
+                  <code className="text-code-inline">cometcloud start</code>.
                 </p>
               }
               actions={<DocsButton href={`${DOCS_URL}/guides/local-development`} />}

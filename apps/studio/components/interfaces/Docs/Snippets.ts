@@ -30,16 +30,16 @@ const snippets = {
 import { createClient } from '@supabase/supabase-js'
 const supabaseUrl = '${endpoint}'
 const supabaseKey = process.env.SUPABASE_KEY
-const comet cloud = createClient(CometCloudUrl, CometCloudKey)`,
+const cometCloud = createClient(CometCloudUrl, CometCloudKey)`,
     },
     python: {
       language: 'python',
       code: `
 import os
-from comet cloud import create_client, Client
+from cometCloud import create_client, Client
 url: str = '${endpoint}'
 key: str = os.environ.get("SUPABASE_KEY")
-comet cloud: Client = create_client(url, key)
+cometcloud: Client = create_client(url, key)
 `,
     },
     dart: {
@@ -134,7 +134,7 @@ curl -X POST '${endpoint}/rest/v1/rpc/${rpcName}' \\${bashParams}
       js: {
         language: 'js',
         code: `
-let { data, error } = await comet cloud
+let { data, error } = await cometCloud
   .rpc('${rpcName}'${jsParams})
 if (error) console.error(error)
 else console.log(data)
@@ -255,7 +255,7 @@ curl '${endpoint}/rest/v1/${resourceId}?select=*' \\
     js: {
       language: 'js',
       code: `
-let { data: ${resourceId}, error } = await comet cloud
+let { data: ${resourceId}, error } = await cometCloud
   .from('${resourceId}')
   .select('*')
 `,
@@ -286,7 +286,7 @@ curl '${endpoint}/rest/v1/${resourceId}?select=${columnName}' \\
     js: {
       language: 'js',
       code: `
-let { data: ${resourceId}, error } = await comet cloud
+let { data: ${resourceId}, error } = await cometCloud
   .from('${resourceId}')
   .select('${columnName}')
 `,
@@ -305,7 +305,7 @@ curl '${endpoint}/rest/v1/${resourceId}?select=some_column,other_table(foreign_k
     js: {
       language: 'js',
       code: `
-let { data: ${resourceId}, error } = await comet cloud
+let { data: ${resourceId}, error } = await cometCloud
   .from('${resourceId}')
   .select(\`
     some_column,
@@ -330,7 +330,7 @@ curl '${endpoint}/rest/v1/${resourceId}?select=*' \\
     js: {
       language: 'js',
       code: `
-let { data: ${resourceId}, error } = await comet cloud
+let { data: ${resourceId}, error } = await cometCloud
   .from('${resourceId}')
   .select('*')
   .range(0, 9)
@@ -372,7 +372,7 @@ curl --get '${endpoint}/rest/v1/${resourceId}' \\
     js: {
       language: 'js',
       code: `
-let { data: ${resourceId}, error } = await comet cloud
+let { data: ${resourceId}, error } = await cometCloud
   .from('${resourceId}')
   .select("*")
 
@@ -414,7 +414,7 @@ curl -X POST '${endpoint}/rest/v1/${resourceId}' \\
     js: {
       language: 'js',
       code: `
-const { data, error } = await comet cloud
+const { data, error } = await cometCloud
   .from('${resourceId}')
   .insert([
     { some_column: 'someValue', other_column: 'otherValue' },
@@ -438,7 +438,7 @@ curl -X POST '${endpoint}/rest/v1/${resourceId}' \\
     js: {
       language: 'js',
       code: `
-const { data, error } = await comet cloud
+const { data, error } = await cometCloud
   .from('${resourceId}')
   .insert([
     { some_column: 'someValue' },
@@ -464,7 +464,7 @@ curl -X POST '${endpoint}/rest/v1/${resourceId}' \\
     js: {
       language: 'js',
       code: `
-const { data, error } = await comet cloud
+const { data, error } = await cometCloud
   .from('${resourceId}')
   .upsert({ some_column: 'someValue' })
   .select()
@@ -487,7 +487,7 @@ curl -X PATCH '${endpoint}/rest/v1/${resourceId}?some_column=eq.someValue' \\
     js: {
       language: 'js',
       code: `
-const { data, error } = await comet cloud
+const { data, error } = await cometCloud
   .from('${resourceId}')
   .update({ other_column: 'otherValue' })
   .eq('some_column', 'someValue')
@@ -508,7 +508,7 @@ curl -X DELETE '${endpoint}/rest/v1/${resourceId}?some_column=eq.someValue' \\
     js: {
       language: 'js',
       code: `
-const { error } = await comet cloud
+const { error } = await cometCloud
   .from('${resourceId}')
   .delete()
   .eq('some_column', 'someValue')

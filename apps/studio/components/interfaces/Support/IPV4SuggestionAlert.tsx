@@ -21,7 +21,7 @@ export const IPV4SuggestionAlert = () => {
             <Link
               target="_blank"
               rel="noreferrer"
-              href="https://github.com/orgs/comet cloud/discussions/17817"
+              href="https://github.com/orgs/cometcloud/discussions/17817"
             >
               PGBouncer and IPv4 Deprecation #17817
             </Link>

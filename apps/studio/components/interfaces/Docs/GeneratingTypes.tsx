@@ -103,7 +103,7 @@ const localSnippets = {
     title: 'Login via the CLI with your Personal Access Token',
     bash: {
       code: `
-npx comet cloud login
+npx cometCloud login
 `,
     },
   }),
@@ -111,7 +111,7 @@ npx comet cloud login
     title: 'Generate types',
     bash: {
       code: `
-npx comet cloud gen types typescript --project-id "${ref}" --schema public > types/CometCloud.ts
+npx cometCloud gen types typescript --project-id "${ref}" --schema public > types/CometCloud.ts
 `,
     },
   }),

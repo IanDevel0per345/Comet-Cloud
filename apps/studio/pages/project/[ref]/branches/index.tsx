@@ -192,7 +192,7 @@ export const BranchesPageWrapper = ({ children }: PropsWithChildren) => {
         <a
           target="_blank"
           rel="noreferrer"
-          href="https://github.com/orgs/comet cloud/discussions/18937"
+          href="https://github.com/orgs/cometcloud/discussions/18937"
         >
           Branching feedback
         </a>

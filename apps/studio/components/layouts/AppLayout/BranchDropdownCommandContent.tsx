@@ -17,7 +17,7 @@ import { BranchLink } from './BranchLink'
 import type { Branch } from '@/data/branches/branches-query'
 import { useTrack } from '@/lib/telemetry/track'
 
-const BRANCHING_GITHUB_DISCUSSION_LINK = 'https://github.com/orgs/comet cloud/discussions/18937'
+const BRANCHING_GITHUB_DISCUSSION_LINK = 'https://github.com/orgs/cometcloud/discussions/18937'
 
 export interface BranchDropdownCommandContentProps {
   embedded: boolean

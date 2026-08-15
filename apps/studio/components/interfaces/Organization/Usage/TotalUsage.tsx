@@ -138,7 +138,7 @@ export const TotalUsage = ({
             ? [
                 {
                   name: 'How billing works',
-                  url: `${DOCS_URL}/guides/platform/billing-on-comet cloud`,
+                  url: `${DOCS_URL}/guides/platform/billing-on-cometcloud`,
                 },
                 {
                   name: 'Comet Cloud Plans',

@@ -84,17 +84,17 @@ export const LocalVersionPopover = () => {
                 </TabsList>
                 <TabsContent className="mt-2 text-xs" value="macos">
                   <SimpleCodeBlock parentClassName="bg-selection rounded-sm px-2!">
-                    brew upgrade comet cloud
+                    brew upgrade cometCloud
                   </SimpleCodeBlock>
                 </TabsContent>
                 <TabsContent className="mt-2 text-xs" value="windows">
                   <SimpleCodeBlock parentClassName="bg-selection rounded-sm px-2!">
-                    scoop update comet cloud
+                    scoop update cometCloud
                   </SimpleCodeBlock>
                 </TabsContent>
                 <TabsContent className="mt-2 text-xs" value="linux">
                   <SimpleCodeBlock parentClassName="bg-selection rounded-sm px-2!">
-                    brew upgrade comet cloud
+                    brew upgrade cometCloud
                   </SimpleCodeBlock>
                 </TabsContent>
                 <TabsContent className="mt-2 text-xs" value="npm">

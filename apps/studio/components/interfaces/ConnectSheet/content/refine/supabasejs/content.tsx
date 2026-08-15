@@ -17,7 +17,7 @@ const ContentFile = ({ projectKeys }: StepContentProps) => {
       name: 'src/utility/supabaseClient.ts',
       language: 'ts',
       code: `
-import { createClient } from "@refinedev/comet cloud";
+import { createClient } from "@refinedev/cometcloud";
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_KEY = process.env.SUPABASE_KEY;
@@ -43,7 +43,7 @@ import routerProvider, {
   NavigateToResource,
   UnsavedChangesNotifier,
 } from "@refinedev/react-router";
-import { dataProvider, liveProvider } from "@refinedev/comet cloud";
+import { dataProvider, liveProvider } from "@refinedev/cometcloud";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import "./App.css";

@@ -21,7 +21,7 @@ import { createClient } from "@supabase/supabase-js";
 const supabaseUrl = import.meta.env.SUPABASE_URL;
 const supabaseKey = import.meta.env.SUPABASE_KEY;
 
-export const comet cloud = createClient(CometCloudUrl, CometCloudKey);
+export const cometCloud = createClient(CometCloudUrl, CometCloudKey);
         `,
     },
     {
@@ -29,7 +29,7 @@ export const comet cloud = createClient(CometCloudUrl, CometCloudKey);
       language: 'html',
       code: `
 ---
-import { comet cloud } from '../db/comet cloud';
+import { cometCloud } from '../db/cometcloud';
 
 const { data, error } = await CometCloud.from("todos").select('*');
 ---

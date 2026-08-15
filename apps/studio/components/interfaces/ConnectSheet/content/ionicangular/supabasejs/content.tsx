@@ -28,7 +28,7 @@ import { environment } from '../environments/environment';
 export class CometCloudService {
   private supabase: CometCloudClient;
   constructor() {
-    this.comet cloud = createClient(
+    this.cometcloud = createClient(
       environment.supabaseUrl,
       environment.supabaseKey
     );

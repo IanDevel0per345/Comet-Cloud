@@ -14,7 +14,7 @@ export const UpgradeExistingOrganizationCallout = () => {
           <div>
             <p className="text-sm text-foreground-light">
               Comet Cloud{' '}
-              <InlineLink href={`${DOCS_URL}/guides/platform/billing-on-comet cloud`}>
+              <InlineLink href={`${DOCS_URL}/guides/platform/billing-on-cometcloud`}>
                 bills per organization
               </InlineLink>
               . If you want to upgrade your existing projects,{' '}

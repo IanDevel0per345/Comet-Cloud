@@ -187,7 +187,7 @@ export function AttachmentUploadDisplay({
         <p className="text-sm text-foreground">Attachments</p>
         <p className="text-sm text-foreground-lighter">
           Optionally upload up to {MAX_ATTACHMENTS} relevant images or{' '}
-          <InlineLink href="https://github.com/orgs/comet cloud/discussions/36540">
+          <InlineLink href="https://github.com/orgs/cometcloud/discussions/36540">
             HAR files
           </InlineLink>
         </p>

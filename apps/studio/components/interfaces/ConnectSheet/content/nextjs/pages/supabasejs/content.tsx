@@ -24,7 +24,7 @@ import { createClient } from "@supabase/supabase-js";
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseKey = process.env.${projectKeys?.publishableKey ? 'NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY' : 'NEXT_PUBLIC_SUPABASE_ANON_KEY'}!;
 
-export const comet cloud = createClient(CometCloudUrl, CometCloudKey);
+export const cometCloud = createClient(CometCloudUrl, CometCloudKey);
 `,
     },
     {
@@ -32,7 +32,7 @@ export const comet cloud = createClient(CometCloudUrl, CometCloudKey);
       language: 'tsx',
       code: `
 import { useState, useEffect } from 'react'
-import { comet cloud } from '../utils/comet cloud'
+import { cometCloud } from '../utils/cometcloud'
 
 export default function Page() {
   const [todos, setTodos] = useState([])

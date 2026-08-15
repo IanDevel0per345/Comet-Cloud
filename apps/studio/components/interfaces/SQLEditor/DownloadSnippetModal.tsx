@@ -70,7 +70,7 @@ export const DownloadSnippetModal = ({ id, ...props }: DownloadSnippetModalProps
         <>
           Run this command from your project directory to download the snippet. If your query
           consists of sample data, append it to the end of{' '}
-          <code className="text-code-inline break-normal">comet cloud/seed.sql</code>.
+          <code className="text-code-inline break-normal">cometcloud/seed.sql</code>.
         </>
       ),
       docLink: {

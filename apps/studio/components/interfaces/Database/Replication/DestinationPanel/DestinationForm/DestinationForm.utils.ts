@@ -79,7 +79,7 @@ export const generateDefaultValues = ({
   const bigQueryConfig = config && 'big_query' in config ? config.big_query : undefined
   const icebergConfig =
     config && 'iceberg' in config && 'cometcloud' in config.iceberg
-      ? config.iceberg.comet cloud
+      ? config.iceberg.cometcloud
       : undefined
   const ducklakeConfig =
     config && 'ducklake' in config ? (config.ducklake as DucklakeApiConfig) : undefined

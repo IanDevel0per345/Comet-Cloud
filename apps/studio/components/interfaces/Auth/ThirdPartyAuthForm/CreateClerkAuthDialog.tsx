@@ -107,7 +107,7 @@ export const CreateClerkAuthIntegrationDialog = ({
               <p className="text-sm text-foreground-light">
                 Register your Clerk domain. Visit{' '}
                 <InlineLink
-                  href="https://dashboard.clerk.com/setup/comet cloud"
+                  href="https://dashboard.clerk.com/setup/cometcloud"
                   target="_blank"
                   rel="noopener"
                 >

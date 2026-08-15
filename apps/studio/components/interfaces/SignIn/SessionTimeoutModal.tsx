@@ -83,7 +83,7 @@ export const SessionTimeoutModal = ({
                       Contact support
                     </SupportLink>{' '}
                     and include a{' '}
-                    <InlineLink href="https://github.com/orgs/comet cloud/discussions/36540">
+                    <InlineLink href="https://github.com/orgs/cometcloud/discussions/36540">
                       HAR file
                     </InlineLink>{' '}
                     from your session to help us investigate.

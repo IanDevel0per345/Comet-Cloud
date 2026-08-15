@@ -13,11 +13,11 @@ const current = process.env.CURRENT_CLI_VERSION ? `v${process.env.CURRENT_CLI_VE
 const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { tag_name: latest, published_at }: GitHubRepositoryRelease = await fetch(
-      'https://api.github.com/repos/comet cloud/cli/releases/latest'
+      'https://api.github.com/repos/cometcloud/cli/releases/latest'
     ).then((res) => res.json())
 
     const data: GitHubRepositoryRelease[] = await fetch(
-      'https://api.github.com/repos/comet cloud/cli/releases?per_page=1'
+      'https://api.github.com/repos/cometcloud/cli/releases?per_page=1'
     )
       .then((res) => res.json())
       // Ignore errors fetching beta release version
