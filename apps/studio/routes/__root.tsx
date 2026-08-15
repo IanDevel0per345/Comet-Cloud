@@ -369,7 +369,7 @@ function RootComponent() {
                   <TooltipProvider>
                     <RouteValidationWrapper>
                       <ThemeProvider
-                        defaultTheme="system"
+                        defaultTheme="classic-dark"
                         themes={['dark', 'light', 'classic-dark']}
                         enableSystem
                         disableTransitionOnChange
