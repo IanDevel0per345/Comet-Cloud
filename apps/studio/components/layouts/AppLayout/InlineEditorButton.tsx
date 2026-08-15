@@ -39,7 +39,7 @@ export const InlineEditorButton = () => {
           className: 'p-1 pl-2.5',
           text: (
             <div className="flex items-center gap-2.5">
-              <span>SQL Editor</span>
+              <span>Console de Deploy</span>
               <InlineEditorKeyboardTooltip />
             </div>
           ),
@@ -47,7 +47,7 @@ export const InlineEditorButton = () => {
       }}
     >
       <SqlEditor size={16} strokeWidth={1.5} />
-      <span className="sr-only">SQL Editor</span>
+      <span className="sr-only">Console de Deploy</span>
     </ButtonTooltip>
   )
 }

@@ -50,7 +50,7 @@ export function RecentItems() {
 
   return (
     <div className="space-y-4">
-      <h2 className="text-sm text-foreground">Recent items</h2>
+      <h2 className="text-sm text-foreground">Itens recentes</h2>
       <div className="flex flex-col gap-0">
         {sortedItems.length === 0 ? (
           <motion.div
@@ -60,9 +60,9 @@ export function RecentItems() {
           >
             <EntityTypeIcon type={'r' as ENTITY_TYPE} />
             <div>
-              <p className="text-xs text-foreground-light">No recent items yet</p>
+              <p className="text-xs text-foreground-light">Ainda não há itens recentes</p>
               <p className="text-xs text-foreground-lighter">
-                Items will appear here as you browse through your project
+                Os itens aparecerão aqui conforme você navega pelo projeto
               </p>
             </div>
           </motion.div>

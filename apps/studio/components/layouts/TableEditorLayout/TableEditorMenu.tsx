@@ -190,8 +190,8 @@ export const TableEditorMenu = () => {
             {!isSchemaLocked ? (
               <ButtonTooltip
                 block
-                title="Create a new table"
-                name="New table"
+                title="Criar um novo serviço"
+                name="Novo serviço"
                 disabled={!canCreateTables}
                 size="tiny"
                 icon={<Plus size={14} strokeWidth={1.5} className="text-foreground-muted" />}
@@ -219,8 +219,8 @@ export const TableEditorMenu = () => {
             <InnerSideBarFilterSearchInput
               name="search-tables"
               value={searchText}
-              placeholder="Search tables..."
-              aria-labelledby="Search tables"
+              placeholder="Buscar serviços..."
+              aria-labelledby="Buscar serviços"
               onChange={(e) => setSearchText(e.target.value)}
             >
               <InnerSideBarFilterSortDropdown
@@ -232,7 +232,7 @@ export const TableEditorMenu = () => {
                   value="alphabetical"
                   className="flex gap-2"
                 >
-                  Alphabetical
+                  A-Z
                 </InnerSideBarFilterSortDropdownItem>
                 <InnerSideBarFilterSortDropdownItem
                   key="grouped-alphabetical"

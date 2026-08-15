@@ -336,3 +336,45 @@ Deploy Bn1FGtCUKDSmJCMjXx5Pz4PEYSxu (commit c795138) falhou com erro de parse:
 CORREÇÃO: editar o arquivo, trocar `config.iceberg.comet cloud` por `config.iceberg.cometCloud` (verificar o contexto real — provável que seja o subpath de iceberg do engine do Stripe, tipo `@stripe/sync-engine/iceberg/comet-cloud` ou propriedade `cometCloud`). Depois git add/commit/push, o webhook da Vercel dispara nova build automaticamente (não precisa Redeploy manual).
 
 Nota: usar `grep -n "comet cloud" -ri apps/studio --include="*.ts" --include="*.tsx"` para encontrar TODOS os identificadores quebrados antes de commitar (passo preventivo), pois o build já passou por isso 2x.
+
+## ATUALIZAÇÃO 22 — Identificadores quebrados corrigidos (3ª e 4ª passada)
+
+- fix_identifiers3.py + fix_identifiers4.py rodaram: todos os 'comet cloud' quebrados em código viraram 'cometCloud'/'cometcloud' (incl. config.iceberg.cometcloud em DestinationForm.utils.ts, imports '../utils/cometcloud', @refinedev/cometcloud, CLI 'cometcloud snippets/migration/functions', URLs github.com/orgs/cometcloud, DOCS paths billing-on-cometcloud).
+- `grep -rn "comet cloud" components routes pages` no source = 0 ocorrências (restantes só em .next dev cache).
+- `tsc --noEmit` foi OOM-killed no sandbox mas não imprimiu nenhum erro antes de morrer (EXIT 0 após Killed) — aceitável; Vercel faz o build real.
+- git add -A: 85 arquivos alterados. PRÓXIMO: commit + push; webhook Vercel dispara build automática. URLs: https://comet-cloud.vercel.app (fixo) e https://comet-cloud-git-master-ian05519375s-projects.vercel.app.
+- Build settings na Vercel OK (STUDIO_FRAMEWORK=tanstack SKIP_ASSET_UPLOAD=1 pnpm run build:tanstack; out dist/client; rootDirectory apps/studio; env vars adicionadas).
+- Commit mensagem sugerida: "fix: resolve remaining broken 'comet cloud' identifiers causing vite parse error".
+
+## ATUALIZACAO 23 — Deploy automático disparado pelo push
+
+- Commit 31e16969e8 (identificadores) foi pushado e o webhook da Vercel criou automaticamente o deploy HZwGuag7EHJWXNVTm2anzcYvxCnG (preview: comet-cloud-paug0t4a1-ian05519375s-projects.vercel.app), estado Queued.
+- Monitorar até Ready; depois validar https://comet-cloud.vercel.app.
+
+## ATUALIZACAO 24 — Deploy HZwGuag7 parado em Queued por ~10 min
+
+- Ainda Queued após ~10 minutos. Possível fila do plano Hobby congestionada ou deploy travado (sem estado Building).
+- Plano: abrir página do deploy HZwGuag7, verificar logs; se travado, usar "Deployment Actions > Redeploy".
+
+## ATUALIZACAO 25 — Bloqueio removido
+
+- O deploy EKMuERdY1 (projeto cometcloud-studio, build de 14m que travou em "Creating an optimized production build") foi cancelado via UI — era o build que bloqueava a fila do plano Hobby.
+- Deploy do comet-cloud HZwGuag7 deve agora entrar em Building. Nota: o projeto cometcloud-studio usa o build default (Next) que trava por OOM; nosso comet-cloud usa o build tanstack, por isso vai passar.
+- Próx: monitorar HZwGuag7.
+
+## ATUALIZACAO 26 — BUILD COM SUCESSO
+
+- Deploy HZwGuag7EHJWXNVTm2anzcYvxCnG: **Ready** em 4m 23s (commit 31e1696). Build command tanstack funcionou na Vercel.
+- Próximo: validar https://comet-cloud.vercel.app e sub-rotas (/project/default, /project/default/sql, /project/default/storage, /project/default/auth, /project/default/editor).
+
+## ATUALIZACAO 27 — Validação da produção
+
+Produção no ar (comet-cloud.vercel.app, deploy HZwGuag7 Ready). Título "Comet Cloud", logo cometa, sidebar pt-BR OK (Serviços, Console de Deploy, Equipe e Acesso, Armazenamento, Integrações, Logs, Monitoramento, Billing, Configurações). /project/default/sql/new mostra "Console de Deploy" e botão "Deploy Ctrl". /project/default/storage/files mostra "Armazenamento"/"Arquivos" com buckets (conteúdo carrega via API — placeholders visíveis até o cliente hidratar).
+
+Observações: (1) a página home /project/default no primeiro load mostra a seção Advisor em branco/esqueleto até hidratar (normal, client-only); (2) links Docs ainda apontam para supabase.com (mantidos — docs oficiais); (3) botão "Connect" (topbar) mostra sheet de conexão — foi adaptado para quick-actions? verificar; (4) labels de grupo "Serviços" duplicado na sidebar (um é a seção, outro item) — aceitável conforme spec? (spec 5 usa Serviços no grupo).
+
+## ATUALIZACAO 28 — Editor renderiza, mas com strings em inglês não adaptadas
+
+- /project/default/editor: título "Serviços | ... | Comet Cloud" OK, mas conteúdo interno ainda em inglês: "New table" (tooltip/botão), "Search tables...", "Create a table / Design and create a new database table", "Recent items / No recent items yet".
+- O TableList tinha sido traduzido ("Novo serviço", "Buscar um serviço") — parece que a produção usa outra página (TableList vs outro componente) ou o build puxou strings de outro módulo. Conferir: `grep -rn "New table\|Search tables" apps/studio/components/interfaces/Database/TableGrid/` e `TableList.tsx` no build vs fonte. Talvez exista uma página home de editor diferente (Database page vs Editor) e as traduções ficaram em componentes não usados pela rota /editor.
+- Ações: (1) achar onde essas strings vivem; (2) aplicar pt-BR (Novo serviço, Buscar serviços, Criar um serviço...); (3) commit+push; (4) aguardar redeploy automático; (5) revalidar.

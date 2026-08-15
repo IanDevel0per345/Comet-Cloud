@@ -38,7 +38,7 @@ export const BannerTableEditorQueueOperations = () => {
                 <div className="text-xs text-foreground ml-0.5">
                   <span>name</span>
                   <span className="text-foreground-muted mx-1.5">·</span>
-                  <span>where id = 10</span>
+                  <span>onde id = 10</span>
                 </div>
               </div>
             </CardHeader>
@@ -56,9 +56,9 @@ export const BannerTableEditorQueueOperations = () => {
           </Card>
         </div>
         <div className="flex flex-col gap-y-1 mb-2">
-          <p className="text-sm font-medium">Queue row edits in Table Editor</p>
+          <p className="text-sm font-medium">Filas de edição no Editor de Serviços</p>
           <p className="text-xs text-foreground-lighter text-balance">
-            Batch multiple row edits and review them before saving to your database
+            Agrupe várias edições de linhas e revise-as antes de salvar no seu serviço
           </p>
         </div>
         <Button asChild variant="default" className="w-min">
